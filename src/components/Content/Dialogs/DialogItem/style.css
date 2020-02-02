@@ -1,0 +1,20 @@
+.dialogItemBox {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  grid-area: dialog;
+  width: 100%;
+}
+.dialogItemPhoto {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+}
+.dialogItemBox .lastMessagePhoto {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+a {
+  color: black;
+}

@@ -1,0 +1,9 @@
+.profilePhotoBox {
+  /* margin: 10px; */
+  background: #fff;
+  grid-area: photo;
+}
+.profilePhotoBox img {
+  width: 150px;
+  height: 150px;
+}

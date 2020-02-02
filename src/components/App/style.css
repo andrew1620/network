@@ -1,0 +1,22 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background: #edeef0;
+}
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "h h"
+    "ls c";
+
+  grid-template-rows: 42px 1fr; /*//высота*/
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px;
+  color: black;
+  max-width: 960px;
+  margin: 0px auto;
+  background: #edeef0;
+}

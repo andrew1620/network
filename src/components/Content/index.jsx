@@ -1,13 +1,17 @@
 import React from "react";
-import "../../index.css";
+import "./style.css";
+import { Route } from "react-router-dom";
 
-import MyProfile from "./MyProfile";
+import Profile from "./Profile";
+import Dialogs from "./Dialogs";
+import News from "./News";
 
 const Content = () => {
   return (
     <main className="content">
-      <MyProfile />
-      Content
+      <Route path="/profile" component={Profile} />
+      <Route path="/dialogs" component={Dialogs} />
+      <Route path="/news" component={News} />
     </main>
   );
 };

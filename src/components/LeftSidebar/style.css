@@ -1,0 +1,5 @@
+.leftSidebar {
+  grid-area: ls;
+  background: rgb(112, 79, 16);
+  /* border: 1px solid black; */
+}

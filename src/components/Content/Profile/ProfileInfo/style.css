@@ -1,0 +1,5 @@
+.profileInfoBox {
+  background: #fff;
+  /* margin: 10px; */
+  grid-area: info;
+}

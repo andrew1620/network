@@ -1,6 +1,6 @@
 import React from "react";
-
-import "../../index.css";
+import { BrowserRouter } from "react-router-dom";
+import "./style.css";
 
 import Header from "../Header";
 import LeftSidebar from "../LeftSidebar";
@@ -8,11 +8,13 @@ import Content from "../Content";
 
 const App = () => {
   return (
-    <div className="wrapper">
-      <Header />
-      <LeftSidebar />
-      <Content />
-    </div>
+    <BrowserRouter>
+      <div className="wrapper">
+        <Header />
+        <LeftSidebar />
+        <Content />
+      </div>
+    </BrowserRouter>
   );
 };
 export default App;
