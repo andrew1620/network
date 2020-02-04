@@ -2,8 +2,26 @@
   /* margin: 10px; */
   background: #fff;
   grid-area: photo;
+  /* padding: 10px; */
+  display: flex;
 }
-.profilePhotoBox img {
-  width: 150px;
-  height: 150px;
+.profilePhoto {
+  max-width: 200px;
+  margin: auto;
+  position: relative;
+}
+.profilePhoto img {
+  max-width: inherit;
+}
+.profilePhoto .uploadProfilePhoto {
+  position: absolute;
+  left: 25px;
+  top: 160px;
+  font-family: Arial;
+  font-size: 10pt;
+  color: #2a5885;
+  cursor: pointer;
+}
+.profilePhoto .uploadProfilePhoto:hover {
+  border-bottom: 1px solid #2a5885;
 }

@@ -2,4 +2,13 @@
   background: #fff;
   /* margin: 10px; */
   grid-area: info;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 15px;
+}
+.headerInfo .name {
+  font-size: 18px;
+  font-weight: 400;
+}
+.headerInfo .isOnline {
+  float: right;
 }

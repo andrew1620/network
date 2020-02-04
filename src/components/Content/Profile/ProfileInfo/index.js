@@ -4,7 +4,11 @@ import "./style.css";
 const ProfileInfo = () => {
   return (
     <div className="profileInfoBox">
-      <h3>Vasya Pupkin</h3>
+      <div className="headerInfo">
+        <span className="name">Vasya Pupkin</span>
+        <span className="isOnline">online</span>
+        <hr />
+      </div>
       <span>День рождения</span>
       <span>Город</span>
       <span>Место учебы</span>
