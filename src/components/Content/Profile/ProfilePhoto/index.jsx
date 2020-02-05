@@ -9,7 +9,7 @@ const ProfilePhoto = () => {
         <img
           // src="https://www.samogonashop.ru/upload/iblock/94f/94fb0858065d619ee8c8210915cc67ff.jpg"
           src="https://vk.com/images/camera_200.png?ava=1"
-          alt="photo"
+          alt="profilePhoto"
         />
       </div>
     </div>

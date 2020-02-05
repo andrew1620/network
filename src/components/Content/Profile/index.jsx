@@ -6,12 +6,12 @@ import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
 
-const Profile = () => {
+const Profile = ({ profilePage }) => {
   return (
     <div className="profile">
       <ProfilePhoto />
       <ProfileInfo />
-      <ProfilePosts />
+      <ProfilePosts postsData={profilePage.postsData} />
       <ProfileFriends />
     </div>
   );

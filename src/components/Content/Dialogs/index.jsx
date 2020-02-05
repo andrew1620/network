@@ -4,10 +4,10 @@ import "./style.css";
 import DialogItem from "./DialogItem";
 import DialogsNav from "./DialogsNav";
 
-const Dialogs = () => {
+const Dialogs = ({ dialogsData }) => {
   return (
     <div className="dialogsBox">
-      <DialogItem />
+      <DialogItem dialogsData={dialogsData} />
       <DialogsNav />
     </div>
   );

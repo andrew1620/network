@@ -2,11 +2,11 @@ import React from "react";
 import AddPost from "./AddPost";
 import Post from "./Post";
 
-const ProfilePosts = () => {
+const ProfilePosts = ({ postsData }) => {
   return (
     <div className="profilePosts">
       <AddPost />
-      <Post />
+      <Post postsData={postsData} />
     </div>
   );
 };

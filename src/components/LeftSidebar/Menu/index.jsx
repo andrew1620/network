@@ -4,6 +4,8 @@ import { NavLink } from "react-router-dom";
 
 const Menu = () => {
   return (
+    // переделать меню, все сделано не как в вк
+    // -----------------------------------------
     <nav className="nav">
       <div className="refContainer">
         <div className="profileIcon">

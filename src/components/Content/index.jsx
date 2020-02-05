@@ -6,12 +6,20 @@ import Profile from "./Profile";
 import Dialogs from "./Dialogs";
 import News from "./News";
 
-const Content = () => {
+const Content = ({ contentData }) => {
   return (
     <main className="content">
-      <Route path="/profile" component={Profile} />
-      <Route path="/dialogs" component={Dialogs} />
-      <Route path="/news" component={News} />
+      <Route
+        path="/profile"
+        render={() => <Profile profilePage={contentData.profilePage} />}
+      />
+      <Route
+        path="/dialogs"
+        render={() => (
+          <Dialogs dialogsData={contentData.dialogsPage.dialogsData} />
+        )}
+      />
+      <Route path="/news" render={() => <News />} />
     </main>
   );
 };
