@@ -1,8 +1,8 @@
 import React from "react";
 import "./style.css";
 
-const Post = ({ postsData = [] }) => {
-  const postsList = postsData.map(post => {
+const Post = ({ postsArr = [] }) => {
+  const postsList = postsArr.map(post => {
     return (
       <div className="postBox">
         <img src={post.img} alt="postPic" />

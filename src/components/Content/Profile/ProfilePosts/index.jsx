@@ -2,11 +2,11 @@ import React from "react";
 import AddPost from "./AddPost";
 import Post from "./Post";
 
-const ProfilePosts = ({ postsData }) => {
+const ProfilePosts = ({ postsData, dispatch }) => {
   return (
     <div className="profilePosts">
-      <AddPost />
-      <Post postsData={postsData} />
+      <AddPost textAreaValue={postsData.textAreaValue} dispatch={dispatch} />
+      <Post postsArr={postsData.postsArr} />
     </div>
   );
 };
