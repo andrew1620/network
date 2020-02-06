@@ -7,6 +7,8 @@ import {
 } from "../../../../../redux/profileReducer";
 import AddPost from "../AddPost/index";
 
+import StoreContext from "../../../../../StoreContext";
+
 const AddPostContainer = ({ textAreaValue, dispatch, store }) => {
   const handleBtnClick = () => {
     store.dispatch(addPostActionCreator());
@@ -15,11 +17,15 @@ const AddPostContainer = ({ textAreaValue, dispatch, store }) => {
     store.dispatch(updateTextareaValueActionCreator(newValue));
   };
   return (
-    <AddPost
-      textAreaValue={store.getState().postsData.textAreaValue}
-      handleBtnClick={handleBtnClick}
-      handleTextAreaChange={handleTextAreaChange}
-    />
+    <StoreContext.Consumer>
+      {store => (
+        <AddPost
+          textAreaValue={store.getState().postsData.textAreaValue}
+          handleBtnClick={handleBtnClick}
+          handleTextAreaChange={handleTextAreaChange}
+        />
+      )}
+    </StoreContext.Consumer>
   );
 };
 

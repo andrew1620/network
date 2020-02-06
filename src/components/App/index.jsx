@@ -6,13 +6,17 @@ import Header from "../Header";
 import LeftSidebar from "../LeftSidebar";
 import Content from "../Content";
 
+import StoreContext from "../../StoreContext";
+
 const App = ({ state, dispatch, store }) => {
   return (
     <BrowserRouter>
       <div className="wrapper">
         <Header />
         <LeftSidebar />
-        <Content state={state} dispatch={dispatch} store={store} />
+        <StoreContext.Provider value={store}>
+          {<Content state={state} dispatch={dispatch} store={store} />}
+        </StoreContext.Provider>
       </div>
     </BrowserRouter>
   );
