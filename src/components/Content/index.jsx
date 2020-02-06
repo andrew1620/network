@@ -6,19 +6,19 @@ import Profile from "./Profile";
 import Dialogs from "./Dialogs";
 import News from "./News";
 
-const Content = ({ contentData, dispatch }) => {
+const Content = ({ state, dispatch, store }) => {
   return (
     <main className="content">
       <Route
         path="/profile"
         render={() => (
-          <Profile profilePage={contentData.profilePage} dispatch={dispatch} />
+          <Profile state={state} dispatch={dispatch} store={store} />
         )}
       />
       <Route
         path="/dialogs"
         render={() => (
-          <Dialogs dialogsPage={contentData.dialogsPage} dispatch={dispatch} />
+          <Dialogs dialogsPage={state.dialogsPage} dispatch={dispatch} />
         )}
       />
       <Route path="/news" render={() => <News />} />

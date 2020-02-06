@@ -6,13 +6,13 @@ import Header from "../Header";
 import LeftSidebar from "../LeftSidebar";
 import Content from "../Content";
 
-const App = ({ state, dispatch }) => {
+const App = ({ state, dispatch, store }) => {
   return (
     <BrowserRouter>
       <div className="wrapper">
         <Header />
         <LeftSidebar />
-        <Content contentData={state.contentData} dispatch={dispatch} />
+        <Content state={state} dispatch={dispatch} store={store} />
       </div>
     </BrowserRouter>
   );

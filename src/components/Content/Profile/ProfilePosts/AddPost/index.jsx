@@ -6,14 +6,25 @@ import {
   addPostActionCreator
 } from "../../../../../redux/profileReducer";
 
-const AddPost = ({ textAreaValue, dispatch }) => {
+const AddPost = ({
+  textAreaValue,
+  dispatch,
+  handleBtnClick,
+  handleTextAreaChange
+}) => {
   let textAreaRef = React.createRef();
 
-  const handleBtnClick = () => {
-    dispatch(addPostActionCreator());
+  // const handleBtnClick = () => {
+  //   dispatch(addPostActionCreator());
+  // };
+  // const handleTextAreaChange = () => {
+  //   dispatch(updateTextareaValueActionCreator(textAreaRef.current.value));
+  // };
+  const btnClick = () => {
+    handleBtnClick();
   };
-  const handleTextAreaChange = () => {
-    dispatch(updateTextareaValueActionCreator(textAreaRef.current.value));
+  const textAreaChange = () => {
+    handleTextAreaChange(textAreaRef.current.value);
   };
   return (
     <div className="addPostBox">
@@ -21,11 +32,11 @@ const AddPost = ({ textAreaValue, dispatch }) => {
         <textarea
           ref={textAreaRef}
           value={textAreaValue}
-          onChange={handleTextAreaChange}
+          onChange={textAreaChange}
         ></textarea>
       </div>
       <div>
-        <button className="addPostBtn" onClick={handleBtnClick}>
+        <button className="addPostBtn" onClick={btnClick}>
           Опубликовать
         </button>
       </div>

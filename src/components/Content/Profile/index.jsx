@@ -6,13 +6,17 @@ import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
 
-const Profile = ({ profilePage, dispatch }) => {
+const Profile = ({ state, dispatch, store }) => {
   return (
     <div className="profile">
       <ProfilePhoto />
       <ProfileInfo />
       <ProfileFriends />
-      <ProfilePosts postsData={profilePage.postsData} dispatch={dispatch} />
+      <ProfilePosts
+        postsData={state.postsData}
+        dispatch={dispatch}
+        store={store}
+      />
     </div>
   );
 };
