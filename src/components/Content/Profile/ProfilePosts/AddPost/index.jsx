@@ -1,20 +1,19 @@
 import React from "react";
 import "./style.css";
 
+import {
+  updateTextareaValueActionCreator,
+  addPostActionCreator
+} from "../../../../../redux/state";
+
 const AddPost = ({ textAreaValue, dispatch }) => {
   let textAreaRef = React.createRef();
 
   const handleBtnClick = () => {
-    // addPost();
-    dispatch({ type: "ADD_POST" });
+    dispatch(addPostActionCreator());
   };
   const handleTextAreaChange = () => {
-    // updateTextAreaValue(textAreaRef.current.value);
-    const action = {
-      type: "UPDATE-TEXTAREA-VALUE",
-      payload: textAreaRef.current.value
-    };
-    dispatch(action);
+    dispatch(updateTextareaValueActionCreator(textAreaRef.current.value));
   };
   return (
     <div className="addPostBox">

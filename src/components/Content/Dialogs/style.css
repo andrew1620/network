@@ -1,9 +1,9 @@
 .dialogsBox {
   display: grid;
 
-  grid-template-areas: "dialog dialogsNav";
+  grid-template-areas: "mainPlace dialogsNav";
 
-  grid-template-rows: 71px 1fr;
+  grid-template-rows: auto auto;
   grid-template-columns: 8fr 3.5fr;
   grid-gap: 10px;
 }

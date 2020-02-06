@@ -2,7 +2,7 @@
   background: #fff;
   display: flex;
   justify-content: space-between;
-  grid-area: dialog;
+  grid-area: mainPlace;
   width: 100%;
 }
 .dialogItemPhoto {

@@ -105,3 +105,12 @@ export const store = {
     }
   }
 };
+const ADD_POST = "ADD_POST";
+const UPDATE_TEXTAREA_VALUE = "UPDATE-TEXTAREA-VALUE";
+
+export const addPostActionCreator = () => {
+  return { type: ADD_POST };
+};
+export const updateTextareaValueActionCreator = newValue => {
+  return { type: UPDATE_TEXTAREA_VALUE, payload: newValue };
+};

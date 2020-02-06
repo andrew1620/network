@@ -1,0 +1,23 @@
+.messagesBox {
+  /* border: 1px solid black; */
+  background: #fff;
+  /* grid-area: mainPlace; */
+  display: grid;
+  grid-template-areas:
+    "messagesHeader"
+    "messagesContent"
+    "messagesSendBox";
+}
+.messagesHeader {
+  grid-area: messagesHeader;
+  border: 1px solid red;
+  height: 20px;
+}
+.messagesContent {
+  grid-area: messagesContent;
+  border: 1px solid purple;
+}
+.messagesSendBox {
+  grid-area: messagesSendBox;
+  border: 1px solid salmon;
+}
