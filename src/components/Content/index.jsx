@@ -18,7 +18,7 @@ const Content = ({ contentData, dispatch }) => {
       <Route
         path="/dialogs"
         render={() => (
-          <Dialogs dialogsData={contentData.dialogsPage.dialogsData} />
+          <Dialogs dialogsPage={contentData.dialogsPage} dispatch={dispatch} />
         )}
       />
       <Route path="/news" render={() => <News />} />

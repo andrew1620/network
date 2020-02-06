@@ -1,0 +1,6 @@
+.messageItemBox {
+  display: flex;
+}
+.messageItemName {
+  font-weight: bold;
+}

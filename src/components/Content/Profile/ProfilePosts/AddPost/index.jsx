@@ -4,7 +4,7 @@ import "./style.css";
 import {
   updateTextareaValueActionCreator,
   addPostActionCreator
-} from "../../../../../redux/state";
+} from "../../../../../redux/profileReducer";
 
 const AddPost = ({ textAreaValue, dispatch }) => {
   let textAreaRef = React.createRef();

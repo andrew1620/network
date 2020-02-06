@@ -1,3 +1,6 @@
+import profileReducer from "./profileReducer";
+import dialogsReducer from "./dialogsReducer";
+
 export const store = {
   _callSubscriber() {
     console.log("state changed");
@@ -34,7 +37,15 @@ export const store = {
               "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
             id: 4
           }
-        ]
+        ],
+        messagesId: {
+          user_1: [
+            { name: "Vasya", text: "Привет" },
+            { name: "Vasya", text: "Как дела" },
+            { name: "Vasya", text: "Пашок лох" }
+          ]
+        },
+        messagesTextareaValue: ""
       },
       profilePage: {
         postsData: {
@@ -69,48 +80,16 @@ export const store = {
   getState() {
     return this._state;
   },
-  addPost() {
-    const newPost = {
-      name: "Vasya Pupkin",
-      img:
-        "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
-      body: this._state.contentData.profilePage.postsData.textAreaValue
-    };
-    this._state.contentData.profilePage.postsData.postsArr.push(newPost);
-    this._callSubscriber(this._state);
-  },
-  updateTextAreaValue(newValue) {
-    this._state.contentData.profilePage.postsData.textAreaValue = newValue;
-    this._callSubscriber(this._state);
-  },
   dispatch(action) {
-    switch (action.type) {
-      case "ADD_POST":
-        const newPost = {
-          name: "Vasya Pupkin",
-          img:
-            "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
-          body: this._state.contentData.profilePage.postsData.textAreaValue
-        };
-        this._state.contentData.profilePage.postsData.postsArr.push(newPost);
-        this._callSubscriber(this._state);
-        break;
-      case "UPDATE-TEXTAREA-VALUE":
-        this._state.contentData.profilePage.postsData.textAreaValue =
-          action.payload;
-        this._callSubscriber(this._state);
-        break;
-      default:
-        console.log("there is no such action");
-    }
-  }
-};
-const ADD_POST = "ADD_POST";
-const UPDATE_TEXTAREA_VALUE = "UPDATE-TEXTAREA-VALUE";
+    this._state.contentData.profilePage.postsData = profileReducer(
+      this._state.contentData.profilePage.postsData,
+      action
+    );
+    this._state.contentData.dialogsPage = dialogsReducer(
+      this._state.contentData.dialogsPage,
+      action
+    );
 
-export const addPostActionCreator = () => {
-  return { type: ADD_POST };
-};
-export const updateTextareaValueActionCreator = newValue => {
-  return { type: UPDATE_TEXTAREA_VALUE, payload: newValue };
+    this._callSubscriber(this._state);
+  }
 };

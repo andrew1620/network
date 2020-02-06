@@ -5,6 +5,8 @@ import App from "./components/App";
 import * as serviceWorker from "./serviceWorker";
 import { store } from "./redux/state";
 
+window.store = store; // Для отслеживания временно
+
 const rerenderEntireTree = (state = {}) => {
   ReactDOM.render(
     <App state={state} dispatch={store.dispatch.bind(store)} />,
