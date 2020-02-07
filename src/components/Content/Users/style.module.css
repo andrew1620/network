@@ -1,0 +1,13 @@
+.userBox {
+  outline: 1px solid red;
+  display: flex;
+}
+.photo {
+  width: 80px;
+  height: 80px;
+}
+.img {
+  width: inherit;
+  height: inherit;
+  border-radius: 50%;
+}

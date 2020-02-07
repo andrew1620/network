@@ -1,11 +1,6 @@
 import React from "react";
 import "./style.css";
 
-import {
-  updateTextareaValueActionCreator,
-  addPostActionCreator
-} from "../../../../../redux/profileReducer";
-
 const AddPost = ({
   textAreaValue,
   dispatch,

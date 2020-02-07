@@ -1,6 +1,7 @@
 import React from "react";
 import "./style.css";
 import { NavLink } from "react-router-dom";
+import { connect } from "react-redux";
 
 const DialogItem = ({ dialogsData = [] }) => {
   const dialogsList = dialogsData.map(dialog => {
@@ -32,4 +33,13 @@ const DialogItem = ({ dialogsData = [] }) => {
   return <div>{dialogsList}</div>;
 };
 
-export default DialogItem;
+const mapStateToProps = state => {
+  return {
+    dialogsData: state.dialogsPage.dialogsData
+  };
+};
+const mapDispatchToProps = () => {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(DialogItem);

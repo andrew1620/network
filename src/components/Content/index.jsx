@@ -5,23 +5,15 @@ import { Route } from "react-router-dom";
 import Profile from "./Profile";
 import Dialogs from "./Dialogs";
 import News from "./News";
+import UsersContainer from "./Users/UsersContainer";
 
-const Content = ({ state, dispatch, store }) => {
+const Content = () => {
   return (
     <main className="content">
-      <Route
-        path="/profile"
-        render={() => (
-          <Profile state={state} dispatch={dispatch} store={store} />
-        )}
-      />
-      <Route
-        path="/dialogs"
-        render={() => (
-          <Dialogs dialogsPage={state.dialogsPage} dispatch={dispatch} />
-        )}
-      />
+      <Route path="/profile" render={() => <Profile />} />
+      <Route path="/dialogs" render={() => <Dialogs />} />
       <Route path="/news" render={() => <News />} />
+      <Route path="/users" render={() => <UsersContainer />} />
     </main>
   );
 };

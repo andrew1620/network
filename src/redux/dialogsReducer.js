@@ -36,20 +36,23 @@ const initialState = {
 };
 
 const dialogsReducer = (state = initialState, action) => {
+  // const stateCopy = Object.create(state);
+  const stateCopy = JSON.parse(JSON.stringify(state));
+
   switch (action.type) {
     case "ADD_MESSAGE":
       const newMessage = {
         name: "Vasya",
-        text: state.messagesTextareaValue
+        text: stateCopy.messagesTextareaValue
       };
-      state.messagesId.user_1.push(newMessage);
-      return state;
+      stateCopy.messagesId.user_1.push(newMessage);
+      return stateCopy;
 
     case "UPDATE_MESSAGES_TEXTAREA_VALUE":
-      state.messagesTextareaValue = action.payload;
-      return state;
+      stateCopy.messagesTextareaValue = action.payload;
+      return stateCopy;
     default:
-      console.log("there is no such action");
+      console.log("there is no such action in dialogsReduce");
       return state;
   }
 };

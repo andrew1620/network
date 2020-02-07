@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { connect } from "react-redux";
 
 const Post = ({ postsArr = [] }) => {
   const postsList = postsArr.map(post => {
@@ -23,4 +24,10 @@ const Post = ({ postsArr = [] }) => {
   return <div>{postsList}</div>;
 };
 
-export default Post;
+const mapStateToProps = state => {
+  return {
+    postsArr: state.postsData.postsArr
+  };
+};
+
+export default connect(mapStateToProps)(Post);

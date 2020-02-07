@@ -1,5 +1,6 @@
 import React from "react";
 import "./style.css";
+import { connect } from "react-redux";
 
 import {
   addMessageActionCreator,
@@ -7,21 +8,25 @@ import {
 } from "../../../../redux/dialogsReducer";
 
 import MessageItem from "./MessageItem";
-const textareaRef = React.createRef();
 
-const Messages = ({ messagesId, messagesTextareaValue, dispatch }) => {
+const Messages = ({
+  messagesId,
+  messagesTextareaValue,
+  handleTextArea,
+  handleSendClick
+}) => {
+  const textareaRef = React.createRef();
+
   const messagesList = messagesId.user_1.map(message => {
     return <MessageItem message={message} />;
   });
 
-  const handleTextArea = () => {
-    dispatch(
-      updateMessagesTextareaValueActionCreator(textareaRef.current.value)
-    );
+  const handleTextAreaChange = () => {
+    handleTextArea(textareaRef.current.value);
   };
 
-  const handleSendClick = () => {
-    dispatch(addMessageActionCreator());
+  const handleBtnSendClick = () => {
+    handleSendClick();
   };
 
   return (
@@ -32,10 +37,10 @@ const Messages = ({ messagesId, messagesTextareaValue, dispatch }) => {
         <textarea
           ref={textareaRef}
           value={messagesTextareaValue}
-          onChange={handleTextArea}
+          onChange={handleTextAreaChange}
         ></textarea>
         <button
-          onClick={handleSendClick}
+          onClick={handleBtnSendClick}
           className="btnSend"
           style={{ alignSelf: "flex-end" }}
         >
@@ -45,4 +50,22 @@ const Messages = ({ messagesId, messagesTextareaValue, dispatch }) => {
     </div>
   );
 };
-export default Messages;
+
+const mapStateToProps = state => {
+  return {
+    messagesId: state.dialogsPage.messagesId,
+    messagesTextareaValue: state.dialogsPage.messagesTextareaValue
+  };
+};
+const mapDispatchToProps = dispatch => {
+  return {
+    handleTextArea: newValue => {
+      dispatch(updateMessagesTextareaValueActionCreator(newValue));
+    },
+    handleSendClick: () => {
+      dispatch(addMessageActionCreator());
+    }
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Messages);

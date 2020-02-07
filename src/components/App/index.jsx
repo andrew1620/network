@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./style.css";
+import { Provider } from "react-redux";
 
 import Header from "../Header";
 import LeftSidebar from "../LeftSidebar";
@@ -14,9 +15,7 @@ const App = ({ state, dispatch, store }) => {
       <div className="wrapper">
         <Header />
         <LeftSidebar />
-        <StoreContext.Provider value={store}>
-          {<Content state={state} dispatch={dispatch} store={store} />}
-        </StoreContext.Provider>
+        <Provider store={store}>{<Content />}</Provider>
       </div>
     </BrowserRouter>
   );

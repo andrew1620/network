@@ -26,6 +26,8 @@ const initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
+  // const stateCopy = Object.create(state);
+  const stateCopy = JSON.parse(JSON.stringify(state));
   switch (action.type) {
     case "ADD_POST":
       const newPost = {
@@ -34,13 +36,14 @@ const profileReducer = (state = initialState, action) => {
           "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
         body: state.textAreaValue
       };
-      state.postsArr.push(newPost);
-      return state;
+
+      stateCopy.postsArr.push(newPost);
+      return stateCopy;
     case "UPDATE-TEXTAREA-VALUE":
-      state.textAreaValue = action.payload;
-      return state;
+      stateCopy.textAreaValue = action.payload;
+      return stateCopy;
     default:
-      console.log("there is no such action"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
+      console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
       return state;
   }
 };

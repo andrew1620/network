@@ -12,11 +12,7 @@ const Profile = ({ state, dispatch, store }) => {
       <ProfilePhoto />
       <ProfileInfo />
       <ProfileFriends />
-      <ProfilePosts
-        postsData={state.postsData}
-        dispatch={dispatch}
-        store={store}
-      />
+      <ProfilePosts />
     </div>
   );
 };

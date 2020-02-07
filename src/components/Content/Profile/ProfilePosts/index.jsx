@@ -7,8 +7,8 @@ const ProfilePosts = ({ postsData, dispatch, store }) => {
   return (
     <div className="profilePosts">
       {/* <AddPost textAreaValue={postsData.textAreaValue} dispatch={dispatch} /> */}
-      <AddPostContainer store={store} />
-      <Post postsArr={postsData.postsArr} />
+      <AddPostContainer />
+      <Post />
     </div>
   );
 };
