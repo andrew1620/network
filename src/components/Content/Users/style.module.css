@@ -18,3 +18,10 @@
   font-weight: bold;
   font-size: 14pt;
 }
+.pagesNumbersBox {
+  max-width: 800px;
+  overflow: auto;
+  /* word-wrap: break-word; */
+  margin-bottom: 10px;
+  outline: 1px solid red;
+}
