@@ -34,6 +34,15 @@ const Menu = () => {
         </div>
         <NavLink to="/news">Новости</NavLink>
       </div>
+      <div className="refContainer">
+        <div className="newsIcon">
+          {/* <img
+            src="https://sun9-17.userapi.com/c200624/v200624277/5940d/-Pby9f7A6BM.jpg"
+            alt="newsIcon"
+          /> */}
+        </div>
+        <NavLink to="/users">Люди</NavLink>
+      </div>
     </nav>
   );
 };

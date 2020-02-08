@@ -43,7 +43,7 @@ const profileReducer = (state = initialState, action) => {
       stateCopy.textAreaValue = action.payload;
       return stateCopy;
     default:
-      console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
+      // console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
       return state;
   }
 };

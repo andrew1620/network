@@ -1,5 +1,8 @@
 const initialState = {
-  users: []
+  users: [],
+  count: 5, //Для запроса на сервер, сколько человек принимать при запросе
+  currentPage: 1, //текущая страница
+  totalCount: 10
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -21,7 +24,11 @@ const usersReducer = (state = initialState, action) => {
         })
       };
     case SET_USERS:
-      return { ...state, users: [...state.users, ...action.payload] };
+      return { ...state, users: [...action.payload] };
+    case SET_CURRENT_PAGE:
+      return { ...state, currentPage: action.payload };
+    case SET_TOTAL_USERS_COUNT:
+      return { ...state, totalCount: action.payload };
     default:
       return state;
   }
@@ -32,6 +39,8 @@ export default usersReducer;
 const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
+const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
+const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 
 export const followAC = id => {
   return {
@@ -47,4 +56,10 @@ export const unfollowAC = id => {
 };
 export const setUsersAC = users => {
   return { type: SET_USERS, payload: users };
+};
+export const setCurrentPageAC = newCurrentPage => {
+  return { type: SET_CURRENT_PAGE, payload: newCurrentPage };
+};
+export const setTotalUsersCountAC = newCount => {
+  return { type: SET_TOTAL_USERS_COUNT, payload: newCount };
 };

@@ -11,3 +11,10 @@
   height: inherit;
   border-radius: 50%;
 }
+.pageNumber {
+  cursor: pointer;
+}
+.activePage {
+  font-weight: bold;
+  font-size: 14pt;
+}

@@ -52,7 +52,7 @@ const dialogsReducer = (state = initialState, action) => {
       stateCopy.messagesTextareaValue = action.payload;
       return stateCopy;
     default:
-      console.log("there is no such action in dialogsReduce");
+      // console.log("there is no such action in dialogsReduce");
       return state;
   }
 };
