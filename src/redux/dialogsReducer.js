@@ -27,9 +27,9 @@ const initialState = {
   ],
   messagesId: {
     user_1: [
-      { name: "Vasya", text: "Привет" },
-      { name: "Vasya", text: "Как дела" },
-      { name: "Vasya", text: "Пашок лох" }
+      { id: 1, name: "Vasya", text: "Привет" },
+      { id: 2, name: "Vasya", text: "Как дела" },
+      { id: 3, name: "Vasya", text: "Пашок лох" }
     ]
   },
   messagesTextareaValue: ""

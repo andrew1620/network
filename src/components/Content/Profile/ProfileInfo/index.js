@@ -1,11 +1,14 @@
 import React from "react";
 import "./style.css";
+import Preloader from "../../../common/Preloader";
 
-const ProfileInfo = () => {
+const ProfileInfo = props => {
+  if (!props.profile) return <Preloader />;
+
   return (
     <div className="profileInfoBox">
       <div className="headerInfo">
-        <span className="name">Vasya Pupkin</span>
+        <span className="name">{props.profile.fullName}</span>
         <span className="isOnline">online</span>
         <hr />
       </div>

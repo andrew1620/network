@@ -6,7 +6,7 @@ import { connect } from "react-redux";
 const DialogItem = ({ dialogsData = [] }) => {
   const dialogsList = dialogsData.map(dialog => {
     return (
-      <NavLink to={`/dialogs/${dialog.id}`}>
+      <NavLink to={`/dialogs/${dialog.id}`} key={dialog.id}>
         <div className="dialogItemBox">
           <img className="dialogItemPhoto" src={dialog.img} alt="dialogPic" />
           <div style={{ width: "78%" }}>

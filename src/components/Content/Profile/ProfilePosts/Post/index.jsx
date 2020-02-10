@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 const Post = ({ postsArr = [] }) => {
   const postsList = postsArr.map(post => {
     return (
-      <div className="postBox">
+      <div className="postBox" key={post.id}>
         <img src={post.img} alt="postPic" />
         <span>{post.name}</span>
         <div className="post">{post.body}</div>
@@ -26,7 +26,7 @@ const Post = ({ postsArr = [] }) => {
 
 const mapStateToProps = state => {
   return {
-    postsArr: state.postsData.postsArr
+    postsArr: state.profilePage.postsArr
   };
 };
 

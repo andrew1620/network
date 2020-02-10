@@ -6,17 +6,21 @@ import { Provider } from "react-redux";
 import Header from "../Header";
 import LeftSidebar from "../LeftSidebar";
 import Content from "../Content";
+import HeaderContainer from "../Header/HeaderContainer";
 
 import StoreContext from "../../StoreContext";
 
 const App = ({ state, dispatch, store }) => {
   return (
     <BrowserRouter>
-      <div className="wrapper">
-        <Header />
-        <LeftSidebar />
-        <Provider store={store}>{<Content />}</Provider>
-      </div>
+      <Provider store={store}>
+        <div className="wrapper">
+          {/* <Header /> */}
+          <HeaderContainer />
+          <LeftSidebar />
+          <Content />
+        </div>
+      </Provider>
     </BrowserRouter>
   );
 };

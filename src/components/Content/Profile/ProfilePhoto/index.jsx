@@ -1,14 +1,15 @@
 import React from "react";
 import "./style.css";
+import userPhoto from "../../../../assets/img/userPhoto.png";
+import Preloader from "../../../common/Preloader";
 
-const ProfilePhoto = () => {
+const ProfilePhoto = ({ photos }) => {
+  if (!photos) return <Preloader />;
   return (
     <div className="profilePhotoBox">
       <div className="profilePhoto">
-        <div className="uploadProfilePhoto">Загрузить фотографию</div>
         <img
-          // src="https://www.samogonashop.ru/upload/iblock/94f/94fb0858065d619ee8c8210915cc67ff.jpg"
-          src="https://vk.com/images/camera_200.png?ava=1"
+          src={photos.large === null ? userPhoto : photos.large}
           alt="profilePhoto"
         />
       </div>

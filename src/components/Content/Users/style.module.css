@@ -25,3 +25,7 @@
   margin-bottom: 10px;
   outline: 1px solid red;
 }
+.navlink {
+  width: inherit;
+  height: inherit;
+}

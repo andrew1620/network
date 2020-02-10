@@ -4,9 +4,9 @@
     "photo info"
     "profileFriends posts";
   /* grid-template-rows: 1fr 1fr; */
-  grid-template-rows: auto 1fr;
+  grid-template-rows: 200px 1fr;
   /* grid-template-columns: 3.5fr 8fr; */
-  grid-template-columns: auto auto;
+  grid-template-columns: 200px auto;
   grid-gap: 10px;
   /* padding: 10px 10px 0 10px; отступ контента профайла слева сверху справа */
 }

@@ -5,12 +5,13 @@ import ProfilePhoto from "./ProfilePhoto";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
+import Preloader from "../../common/Preloader";
 
-const Profile = ({ state, dispatch, store }) => {
+const Profile = props => {
   return (
     <div className="profile">
-      <ProfilePhoto />
-      <ProfileInfo />
+      <ProfilePhoto photos={props.profile.photos} />
+      <ProfileInfo profile={props.profile} />
       <ProfileFriends />
       <ProfilePosts />
     </div>

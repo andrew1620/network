@@ -12,7 +12,7 @@ body {
     "h h"
     "ls c";
 
-  grid-template-rows: 42px 1fr; /*//высота*/
+  grid-template-rows: auto 1fr; /*//высота*/
   grid-template-columns: 2fr 10fr;
   grid-gap: 10px;
   color: black;
