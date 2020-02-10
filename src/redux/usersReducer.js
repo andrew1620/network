@@ -3,7 +3,8 @@ const initialState = {
   count: 5, //Для запроса на сервер, сколько человек принимать при запросе
   currentPage: 1, //текущая страница
   totalCount: 10,
-  isFetching: false
+  isFetching: false,
+  isFollowing: []
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -32,6 +33,15 @@ const usersReducer = (state = initialState, action) => {
       return { ...state, totalCount: action.payload };
     case TOGGLE_IS_FETCHING:
       return { ...state, isFetching: action.payload };
+    case TOGGLE_IS_FOLLOWING:
+      return {
+        ...state,
+        isFollowing: action.payload.isFollowing
+          ? [...state.isFollowing, action.payload.userId]
+          : state.isFollowing.filter(id => {
+              return id !== action.payload.userId;
+            })
+      };
     default:
       return state;
   }
@@ -45,6 +55,7 @@ const SET_USERS = "SET_USERS";
 const SET_CURRENT_PAGE = "SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "TOGGLE_IS_FETCHING";
+const TOGGLE_IS_FOLLOWING = "TOGGLE_IS_FOLLOWING";
 
 export const follow = id => {
   return {
@@ -69,4 +80,7 @@ export const setTotalUsersCount = newCount => {
 };
 export const toggleIsFetching = isFetching => {
   return { type: TOGGLE_IS_FETCHING, payload: isFetching };
+};
+export const toggleIsFollowing = (isFollowing, userId) => {
+  return { type: TOGGLE_IS_FOLLOWING, payload: { isFollowing, userId } };
 };

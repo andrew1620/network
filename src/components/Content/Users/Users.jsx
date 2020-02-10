@@ -2,7 +2,7 @@ import React from "react";
 import css from "./style.module.css";
 import userPhoto from "../../../assets/img/userPhoto.png";
 import { NavLink } from "react-router-dom";
-import * as axios from "axios";
+import { usersAPI } from "../../../api/api";
 
 const Users = props => {
   const pagesAmount = Math.ceil(props.totalCount / props.count);
@@ -47,42 +47,30 @@ const Users = props => {
             </div>
             {user.followed ? (
               <button
+                disabled={props.isFollowing.includes(user.id)}
                 onClick={() => {
-                  axios
-                    .delete(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                      {
-                        withCredentials: true,
-                        headers: {
-                          "API-KEY": "7ebc0e2f-36d6-4ed4-86a2-e15c60502706"
-                        }
-                      }
-                    )
-                    .then(response => {
-                      if (response.data.resultCode === 0)
-                        props.unfollow(user.id);
-                    });
+                  props.toggleIsFollowing(true, user.id);
+                  usersAPI.unfollow(user.id).then(data => {
+                    if (data.resultCode === 0) {
+                      props.unfollow(user.id);
+                    }
+                    props.toggleIsFollowing(false, user.id);
+                  });
                 }}
               >
                 Удалить из друзей
               </button>
             ) : (
               <button
+                disabled={props.isFollowing.includes(user.id)}
                 onClick={() => {
-                  axios
-                    .post(
-                      `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                      {},
-                      {
-                        withCredentials: true,
-                        headers: {
-                          "API-KEY": "7ebc0e2f-36d6-4ed4-86a2-e15c60502706"
-                        }
-                      }
-                    )
-                    .then(response => {
-                      if (response.data.resultCode === 0) props.follow(user.id);
-                    });
+                  props.toggleIsFollowing(true, user.id);
+                  usersAPI.follow(user.id).then(data => {
+                    if (data.resultCode === 0) {
+                      props.follow(user.id);
+                    }
+                    props.toggleIsFollowing(false, user.id);
+                  });
                 }}
               >
                 Добавить в друзья
