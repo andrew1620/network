@@ -1,3 +1,5 @@
+import { usersAPI } from "../api/api";
+
 const initialState = {
   users: [],
   count: 5, //Для запроса на сервер, сколько человек принимать при запросе
@@ -83,4 +85,41 @@ export const toggleIsFetching = isFetching => {
 };
 export const toggleIsFollowing = (isFollowing, userId) => {
   return { type: TOGGLE_IS_FOLLOWING, payload: { isFollowing, userId } };
+};
+
+//thunkCreator
+export const getUsersThunkCreator = (count, currentPage) => {
+  //сам thunk
+  return dispatch => {
+    dispatch(toggleIsFetching(true));
+    usersAPI.getUsers(count, currentPage).then(data => {
+      dispatch(toggleIsFetching(false));
+      dispatch(setUsers(data.items));
+      dispatch(setTotalUsersCount(data.totalCount));
+    });
+  };
+};
+
+export const followThunkCreator = userId => {
+  return dispatch => {
+    dispatch(toggleIsFollowing(true, userId));
+    usersAPI.follow(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(follow(userId));
+      }
+      dispatch(toggleIsFollowing(false, userId));
+    });
+  };
+};
+
+export const unfollowThunkCreator = userId => {
+  return dispatch => {
+    dispatch(toggleIsFollowing(true, userId));
+    usersAPI.unfollow(userId).then(data => {
+      if (data.resultCode === 0) {
+        dispatch(unfollow(userId));
+      }
+      dispatch(toggleIsFollowing(false, userId));
+    });
+  };
 };

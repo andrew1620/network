@@ -1,10 +1,11 @@
+import { headerAPI } from "../api/api";
+
 const initialState = {
   userId: null,
   email: null,
   login: null,
   isFetching: false,
-  isAuth: false,
-  currentUserData: null
+  isAuth: false
 };
 
 const authReducer = (state = initialState, action) => {
@@ -15,14 +16,6 @@ const authReducer = (state = initialState, action) => {
         ...action.payload,
         isAuth: true
       };
-    case SET_CURRENT_USER_DATA:
-      return {
-        ...state,
-        currentUserData: {
-          ...action.payload,
-          photos: { ...action.payload.photos }
-        }
-      };
     default:
       return state;
   }
@@ -30,11 +23,19 @@ const authReducer = (state = initialState, action) => {
 export default authReducer;
 
 const SET_USER_DATA = "SET_USER_DATA";
-const SET_CURRENT_USER_DATA = "SET_CURRENT_USER-DATA";
 
 export const setAuthUserData = (userId, email, login) => {
   return { type: SET_USER_DATA, payload: { userId, email, login } };
 };
-export const setCurrentUserData = userData => {
-  return { type: SET_CURRENT_USER_DATA, payload: userData };
+
+export const authenticationTC = () => {
+  return dispatch => {
+    headerAPI.authenticate().then(data => {
+      if (data.resultCode === 0) {
+        dispatch(
+          setAuthUserData(data.data.id, data.data.email, data.data.login)
+        );
+      }
+    });
+  };
 };

@@ -2,35 +2,31 @@ import React from "react";
 import "../../index.css";
 import Header from "./index";
 import { connect } from "react-redux";
-import { setAuthUserData, setCurrentUserData } from "../../redux/authReducer";
-import * as axios from "axios";
+import { setAuthUserData, authenticationTC } from "../../redux/authReducer";
 
 class HeaderContainer extends React.Component {
   componentDidMount() {
-    axios
-      .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
-        withCredentials: true
-      })
-      .then(response => {
-        const data = response.data.data;
-        if (response.data.resultCode === 0) {
-          this.props.setAuthUserData(data.id, data.email, data.login);
-        }
-      })
-      .then(() => {
-        axios
-          .get(
-            "https://social-network.samuraijs.com/api/1.0/profile/" +
-              this.props.userId
-          )
-          .then(response => {
-            const userData = {
-              fullName: response.data.fullName,
-              photos: response.data.photos
-            };
-            this.props.setCurrentUserData(userData);
-          });
-      });
+    this.props.authenticationTC();
+    // headerAPI.authenticate().then(data => {
+    //   if (data.resultCode === 0) {
+    //     this.props.setAuthUserData(
+    //       data.data.id,
+    //       data.data.email,
+    //       data.data.login
+    //     );
+    //   }
+    // });
+
+    // axios
+    //   .get("https://social-network.samuraijs.com/api/1.0/auth/me", {
+    //     withCredentials: true
+    //   })
+    //   .then(response => {
+    //     const data = response.data.data;
+    //     if (response.data.resultCode === 0) {
+    //       this.props.setAuthUserData(data.id, data.email, data.login);
+    //     }
+    //   });
   }
 
   render() {
@@ -48,5 +44,5 @@ const mapStateToProps = state => {
 
 export default connect(mapStateToProps, {
   setAuthUserData,
-  setCurrentUserData
+  authenticationTC
 })(HeaderContainer);

@@ -4,33 +4,23 @@ import { connect } from "react-redux";
 import {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
-  toggleIsFollowing
+  toggleIsFollowing,
+  getUsersThunkCreator,
+  followThunkCreator,
+  unfollowThunkCreator
 } from "../../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
-import { usersAPI } from "../../../api/api";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleIsFetching(true);
-    usersAPI.getUsers(this.props.count, this.props.currentPage).then(data => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-      this.props.setTotalUsersCount(data.totalCount);
-    });
+    this.props.getUsersThunkCreator(this.props.count, this.props.currentPage);
   }
 
   handlePageNumClick(number) {
-    this.props.toggleIsFetching(true);
+    this.props.getUsersThunkCreator(this.props.count, number);
     this.props.setCurrentPage(number);
-    usersAPI.getUsers(this.props.count, number).then(data => {
-      this.props.toggleIsFetching(false);
-      this.props.setUsers(data.items);
-    });
   }
 
   render() {
@@ -56,6 +46,8 @@ class UsersContainer extends React.Component {
               users={this.props.users}
               isFollowing={this.props.isFollowing}
               toggleIsFollowing={this.props.toggleIsFollowing}
+              followThunkCreator={this.props.followThunkCreator}
+              unfollowThunkCreator={this.props.unfollowThunkCreator}
             />
           </div>
         )}
@@ -78,9 +70,9 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   follow,
   unfollow,
-  setUsers,
   setCurrentPage,
-  setTotalUsersCount,
-  toggleIsFetching,
-  toggleIsFollowing
+  toggleIsFollowing,
+  getUsersThunkCreator,
+  followThunkCreator,
+  unfollowThunkCreator
 })(UsersContainer);

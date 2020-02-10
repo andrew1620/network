@@ -2,7 +2,6 @@ import React from "react";
 import css from "./style.module.css";
 import userPhoto from "../../../assets/img/userPhoto.png";
 import { NavLink } from "react-router-dom";
-import { usersAPI } from "../../../api/api";
 
 const Users = props => {
   const pagesAmount = Math.ceil(props.totalCount / props.count);
@@ -49,13 +48,7 @@ const Users = props => {
               <button
                 disabled={props.isFollowing.includes(user.id)}
                 onClick={() => {
-                  props.toggleIsFollowing(true, user.id);
-                  usersAPI.unfollow(user.id).then(data => {
-                    if (data.resultCode === 0) {
-                      props.unfollow(user.id);
-                    }
-                    props.toggleIsFollowing(false, user.id);
-                  });
+                  props.unfollowThunkCreator(user.id);
                 }}
               >
                 Удалить из друзей
@@ -64,13 +57,7 @@ const Users = props => {
               <button
                 disabled={props.isFollowing.includes(user.id)}
                 onClick={() => {
-                  props.toggleIsFollowing(true, user.id);
-                  usersAPI.follow(user.id).then(data => {
-                    if (data.resultCode === 0) {
-                      props.follow(user.id);
-                    }
-                    props.toggleIsFollowing(false, user.id);
-                  });
+                  props.followThunkCreator(user.id);
                 }}
               >
                 Добавить в друзья

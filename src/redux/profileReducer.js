@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const initialState = {
   postsArr: [
     {
@@ -63,4 +65,13 @@ export const updateTextareaValueActionCreator = newValue => {
 };
 export const setUserProfile = profile => {
   return { type: SET_USER_PROFILE, payload: profile };
+};
+
+//TC = ThunkCreator
+export const setUserProfileTC = userId => {
+  return dispatch => {
+    profileAPI
+      .getUserProfile(userId)
+      .then(data => dispatch(setUserProfile(data)));
+  };
 };
