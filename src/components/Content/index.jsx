@@ -7,6 +7,7 @@ import Dialogs from "./Dialogs";
 import News from "./News";
 import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
+import Login from "../Login";
 
 const Content = () => {
   return (
@@ -16,6 +17,7 @@ const Content = () => {
       <Route path="/dialogs" render={() => <Dialogs />} />
       <Route path="/news" render={() => <News />} />
       <Route path="/users" render={() => <UsersContainer />} />
+      <Route path="/login" render={() => <Login />} />
     </main>
   );
 };

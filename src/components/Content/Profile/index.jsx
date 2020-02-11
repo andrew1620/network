@@ -5,7 +5,6 @@ import ProfilePhoto from "./ProfilePhoto";
 import ProfileInfo from "./ProfileInfo";
 import ProfilePosts from "./ProfilePosts";
 import ProfileFriends from "./ProfileFriends";
-import Preloader from "../../common/Preloader";
 
 const Profile = props => {
   return (

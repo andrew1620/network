@@ -7,6 +7,8 @@ import {
   setUserProfileTC
 } from "../.././../redux/profileReducer";
 import { withRouter } from "react-router-dom";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -14,12 +16,6 @@ class ProfileContainer extends React.Component {
       ? this.props.match.params.userId
       : 2;
     this.props.setUserProfileTC(userId);
-    // profileAPI
-    //   .getUserProfile(userId)
-    //   .then(data => this.props.setUserProfile(data));
-    // axios
-    //   .get("https://social-network.samuraijs.com/api/1.0/profile/" + userId)
-    //   .then(response => this.props.setUserProfile(response.data));
   }
 
   render() {
@@ -37,9 +33,12 @@ const mapStateToProps = state => {
   };
 };
 
-const WithUrlDataContainerComponent = withRouter(ProfileContainer);
-
-export default connect(mapStateToProps, {
-  setUserProfile,
-  setUserProfileTC
-})(WithUrlDataContainerComponent);
+//Redirect при перезагрузке страницы получает изначально фолс и отправляет на страницу логина но потом в стейте isAuth становится тру и почему-то компонент не перерисовывается и даже при том, что я залогинен на сайте и возвращает тру остается страница логина и чтобы перейти на профиль надо выбрать профильв меню
+export default compose(
+  // withAuthRedirect,
+  withRouter,
+  connect(mapStateToProps, {
+    setUserProfile,
+    setUserProfileTC
+  })
+)(ProfileContainer);

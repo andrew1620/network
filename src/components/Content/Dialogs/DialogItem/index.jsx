@@ -1,9 +1,11 @@
 import React from "react";
 import "./style.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
+import { withAuthRedirect } from "../../../hoc/withAuthRedirect";
+import { compose } from "redux";
 
-const DialogItem = ({ dialogsData = [] }) => {
+const DialogItem = ({ dialogsData = [], isAuth }) => {
   const dialogsList = dialogsData.map(dialog => {
     return (
       <NavLink to={`/dialogs/${dialog.id}`} key={dialog.id}>
@@ -42,4 +44,13 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(DialogItem);
+// const AuthRedirectedComponent = withAuthRedirect(DialogItem);
+
+// export default connect(
+//   mapStateToProps,
+//   mapDispatchToProps
+// )(AuthRedirectedComponent);
+export default compose(
+  // withAuthRedirect,
+  connect(mapStateToProps, mapDispatchToProps)
+)(DialogItem);
