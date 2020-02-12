@@ -11,7 +11,10 @@ const ProfileInfo = props => {
       <div className="headerInfo">
         <span className="name">{props.profile.fullName}</span>
         <span className="isOnline">online</span>
-        <ProfileStatus />
+        <ProfileStatus
+          userStatus={props.userStatus}
+          updateUserStatusTC={props.updateUserStatusTC}
+        />
         <hr />
       </div>
       <span>День рождения</span>

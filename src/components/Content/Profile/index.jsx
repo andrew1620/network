@@ -10,7 +10,11 @@ const Profile = props => {
   return (
     <div className="profile">
       <ProfilePhoto photos={props.profile.photos} />
-      <ProfileInfo profile={props.profile} />
+      <ProfileInfo
+        profile={props.profile}
+        userStatus={props.userStatus}
+        updateUserStatusTC={props.updateUserStatusTC}
+      />
       <ProfileFriends />
       <ProfilePosts />
     </div>

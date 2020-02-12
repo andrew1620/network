@@ -28,7 +28,8 @@ const initialState = {
     }
   ],
   textAreaValue: "value",
-  profile: { photos: { small: null, large: null } }
+  profile: { photos: { small: null, large: null } },
+  userStatus: ""
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -46,6 +47,8 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, textAreaValue: action.payload };
     case SET_USER_PROFILE:
       return { ...state, profile: action.payload };
+    case SET_USER_STATUS:
+      return { ...state, userStatus: action.payload };
     default:
       // console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
       return state;
@@ -56,6 +59,7 @@ export default profileReducer;
 const ADD_POST = "ADD_POST";
 const UPDATE_TEXTAREA_VALUE = "UPDATE-TEXTAREA-VALUE";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const SET_USER_STATUS = "SET_USER_STATUS";
 
 export const addPostActionCreator = () => {
   return { type: ADD_POST };
@@ -66,6 +70,9 @@ export const updateTextareaValueActionCreator = newValue => {
 export const setUserProfile = profile => {
   return { type: SET_USER_PROFILE, payload: profile };
 };
+export const setUserStatus = newStatus => {
+  return { type: SET_USER_STATUS, payload: newStatus };
+};
 
 //TC = ThunkCreator
 export const setUserProfileTC = userId => {
@@ -73,5 +80,22 @@ export const setUserProfileTC = userId => {
     profileAPI
       .getUserProfile(userId)
       .then(data => dispatch(setUserProfile(data)));
+  };
+};
+
+export const getUserStatusTC = userId => {
+  return dispatch => {
+    profileAPI.getUserStatus(userId).then(data => {
+      data === ""
+        ? dispatch(setUserStatus("изменить статус"))
+        : dispatch(setUserStatus(data));
+    });
+  };
+};
+export const updateUserStatusTC = newStatus => {
+  return dispatch => {
+    profileAPI.updateUserStatus(newStatus).then(data => {
+      if (data.resultCode === 0) dispatch(setUserStatus(newStatus));
+    });
   };
 };
