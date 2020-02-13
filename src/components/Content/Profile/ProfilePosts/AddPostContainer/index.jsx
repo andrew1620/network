@@ -1,24 +1,16 @@
 import "./style.css";
 import { connect } from "react-redux";
 
-import {
-  updateTextareaValueActionCreator,
-  addPostActionCreator
-} from "../../../../../redux/profileReducer";
+import { addPostActionCreator } from "../../../../../redux/profileReducer";
 import AddPost from "../AddPost/index";
 
 const mapStateToProps = state => {
-  return {
-    textAreaValue: state.profilePage.textAreaValue
-  };
+  return {};
 };
 const mapDispatchToProps = dispatch => {
   return {
-    handleBtnClick: () => {
-      dispatch(addPostActionCreator());
-    },
-    handleTextAreaChange: newValue => {
-      dispatch(updateTextareaValueActionCreator(newValue));
+    addPost: postBody => {
+      dispatch(addPostActionCreator(postBody));
     }
   };
 };

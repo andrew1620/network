@@ -1,40 +1,39 @@
 import React from "react";
 import "./style.css";
+import { reduxForm, Field } from "redux-form";
+import { required, maxLength } from "../../../../../utils/validators";
+import { TextAreaC } from "../../../../common/FormItems/Items";
 
-const AddPost = ({
-  textAreaValue,
-  dispatch,
-  handleBtnClick,
-  handleTextAreaChange
-}) => {
-  let textAreaRef = React.createRef();
+const maxLength10 = maxLength(10);
 
-  // const handleBtnClick = () => {
-  //   dispatch(addPostActionCreator());
-  // };
-  // const handleTextAreaChange = () => {
-  //   dispatch(updateTextareaValueActionCreator(textAreaRef.current.value));
-  // };
-  const btnClick = () => {
-    handleBtnClick();
-  };
-  const textAreaChange = () => {
-    handleTextAreaChange(textAreaRef.current.value);
+const AddPostForm = props => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <div>
+        <Field
+          component={TextAreaC}
+          name="postBody"
+          type="text"
+          placeholder="Что у вас нового"
+          validate={[required, maxLength10]}
+        />
+      </div>
+      <div>
+        <button className="addPostBtn">Опубликовать</button>
+      </div>
+    </form>
+  );
+};
+
+const AddPostReduxForm = reduxForm({ form: "addPostForm" })(AddPostForm);
+
+const AddPost = ({ addPost }) => {
+  const handleSubmit = values => {
+    addPost(values.postBody);
   };
   return (
     <div className="addPostBox">
-      <div>
-        <textarea
-          ref={textAreaRef}
-          value={textAreaValue}
-          onChange={textAreaChange}
-        ></textarea>
-      </div>
-      <div>
-        <button className="addPostBtn" onClick={btnClick}>
-          Опубликовать
-        </button>
-      </div>
+      <AddPostReduxForm onSubmit={handleSubmit} />
     </div>
   );
 };

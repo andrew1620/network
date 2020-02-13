@@ -27,24 +27,22 @@ const initialState = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     }
   ],
-  textAreaValue: "value",
   profile: { photos: { small: null, large: null } },
   userStatus: ""
 };
 
 const profileReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "ADD_POST":
+    case ADD_POST:
       const newPost = {
         id: Date.now(), //Временно, пока нет настоящих
         name: "Vasya Pupkin",
         img:
           "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
-        body: state.textAreaValue
+        body: action.payload
       };
       return { ...state, postsArr: [...state.postsArr, newPost] };
-    case "UPDATE-TEXTAREA-VALUE":
-      return { ...state, textAreaValue: action.payload };
+
     case SET_USER_PROFILE:
       return { ...state, profile: action.payload };
     case SET_USER_STATUS:
@@ -57,15 +55,11 @@ const profileReducer = (state = initialState, action) => {
 export default profileReducer;
 
 const ADD_POST = "ADD_POST";
-const UPDATE_TEXTAREA_VALUE = "UPDATE-TEXTAREA-VALUE";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 
-export const addPostActionCreator = () => {
-  return { type: ADD_POST };
-};
-export const updateTextareaValueActionCreator = newValue => {
-  return { type: UPDATE_TEXTAREA_VALUE, payload: newValue };
+export const addPostActionCreator = postBody => {
+  return { type: ADD_POST, payload: postBody };
 };
 export const setUserProfile = profile => {
   return { type: SET_USER_PROFILE, payload: profile };
