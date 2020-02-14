@@ -4,6 +4,14 @@
   border-bottom: 1px solid blue;
   width: 570px;
 }
+.login,
+.password {
+  outline: none;
+  border: none;
+  border-bottom: 1px solid blue;
+  height: 30px;
+  margin-top: 10px;
+}
 .error {
   border-bottom: 1px solid red;
 }

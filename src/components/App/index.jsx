@@ -1,24 +1,39 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 import "./style.css";
-import { Provider } from "react-redux";
+import { Provider, connect } from "react-redux";
 
 import LeftSidebar from "../LeftSidebar";
 import Content from "../Content";
 import HeaderContainer from "../Header/HeaderContainer";
+import { initialize } from "../../redux/appReducer";
+import Preloader from "../common/Preloader";
 
-const App = ({ store }) => {
-  return (
-    <BrowserRouter>
-      <Provider store={store}>
-        <div className="wrapper">
-          {/* <Header /> */}
-          <HeaderContainer />
-          <LeftSidebar />
-          <Content />
-        </div>
-      </Provider>
-    </BrowserRouter>
-  );
+class App extends React.Component {
+  componentDidMount() {
+    this.props.initialize();
+  }
+
+  render() {
+    if (!this.props.initializeSuccessed) return <Preloader />;
+    return (
+      <BrowserRouter>
+        <Provider store={this.props.store}>
+          <div className="wrapper">
+            <HeaderContainer />
+            <LeftSidebar />
+            <Content />
+          </div>
+        </Provider>
+      </BrowserRouter>
+    );
+  }
+}
+
+const mapStateToProps = state => {
+  return {
+    initializeSuccessed: state.app.initializeSuccessed
+  };
 };
-export default App;
+
+export default connect(mapStateToProps, { initialize })(App);

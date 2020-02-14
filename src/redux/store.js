@@ -5,13 +5,15 @@ import dialogsReducer from "./dialogsReducer";
 import profileReducer from "./profileReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
+import appReducer from "./appReducer";
 
 const reducers = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   usersPage: usersReducer,
   auth: authReducer,
-  form: formReducer
+  form: formReducer,
+  app: appReducer
 });
 
 const store = createStore(reducers, applyMiddleware(thunkMiddleware));

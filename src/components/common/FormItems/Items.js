@@ -21,3 +21,22 @@ export const TextAreaC = ({ input, meta, ...props }) => {
     </div>
   );
 };
+
+export const InputC = ({ input, meta, ...props }) => {
+  const hasError = meta.touched && meta.error;
+
+  return (
+    <div>
+      <div>
+        <input
+          className={css.login + " " + (hasError ? css.error : "")}
+          {...input}
+          {...props}
+        ></input>
+      </div>
+      <div>
+        {hasError && <span className={css.errorSpan}>{meta.error}</span>}
+      </div>
+    </div>
+  );
+};

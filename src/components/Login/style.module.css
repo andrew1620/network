@@ -1,0 +1,10 @@
+.btnLogin {
+  padding: 10px;
+}
+.btnLoginError {
+  border: 1px solid rgb(206, 2, 2);
+}
+.mainError {
+  color: rgb(206, 2, 2);
+  margin-left: 5px;
+}
