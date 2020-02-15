@@ -18,8 +18,10 @@ const LoginForm = props => {
           placeholder="Введите email"
           validate={[required]}
         />
+        <span>forNetworkServer@yandex.ru</span>
       </div>
       <div>
+        <span>6832115</span>
         <Field
           component={InputC}
           name="password"

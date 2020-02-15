@@ -12,6 +12,14 @@ import {
 } from "../../../redux/usersReducer";
 import Users from "./Users";
 import Preloader from "../../common/Preloader";
+import {
+  getUsers,
+  getCount,
+  getCurrentPage,
+  getTotalCount,
+  getIsFetching,
+  getIsFollowing
+} from "../../../redux/usersSelectors";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
@@ -56,14 +64,15 @@ class UsersContainer extends React.Component {
   }
 }
 
+//Использованы селекторы
 const mapStateToProps = state => {
   return {
-    users: state.usersPage.users,
-    count: state.usersPage.count,
-    currentPage: state.usersPage.currentPage,
-    totalCount: state.usersPage.totalCount,
-    isFetching: state.usersPage.isFetching,
-    isFollowing: state.usersPage.isFollowing
+    users: getUsers(state),
+    count: getCount(state),
+    currentPage: getCurrentPage(state),
+    totalCount: getTotalCount(state),
+    isFetching: getIsFetching(state),
+    isFollowing: getIsFollowing(state)
   };
 };
 
