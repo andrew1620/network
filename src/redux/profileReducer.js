@@ -47,6 +47,11 @@ const profileReducer = (state = initialState, action) => {
       return { ...state, profile: action.payload };
     case SET_USER_STATUS:
       return { ...state, userStatus: action.payload };
+    case DELETE_POST:
+      return {
+        ...state,
+        postsArr: state.postsArr.filter(post => post.id !== action.payload)
+      };
     default:
       // console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
       return state;
@@ -57,6 +62,7 @@ export default profileReducer;
 const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
+const DELETE_POST = "DELETE_POST";
 
 export const addPostActionCreator = postBody => {
   return { type: ADD_POST, payload: postBody };
@@ -66,6 +72,9 @@ export const setUserProfile = profile => {
 };
 export const setUserStatus = newStatus => {
   return { type: SET_USER_STATUS, payload: newStatus };
+};
+export const deletePost = postId => {
+  return { type: DELETE_POST, payload: postId };
 };
 
 //TC = ThunkCreator
