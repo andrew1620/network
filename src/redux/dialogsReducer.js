@@ -31,36 +31,37 @@ const initialState = {
       { id: 2, name: "Vasya", text: "Как дела" },
       { id: 3, name: "Vasya", text: "Пашок лох" }
     ]
-  },
-  messagesTextareaValue: ""
+  }
 };
 
 const dialogsReducer = (state = initialState, action) => {
-  // const stateCopy = Object.create(state);
-  const stateCopy = JSON.parse(JSON.stringify(state));
-
   switch (action.type) {
     case "ADD_MESSAGE":
       const newMessage = {
+        id: Date.now(),
         name: "Vasya",
-        text: stateCopy.messagesTextareaValue
+        text: action.payload
       };
-      stateCopy.messagesId.user_1.push(newMessage);
-      return stateCopy;
+      return {
+        ...state,
+        messagesId: {
+          ...state.messagesId,
+          user_1: [...state.messagesId.user_1, newMessage]
+        }
+      };
 
-    case "UPDATE_MESSAGES_TEXTAREA_VALUE":
-      stateCopy.messagesTextareaValue = action.payload;
-      return stateCopy;
     default:
-      // console.log("there is no such action in dialogsReduce");
       return state;
   }
 };
 export default dialogsReducer;
 
-export const addMessageActionCreator = () => {
-  return { type: "ADD_MESSAGE" };
+export const addMessageActionCreator = messageBody => {
+  return { type: "ADD_MESSAGE", payload: messageBody };
 };
-export const updateMessagesTextareaValueActionCreator = newValue => {
-  return { type: "UPDATE_MESSAGES_TEXTAREA_VALUE", payload: newValue };
+
+export const addMessage = messageBody => {
+  return dispatch => {
+    dispatch(addMessageActionCreator(messageBody));
+  };
 };

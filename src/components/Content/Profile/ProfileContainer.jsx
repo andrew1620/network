@@ -13,13 +13,10 @@ import { compose } from "redux";
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
-    // let userId = this.props.match.params.userId
-    //   ? this.props.match.params.userId
-    //   : this.props.authorizedUser;
     let userId = this.props.match.params.userId;
     if (!userId) {
       userId = this.props.authorizedUser;
-      if (!userId) this.props.history.push("/login");
+      // if (!userId) this.props.history.push("/login");
     }
     this.props.setUserProfileTC(userId);
     this.props.getUserStatusTC(userId);
@@ -28,7 +25,7 @@ class ProfileContainer extends React.Component {
   render() {
     return (
       <>
-        <Profile {...this.props} profile={this.props.profile} />
+        <Profile {...this.props} />
       </>
     );
   }
@@ -48,7 +45,7 @@ const mapDispatchToProps = {
   updateUserStatusTC
 };
 
-//Redirect при перезагрузке страницы получает изначально фолс и отправляет на страницу логина но потом в стейте isAuth становится тру и почему-то компонент не перерисовывается и даже при том, что я залогинен на сайте и возвращает тру остается страница логина и чтобы перейти на профиль надо выбрать профильв меню
+//Redirect при перезагрузке страницы получает изначально фолс и отправляет на страницу логина но потом в стейте isAuth становится тру и почему-то компонент не перерисовывается и даже при том, что я залогинен на сайте и возвращает тру остается страница логина и чтобы перейти на профиль надо выбрать профильв меню //проблема исправлена инициализацией приложения
 export default compose(
   withAuthRedirect,
   withRouter,

@@ -1,0 +1,37 @@
+.refContainer {
+  margin: 5px 10px;
+  /* outline: 1px solid red; */
+  display: flex;
+  line-height: 20px;
+}
+.profileIcon {
+  background: url("../../../../assets/img/menu/profile.jpg") center center
+    no-repeat;
+  background-size: 20px 15px;
+  width: 35px;
+  display: flex;
+}
+.dialogsIcon {
+  background: url("../../../../assets/img/menu/dialogs.jpg") center center
+    no-repeat;
+  background-size: 20px 15px;
+  width: 35px;
+  display: flex;
+}
+.newsIcon {
+  background: url("../../../../assets/img/menu/news.jpg") center center
+    no-repeat;
+  background-size: 20px 15px;
+  width: 35px;
+  display: flex;
+}
+.navLink {
+  color: #285473;
+  display: block;
+  text-decoration: none;
+  /* padding: 5px 10px; */
+  font-family: Arial;
+  font-size: 9pt;
+  /* outline: 1px solid black; */
+  width: 100%;
+}

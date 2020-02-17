@@ -1,32 +1,33 @@
 import React from "react";
 import "./style.css";
 import { connect } from "react-redux";
-
-import {
-  addMessageActionCreator,
-  updateMessagesTextareaValueActionCreator
-} from "../../../../redux/dialogsReducer";
-
+import { reduxForm, Field } from "redux-form";
+import { addMessage } from "../../../../redux/dialogsReducer";
 import MessageItem from "./MessageItem";
+import { getMessagesId } from "../../../../redux/dialogsSelectors";
 
-const Messages = ({
-  messagesId,
-  messagesTextareaValue,
-  handleTextArea,
-  handleSendClick
-}) => {
-  const textareaRef = React.createRef();
+let MessageForm = props => {
+  return (
+    <form onSubmit={props.handleSubmit}>
+      <Field
+        component={"textarea"}
+        name="message"
+        type="text"
+        placeholder="Введите сообщние"
+      />
+      <button>Send</button>
+    </form>
+  );
+};
+MessageForm = reduxForm({ form: "messageForm" })(MessageForm);
 
+const Messages = ({ messagesId, addMessage }) => {
   const messagesList = messagesId.user_1.map(message => {
-    return <MessageItem message={message} />;
+    return <MessageItem message={message} key={message.id} />;
   });
 
-  const handleTextAreaChange = () => {
-    handleTextArea(textareaRef.current.value);
-  };
-
-  const handleBtnSendClick = () => {
-    handleSendClick();
+  const handleSubmit = values => {
+    addMessage(values.message);
   };
 
   return (
@@ -34,18 +35,7 @@ const Messages = ({
       <div className="messagesHeader"></div>
       <div className="messagesContent">{messagesList}</div>
       <div className="messagesSendBox">
-        <textarea
-          ref={textareaRef}
-          value={messagesTextareaValue}
-          onChange={handleTextAreaChange}
-        ></textarea>
-        <button
-          onClick={handleBtnSendClick}
-          className="btnSend"
-          style={{ alignSelf: "flex-end" }}
-        >
-          Send
-        </button>
+        <MessageForm onSubmit={handleSubmit} />
       </div>
     </div>
   );
@@ -53,19 +43,8 @@ const Messages = ({
 
 const mapStateToProps = state => {
   return {
-    messagesId: state.dialogsPage.messagesId,
-    messagesTextareaValue: state.dialogsPage.messagesTextareaValue
-  };
-};
-const mapDispatchToProps = dispatch => {
-  return {
-    handleTextArea: newValue => {
-      dispatch(updateMessagesTextareaValueActionCreator(newValue));
-    },
-    handleSendClick: () => {
-      dispatch(addMessageActionCreator());
-    }
+    messagesId: getMessagesId(state)
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Messages);
+export default connect(mapStateToProps, { addMessage })(Messages);

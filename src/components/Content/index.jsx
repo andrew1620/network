@@ -12,7 +12,6 @@ import Login from "../Login";
 const Content = () => {
   return (
     <main className="content">
-      {/* <Route path="/profile" render={() => <Profile />} /> */}
       <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
       <Route path="/dialogs" render={() => <Dialogs />} />
       <Route path="/news" render={() => <News />} />

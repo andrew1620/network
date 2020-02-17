@@ -1,4 +1,4 @@
-import authReducer, { authenticationTC } from "./authReducer";
+import { authenticationTC } from "./authReducer";
 
 const initialState = {
   initializeSuccessed: false

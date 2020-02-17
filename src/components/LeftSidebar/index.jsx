@@ -1,10 +1,10 @@
 import React from "react";
-import "./style.css";
 import Menu from "./Menu";
+import css from "./style.module.css";
 
 const LeftSidebar = () => {
   return (
-    <aside className="leftSidebar">
+    <aside className={css.leftSidebar}>
       <Menu />
     </aside>
   );
