@@ -36,7 +36,7 @@ class ProfileStatus extends React.Component {
     return (
       <div className="statusBox">
         {!this.state.editMode && (
-          <div onClick={this.activateEditMode}>
+          <div className="spanDiv" onClick={this.activateEditMode}>
             <span>{this.props.userStatus}</span>
           </div>
         )}
