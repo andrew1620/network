@@ -2,21 +2,31 @@ import React from "react";
 import "./style.css";
 import { Route } from "react-router-dom";
 
-// import Profile from "./Profile";
 import Dialogs from "./Dialogs";
 import News from "./News";
-import UsersContainer from "./Users/UsersContainer";
 import ProfileContainer from "./Profile/ProfileContainer";
-import Login from "../Login";
+import Preloader from "../common/Preloader";
+import withSuspense from "../hoc/withSuspense";
 
+const UsersContainer = React.lazy(() => import("./Users/UsersContainer"));
+const Login = React.lazy(() => import("../Login"));
+
+//Пока что оставил один withSuspense второй просто через React.Suspense для наглядности
 const Content = () => {
   return (
     <main className="content">
       <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
       <Route path="/dialogs" render={() => <Dialogs />} />
       <Route path="/news" render={() => <News />} />
-      <Route path="/users" render={() => <UsersContainer />} />
-      <Route path="/login" render={() => <Login />} />
+      <Route path="/users" render={withSuspense(UsersContainer)} />
+      <Route
+        path="/login"
+        render={() => (
+          <React.Suspense fallback={<Preloader />}>
+            <Login />
+          </React.Suspense>
+        )}
+      />
     </main>
   );
 };
