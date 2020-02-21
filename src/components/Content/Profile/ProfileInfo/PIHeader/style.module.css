@@ -1,0 +1,18 @@
+.headerBox {
+  margin: 15px 15px 0px 15px;
+  border-bottom: 1px solid #e7e8ec;
+  padding-bottom: 15px;
+}
+.name {
+  font-weight: 400;
+  font-size: 19px;
+  line-height: 25px;
+  font-weight: 400;
+  color: #000000;
+}
+.isOnline {
+  float: right;
+  font-size: 12.5px;
+  line-height: 18px;
+  color: #939393;
+}

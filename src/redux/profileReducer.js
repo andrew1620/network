@@ -102,3 +102,10 @@ export const updateUserStatusTC = newStatus => {
     });
   };
 };
+export const updateProfileInfo = info => async (dispatch, getState) => {
+  const response = await profileAPI.updateProfileInfo(info);
+  if (response.data.resultCode === 0) {
+    const userId = getState().auth.userId;
+    dispatch(setUserProfileTC(userId));
+  }
+};

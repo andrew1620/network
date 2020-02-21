@@ -5,7 +5,8 @@ import { connect } from "react-redux";
 import {
   setUserProfileTC,
   getUserStatusTC,
-  updateUserStatusTC
+  updateUserStatusTC,
+  updateProfileInfo
 } from "../.././../redux/profileReducer";
 import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -42,7 +43,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = {
   setUserProfileTC,
   getUserStatusTC,
-  updateUserStatusTC
+  updateUserStatusTC,
+  updateProfileInfo
 };
 
 //Redirect при перезагрузке страницы получает изначально фолс и отправляет на страницу логина но потом в стейте isAuth становится тру и почему-то компонент не перерисовывается и даже при том, что я залогинен на сайте и возвращает тру остается страница логина и чтобы перейти на профиль надо выбрать профильв меню //проблема исправлена инициализацией приложения

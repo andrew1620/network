@@ -14,6 +14,7 @@ const Profile = props => {
         profile={props.profile}
         userStatus={props.userStatus}
         updateUserStatusTC={props.updateUserStatusTC}
+        updateProfileInfo={props.updateProfileInfo}
       />
       <ProfileFriends />
       <ProfilePosts />

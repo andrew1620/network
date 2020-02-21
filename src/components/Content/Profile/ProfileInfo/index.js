@@ -1,25 +1,25 @@
 import React from "react";
 import "./style.css";
 import Preloader from "../../../common/Preloader";
-import ProfileStatus from "./ProfileStatus/indexWithHooks";
+import PIHeader from "./PIHeader";
+import PIMain from "./PIMain";
+import PIFooter from "./PIFooter";
 
 const ProfileInfo = props => {
   if (!props.profile) return <Preloader />;
 
   return (
     <div className="profileInfoBox">
-      <div className="headerInfo">
-        <span className="name">{props.profile.fullName}</span>
-        <span className="isOnline">online</span>
-        <ProfileStatus
-          userStatus={props.userStatus}
-          updateUserStatusTC={props.updateUserStatusTC}
-        />
-        <hr />
-      </div>
-      <span>День рождения</span>
-      <span>Город</span>
-      <span>Место учебы</span>
+      <PIHeader
+        fullName={props.profile.fullName}
+        userStatus={props.userStatus}
+        updateUserStatusTC={props.updateUserStatusTC}
+      />
+      <PIMain
+        profile={props.profile}
+        updateProfileInfo={props.updateProfileInfo}
+      />
+      <PIFooter />
     </div>
   );
 };
