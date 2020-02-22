@@ -59,8 +59,8 @@ const MoreInfo = ({ profile, updateProfileInfo }) => {
           </div>
           <div className={css.itemMore}>
             <div className={css.left}>
-              <div>lookingForAJob</div>
-              <div>lookingForAJobDescription</div>
+              <div>Ищу работу</div>
+              <div>Описание</div>
             </div>
             <div className={css.right}>
               <div>{profile.lookingForAJob ? "Да" : "Нет"}</div>
@@ -86,11 +86,11 @@ let EditPIForm = ({ handleSubmit }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>lookingForAJob</label>
+        <label>Ищу работу</label>
         <Field component={"input"} name="lookingForAJob" type="checkbox" />
       </div>
       <div>
-        <label>lookingForAJobDescription</label>
+        <label>Описание</label>
         <Field
           component={"textarea"}
           name="lookingForAJobDescription"

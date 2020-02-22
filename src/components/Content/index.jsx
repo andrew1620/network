@@ -15,7 +15,12 @@ const Login = React.lazy(() => import("../Login"));
 const Content = () => {
   return (
     <main className="content">
-      <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
+      <Route exact path="/" render={() => <ProfileContainer />} />
+      <Route
+        exact
+        path="/profile/:userId?"
+        render={() => <ProfileContainer />}
+      />
       <Route path="/dialogs" render={() => <Dialogs />} />
       <Route path="/news" render={() => <News />} />
       <Route path="/users" render={withSuspense(UsersContainer)} />

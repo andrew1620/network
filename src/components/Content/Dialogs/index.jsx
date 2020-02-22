@@ -9,8 +9,8 @@ import Messages from "./Messages";
 const Dialogs = () => {
   return (
     <div className="dialogsBox">
-      <DialogItem />
-      <Route path="/dialogs/1" render={() => <Messages />} />
+      <Route exact path="/dialogs" render={() => <DialogItem />} />
+      <Route path="/dialogs/:1" render={() => <Messages />} />
       <DialogsNav />
     </div>
   );

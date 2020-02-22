@@ -8,7 +8,7 @@ const Menu = () => {
     {
       id: 1,
       iconClass: "profileIcon",
-      pageRef: "/profile",
+      pageRef: "/",
       navlinkInner: "Моя страница"
     },
     {
