@@ -7,6 +7,7 @@ import News from "./News";
 import ProfileContainer from "./Profile/ProfileContainer";
 import Preloader from "../common/Preloader";
 import withSuspense from "../hoc/withSuspense";
+import EditPI from "./Profile/ProfileInfo/EditPI";
 
 const UsersContainer = React.lazy(() => import("./Users/UsersContainer"));
 const Login = React.lazy(() => import("../Login"));
@@ -32,6 +33,7 @@ const Content = () => {
           </React.Suspense>
         )}
       />
+      <Route path="/editPIForm" render={withSuspense(EditPI)} />
     </main>
   );
 };

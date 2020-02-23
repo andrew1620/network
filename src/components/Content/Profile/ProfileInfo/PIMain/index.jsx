@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import css from "./style.module.css";
-import { reduxForm, Field } from "redux-form";
+import { NavLink } from "react-router-dom";
 
 const PIMain = ({ profile, updateProfileInfo }) => {
   const [toggleDetails, setToggleDetails] = useState(false);
@@ -40,65 +40,30 @@ const PIMain = ({ profile, updateProfileInfo }) => {
 export default PIMain;
 
 const MoreInfo = ({ profile, updateProfileInfo }) => {
-  const [editMode, setEditMode] = useState(false);
-
-  const handleSubmit = formData => {
-    const data = { ...formData, aboutMe: "Good", fullName: "andrew" };
-    updateProfileInfo(data);
-    setEditMode(false);
-  };
   return (
     <div>
-      {!editMode && (
-        <div className={css.itemBox}>
-          <div className={css.itemName}>
-            <span>Личная информация</span>
-            <span onClick={() => setEditMode(true)} className={css.btnEdit}>
-              Редактировать
-            </span>
+      <div className={css.itemBox}>
+        <div className={css.itemName}>
+          <span>Личная информация</span>
+          <span className={css.btnEdit}>
+            <NavLink to="/editPIForm">Редактировать</NavLink>
+          </span>
+        </div>
+        <div className={css.itemMore}>
+          <div className={css.left}>
+            <div>Ищу работу</div>
+            <div>Описание</div>
           </div>
-          <div className={css.itemMore}>
-            <div className={css.left}>
-              <div>Ищу работу</div>
-              <div>Описание</div>
-            </div>
-            <div className={css.right}>
-              <div>{profile.lookingForAJob ? "Да" : "Нет"}</div>
-              <div>
-                {profile.lookingForAJobDescription
-                  ? profile.lookingForAJobDescription
-                  : "Description"}
-              </div>
+          <div className={css.right}>
+            <div>{profile.lookingForAJob ? "Да" : "Нет"}</div>
+            <div>
+              {profile.lookingForAJobDescription
+                ? profile.lookingForAJobDescription
+                : "Description"}
             </div>
           </div>
         </div>
-      )}
-      {//initialValues работает потому что свойства объекта profile совпадают с атрибутами name в Fields, в итоге ставятся дефолтные значения из стора
-      editMode && (
-        <EditPIForm onSubmit={handleSubmit} initialValues={profile} />
-      )}
+      </div>
     </div>
   );
 };
-
-//EditProfileInfoForm
-let EditPIForm = ({ handleSubmit }) => {
-  return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Ищу работу</label>
-        <Field component={"input"} name="lookingForAJob" type="checkbox" />
-      </div>
-      <div>
-        <label>Описание</label>
-        <Field
-          component={"textarea"}
-          name="lookingForAJobDescription"
-          type="text"
-        />
-      </div>
-      <button>Сохранить</button>
-    </form>
-  );
-};
-EditPIForm = reduxForm({ form: "editPIForm" })(EditPIForm);

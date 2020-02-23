@@ -28,7 +28,8 @@ const initialState = {
     }
   ],
   profile: { photos: { small: null, large: null } },
-  userStatus: ""
+  userStatus: "",
+  isPIUpdated: false
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -52,6 +53,8 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         postsArr: state.postsArr.filter(post => post.id !== action.payload)
       };
+    case TOGGLE_IS_PI_UPDATED:
+      return { ...state, isPIUpdated: action.payload };
     default:
       // console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
       return state;
@@ -63,6 +66,7 @@ const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_USER_STATUS = "SET_USER_STATUS";
 const DELETE_POST = "DELETE_POST";
+const TOGGLE_IS_PI_UPDATED = "TOGGLE_IS_PI_UPDATED";
 
 export const addPostActionCreator = postBody => {
   return { type: ADD_POST, payload: postBody };
@@ -75,6 +79,9 @@ export const setUserStatus = newStatus => {
 };
 export const deletePost = postId => {
   return { type: DELETE_POST, payload: postId };
+};
+export const toggleIsPIUpdated = isPIUpdated => {
+  return { type: TOGGLE_IS_PI_UPDATED, payload: isPIUpdated };
 };
 
 //TC = ThunkCreator
@@ -107,5 +114,6 @@ export const updateProfileInfo = info => async (dispatch, getState) => {
   if (response.data.resultCode === 0) {
     const userId = getState().auth.userId;
     dispatch(setUserProfileTC(userId));
+    dispatch(toggleIsPIUpdated(true));
   }
 };

@@ -68,9 +68,10 @@
 .itemBox {
   margin-top: 15px;
 }
-.btnEdit {
+.btnEdit a {
   cursor: pointer;
+  text-decoration: none;
 }
-.btnEdit:hover {
+.btnEdit a:hover {
   text-decoration: underline;
 }
