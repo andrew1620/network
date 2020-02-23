@@ -41,6 +41,15 @@ export const profileAPI = {
   },
   updateProfileInfo(info) {
     return instance.put("profile", info);
+  },
+  uploadPhoto(photo) {
+    const formData = new FormData();
+    formData.append("image", photo);
+    return instance
+      .put("profile/photo", formData, {
+        "content-type": "multipart/form-data"
+      })
+      .then(response => response.data);
   }
 };
 

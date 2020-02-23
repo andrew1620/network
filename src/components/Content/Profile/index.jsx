@@ -9,7 +9,10 @@ import ProfileFriends from "./ProfileFriends";
 const Profile = props => {
   return (
     <div className="profile">
-      <ProfilePhoto photos={props.profile.photos} />
+      <ProfilePhoto
+        photos={props.profile.photos}
+        uploadPhoto={props.uploadPhoto}
+      />
       <ProfileInfo
         profile={props.profile}
         userStatus={props.userStatus}
