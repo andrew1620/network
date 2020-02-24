@@ -1,4 +1,5 @@
 import React from "react";
+import css from "./style.module.css";
 
 const UploadPhoto = ({ uploadPhoto }) => {
   const handleFile = event => {
@@ -6,8 +7,15 @@ const UploadPhoto = ({ uploadPhoto }) => {
   };
 
   return (
-    <div>
+    <div className={css.inputBox}>
+      <label htmlFor="uploadPhoto">
+        <div className={css.btnUpload}>
+          <span> &#8593; </span>
+          <span className={css.title}>Загрузить фото {space}</span>
+        </div>
+      </label>
       <input
+        id="uploadPhoto"
         type="file"
         onChange={handleFile}
         accept="image/png,image/jpg, image/jpeg"
@@ -16,3 +24,9 @@ const UploadPhoto = ({ uploadPhoto }) => {
   );
 };
 export default UploadPhoto;
+//Пока не знаю как правильно сделать кнопку, поэтому временно так
+const space = (
+  <span>
+    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+  </span>
+);

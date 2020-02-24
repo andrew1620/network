@@ -29,7 +29,8 @@ const initialState = {
   ],
   profile: { photos: { small: null, large: null } },
   userStatus: "",
-  isPIUpdated: false
+  isPIUpdated: false,
+  ownerPhoto: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -67,12 +68,12 @@ const profileReducer = (state = initialState, action) => {
 };
 export default profileReducer;
 
-const ADD_POST = "ADD_POST";
-const SET_USER_PROFILE = "SET_USER_PROFILE";
-const SET_USER_STATUS = "SET_USER_STATUS";
-const DELETE_POST = "DELETE_POST";
-const TOGGLE_IS_PI_UPDATED = "TOGGLE_IS_PI_UPDATED";
-const SET_PHOTO = "SET_PHOTO";
+const ADD_POST = "profile/ADD_POST";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
+const SET_USER_STATUS = "profile/SET_USER_STATUS";
+const DELETE_POST = "profile/DELETE_POST";
+const TOGGLE_IS_PI_UPDATED = "profile/TOGGLE_IS_PI_UPDATED";
+const SET_PHOTO = "profile/SET_PHOTO";
 
 export const addPostActionCreator = postBody => {
   return { type: ADD_POST, payload: postBody };

@@ -38,17 +38,6 @@ export const authenticationTC = () => {
     }
   };
 };
-// export const authenticationTC = () => {
-//   return dispatch => {
-//     return authAPI.me().then(data => {
-//       if (data.resultCode === 0) {
-//         dispatch(
-//           setAuthUserData(data.data.id, data.data.email, data.data.login, true)
-//         );
-//       }
-//     });
-//   };
-// };
 
 export const loginTC = (email, password, rememberMe) => {
   return async dispatch => {

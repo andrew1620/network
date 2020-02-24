@@ -13,7 +13,9 @@ const ProfilePhoto = ({ photos, uploadPhoto }) => {
           src={photos.large === null ? userPhoto : photos.large}
           alt="profilePhoto"
         />
-        <UploadPhoto uploadPhoto={uploadPhoto} />
+        <div className="uploadMenu">
+          <UploadPhoto uploadPhoto={uploadPhoto} />
+        </div>
       </div>
     </div>
   );
