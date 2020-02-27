@@ -2,7 +2,7 @@ import { profileAPI } from "../api/api";
 
 const initialState = {
   isOwner: null,
-  ownerData: { fullName: null, photos: null }
+  ownerData: { fullName: null, photos: {} }
 };
 
 const ownerReducer = (state = initialState, action) => {

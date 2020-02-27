@@ -1,6 +1,6 @@
 import React from "react";
 import css from "./style.module.css";
-import LoginBlock from "./LoginBlock";
+import OwnerBlock from "./OwnerBlock";
 
 const Header = props => {
   return (
@@ -11,7 +11,7 @@ const Header = props => {
             VK
           </a>
         </div>
-        <LoginBlock {...props} />
+        <OwnerBlock {...props} />
       </div>
     </header>
   );

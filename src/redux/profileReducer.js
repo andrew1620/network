@@ -1,4 +1,5 @@
 import { profileAPI } from "../api/api";
+import { requireOwnerData } from "./ownerReducer";
 
 const initialState = {
   postsArr: [
@@ -127,9 +128,11 @@ export const updateProfileInfo = info => async (dispatch, getState) => {
     dispatch(toggleIsPIUpdated(true));
   }
 };
-export const uploadPhoto = photo => async dispatch => {
+export const uploadPhoto = photo => async (dispatch, getState) => {
   const data = await profileAPI.uploadPhoto(photo);
+  const userId = getState().auth.userId;
   if (data.resultCode === 0) {
     dispatch(setPhoto(data.data.photos));
+    dispatch(requireOwnerData(userId));
   }
 };
