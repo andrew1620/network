@@ -7,10 +7,25 @@
 .content {
   display: flex;
   /* border: 1px solid black; */
-  outline: 1px solid red;
+  /* outline: 1px solid red; */
   justify-content: space-between;
+  align-items: center;
 }
 .logo {
   color: white;
   text-decoration: none;
+  font-family: "Helvetica";
+  font-weight: bold;
+  font-size: 25px;
+  /* outline: 1px solid red; */
+  padding-right: 120px;
+}
+.back {
+  position: absolute;
+  height: 42px;
+  background: #4a76a8;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: -1;
 }

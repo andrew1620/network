@@ -13,6 +13,7 @@ const Header = props => {
         </div>
         <OwnerBlock {...props} />
       </div>
+      <div className={css.back}></div>
     </header>
   );
 };

@@ -17,3 +17,7 @@ const Avatar = ({ img = defaultAva, size }) => {
 };
 
 export default Avatar;
+
+//Avatar gets 2 arguments:
+// img reference
+// img size - small:30px, middle:40px, large:50px

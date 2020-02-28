@@ -22,8 +22,13 @@ export const setOwnerData = data => {
   return { type: SET_OWNER_DATA, payload: data };
 };
 
-export const requireOwnerData = userId => async dispatch => {
-  const data = await profileAPI.getUserProfile(userId);
-  const ownerData = { fullName: data.fullName, photos: { ...data.photos } };
-  dispatch(setOwnerData(ownerData));
+export const requireOwnerData = userId => async (dispatch, getState) => {
+  try {
+    const userId = getState().auth.userId;
+    const data = await profileAPI.getUserProfile(userId);
+    const ownerData = { fullName: data.fullName, photos: { ...data.photos } };
+    dispatch(setOwnerData(ownerData));
+  } catch (err) {
+    console.warn("Mistake in requireOwnerData \n", err);
+  }
 };

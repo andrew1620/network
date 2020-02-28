@@ -1,0 +1,33 @@
+.subMenu {
+  width: 160px;
+  background: #fff;
+  font-weight: 400;
+
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
+    Helvetica Neue, "Noto Sans Armenian", "Noto Sans Bengali",
+    "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic",
+    "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada",
+    "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil",
+    "Noto Sans Telugu", "Noto Sans Thai", sans-serif;
+  font-size: 12.5px;
+  position: absolute;
+  border-radius: 4px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: opacity 100ms linear, top 100ms linear, visibility 100ms linear;
+  font-weight: 400;
+  padding: 3px 0;
+  top: 47px;
+  left: -30px;
+}
+.item {
+  display: block;
+  white-space: nowrap;
+  /* height: 30px; */
+  line-height: 30px;
+  padding: 0 15px;
+  color: #2a5885;
+  text-decoration: none;
+}
+.item:hover {
+  background: #e4eaf0;
+}

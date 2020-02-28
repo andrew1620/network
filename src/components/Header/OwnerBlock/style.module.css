@@ -9,6 +9,7 @@
   font-family: Arial;
   font-size: 13.5px;
   font-weight: bold;
+  position: relative;
 }
 .ownerBlock:hover {
   background: #3d6898;

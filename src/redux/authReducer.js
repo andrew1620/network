@@ -42,8 +42,9 @@ export const authenticationTC = () => {
 export const loginTC = (email, password, rememberMe) => {
   return async dispatch => {
     const data = await authAPI.login(email, password, rememberMe);
-    if (data.resultCode === 0) dispatch(authenticationTC());
-    else {
+    if (data.resultCode === 0) {
+      dispatch(authenticationTC());
+    } else {
       const error =
         data.messages.length === 0
           ? "Invalid Email or Password"
