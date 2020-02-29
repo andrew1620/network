@@ -1,29 +1,35 @@
-.profilePhotoBox {
-  /* margin: 10px; */
-  background: #fff;
-  grid-area: photo;
-  /* padding: 10px; */
-  display: flex;
-}
 .profilePhoto {
-  max-width: 200px;
-  margin: auto;
-  /* border: 1px solid red; */
+  background: #fff;
+  margin-bottom: 15px;
+  padding: 15px;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+.photo {
   overflow: hidden;
   position: relative;
+  /* border: 1px solid red; */
+  max-width: 200px;
+  max-height: 200px;
+  margin: 0px auto;
+  border-radius: 3px;
 }
-.profilePhoto img {
+img {
   max-width: inherit;
+  max-height: inherit;
 }
-.profilePhoto img:hover + .uploadMenu {
+img:hover + .uploadMenu {
   height: 50px;
+  opacity: 1;
 }
 .uploadMenu:hover {
   height: 50px;
+  opacity: 1;
 }
 .uploadMenu {
-  transition: height 0.2s ease-out;
+  transition: height 0.2s ease-out, opacity 0.3s ease-out;
   height: 0px;
+  opacity: 0;
   position: absolute;
   bottom: -15px;
   padding: 5px 0px 0px 10px;

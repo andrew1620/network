@@ -35,6 +35,8 @@ export const authenticationTC = () => {
       dispatch(
         setAuthUserData(data.data.id, data.data.email, data.data.login, true)
       );
+    } else {
+      alert("Ошибка аутентификации. " + data.messages[0]);
     }
   };
 };

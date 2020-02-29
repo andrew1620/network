@@ -1,8 +1,6 @@
 import React from "react";
 import MenuItem from "./MenuItem";
 
-// переделать меню, все сделано не как в вк
-// -----------------------------------------
 const Menu = () => {
   const menuObjects = [
     {
@@ -25,7 +23,7 @@ const Menu = () => {
     },
     {
       id: 4,
-      iconClass: "newsIcon",
+      iconClass: "peopleIcon",
       pageRef: "/users",
       navlinkInner: "Люди"
     }
@@ -40,7 +38,7 @@ const Menu = () => {
     />
   ));
 
-  return <nav className="nav">{menuList}</nav>;
+  return <nav>{menuList}</nav>;
 };
 
 export default Menu;

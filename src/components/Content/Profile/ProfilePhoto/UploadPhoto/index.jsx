@@ -10,7 +10,7 @@ const UploadPhoto = ({ uploadPhoto }) => {
     <div className={css.inputBox}>
       <label htmlFor="uploadPhoto">
         <div className={css.btnUpload}>
-          <span> &#8593; </span>
+          <span className={css.arrow}></span>
           <span className={css.title}>Загрузить фото {space}</span>
         </div>
       </label>

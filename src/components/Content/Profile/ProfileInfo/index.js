@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import css from "./style.module.css";
 import Preloader from "../../../common/Preloader";
 import PIHeader from "./PIHeader";
 import PIMain from "./PIMain";
@@ -9,7 +9,7 @@ const ProfileInfo = props => {
   if (!props.profile) return <Preloader />;
 
   return (
-    <div className="profileInfoBox">
+    <div className={css.profileInfo}>
       <PIHeader
         fullName={props.profile.fullName}
         userStatus={props.userStatus}

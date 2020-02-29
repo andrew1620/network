@@ -4,10 +4,10 @@ import { NavLink } from "react-router-dom";
 
 const MenuItem = ({ iconClass, pageRef, navlinkInner }) => {
   return (
-    <div className={css.refContainer}>
-      <div className={css[iconClass]}></div>
-      <NavLink to={pageRef} className={css.navLink}>
-        {navlinkInner}
+    <div>
+      <NavLink to={pageRef} className={`${css.navLink}`}>
+        <span className={`${css[iconClass]} ${css.icon}`}></span>
+        <span className={css.linkName}>{navlinkInner}</span>
       </NavLink>
     </div>
   );

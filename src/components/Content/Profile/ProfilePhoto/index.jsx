@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import css from "./style.module.css";
 import userPhoto from "../../../../assets/img/userPhoto.png";
 import Preloader from "../../../common/Preloader";
 import UploadPhoto from "./UploadPhoto";
@@ -7,13 +7,14 @@ import UploadPhoto from "./UploadPhoto";
 const ProfilePhoto = ({ photos, uploadPhoto }) => {
   if (!photos) return <Preloader />;
   return (
-    <div className="profilePhotoBox">
-      <div className="profilePhoto">
+    <div className={css.profilePhoto}>
+      <div className={css.photo}>
         <img
+          className={css.img}
           src={photos.large === null ? userPhoto : photos.large}
           alt="profilePhoto"
         />
-        <div className="uploadMenu">
+        <div className={css.uploadMenu}>
           <UploadPhoto uploadPhoto={uploadPhoto} />
         </div>
       </div>

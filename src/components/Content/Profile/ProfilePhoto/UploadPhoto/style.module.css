@@ -2,7 +2,6 @@
   display: inline-block;
   width: 100%;
 }
-
 .inputBox input {
   width: 0px;
   height: 0px;
@@ -10,9 +9,25 @@
 }
 .btnUpload {
   cursor: pointer;
+  display: flex;
+  align-items: stretch;
+  padding-top: 3px;
 }
-
-.btnUpload span {
+.btnUpload:hover span,
+.btnUpload:hover span + span {
+  opacity: 1;
+}
+.arrow {
+  display: inline-block;
+  width: 30px;
+  background: url("../../../../../assets//img/profilePhoto/arrow.svg") left 0px
+    no-repeat;
+  background-size: 20px 15px;
+  opacity: 0.75;
+}
+.title {
+  margin-left: 2px;
+  width: 100%;
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
@@ -24,9 +39,6 @@
   font-size: 12.5px;
   white-space: nowrap;
   cursor: pointer;
-  color: #eee;
-}
-.title {
-  margin-left: 10px;
-  width: 100%;
+  color: #fff;
+  opacity: 0.75;
 }

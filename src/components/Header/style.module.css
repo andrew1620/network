@@ -3,6 +3,8 @@
   /* border: 1px solid red; */
   background: #4a76a8;
   /* height: 42px; /*Убрать высоту */
+  margin: 0;
+  padding: 0;
 }
 .content {
   display: flex;
