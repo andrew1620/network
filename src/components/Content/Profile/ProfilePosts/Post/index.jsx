@@ -1,14 +1,15 @@
 import React from "react";
 import "./style.css";
+import css from "./style.module.css";
 import { connect } from "react-redux";
 
 const Post = ({ postsArr = [] }) => {
   const postsList = postsArr.map(post => {
     return (
-      <div className="postBox" key={post.id}>
-        <img src={post.img} alt="postPic" />
+      <div className={css.postBox} key={post.id}>
+        <img src={post.img} alt="postPic" className={css.img} />
         <span>{post.name}</span>
-        <div className="post">{post.body}</div>
+        <div className={css.postBody}>{post.body}</div>
         <div>
           <span>
             <b>like</b>{" "}

@@ -1,0 +1,48 @@
+.container {
+  background: #fff;
+  margin-bottom: 15px;
+  margin-top: 15px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+}
+.addPostBox {
+  /* border: 1px solid purple; */
+  margin: 15px;
+  display: flex;
+  /* padding-bottom: 20px;
+  border-bottom: 1px solid #e7e8ec; */
+  position: relative;
+}
+.addPostPhoto {
+  /* border: 1px solid red; */
+  width: 35px;
+  overflow: hidden;
+  align-self: flex-start;
+}
+.hr {
+  border: 0;
+  border-bottom: 1px solid #e7e8ec;
+  margin: 0 15px 10px 15px;
+}
+.btnPublishBox {
+  color: #000;
+  line-height: 1.154;
+  background: #fafbfc;
+  border-top: 1px solid #e7e8ec;
+  padding: 13px 20px 12px;
+  /* border-radius: 0 0 4px 4px; */
+  display: flex;
+  justify-content: flex-end;
+}
+.addPostBtn {
+  background: #5b88bd;
+  color: #fff;
+  padding: 8px 10px;
+  width: 150px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}

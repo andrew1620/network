@@ -1,20 +1,22 @@
 import "./style.css";
 import { connect } from "react-redux";
 
-import { addPostActionCreator } from "../../../../../redux/profileReducer";
+import {
+  // addPostActionCreator,
+  addPost
+} from "../../../../../redux/profileReducer";
 import AddPost from "../AddPost/index";
 
-const mapStateToProps = state => {
-  return {};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     addPost: postBody => {
+//       dispatch(addPostActionCreator(postBody));
+//     }
+//   };
+// };
+const mdtp = {
+  addPost
 };
-const mapDispatchToProps = dispatch => {
-  return {
-    addPost: postBody => {
-      dispatch(addPostActionCreator(postBody));
-    }
-  };
-};
-
-const AddPostContainer = connect(mapStateToProps, mapDispatchToProps)(AddPost);
+const AddPostContainer = connect(null, mdtp)(AddPost);
 
 export default AddPostContainer;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import css from "./style.module.css";
 
 const ProfileStatus = props => {
   const [editMode, setEditMode] = useState(false);
@@ -20,23 +21,27 @@ const ProfileStatus = props => {
   };
 
   return (
-    <div className="statusBox">
+    <div className={css.container}>
       {!editMode && (
-        <div onClick={activateEditMode}>
+        <div onClick={activateEditMode} className={css.statusBox}>
           <span>{props.userStatus}</span>
         </div>
       )}
 
       {editMode && (
-        <div>
+        <div className={css.inputBox}>
           <input
             autoFocus={true}
             onChange={handleStatusChange}
             value={statusValue}
             type="text"
             placeholder="Введите статус"
+            className={css.input}
           />
-          <button onClick={deactivateEditMode}>Сохранить</button>
+          <br />
+          <button onClick={deactivateEditMode} className={css.btnSave}>
+            Сохранить
+          </button>
         </div>
       )}
     </div>

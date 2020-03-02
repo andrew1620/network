@@ -1,6 +1,7 @@
 .profile {
   display: flex;
   align-items: flex-start;
+  max-width: 791px;
   /* border: 1px solid red; */
 }
 .left {

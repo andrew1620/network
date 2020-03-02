@@ -1,5 +1,6 @@
 import { profileAPI } from "../api/api";
 import { requireOwnerData } from "./ownerReducer";
+import { reset } from "redux-form";
 
 const initialState = {
   postsArr: [
@@ -28,7 +29,7 @@ const initialState = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     },
     {
-      id: 3,
+      id: 4,
       name: "Petter Grick",
       img:
         "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
@@ -46,7 +47,7 @@ const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       const newPost = {
-        id: Date.now(), //Временно, пока нет настоящих
+        id: state.postsArr[state.postsArr.length - 1].id + 1, //Временно, пока нет настоящих
         name: "Vasya Pupkin",
         img:
           "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
@@ -84,7 +85,7 @@ const DELETE_POST = "profile/DELETE_POST";
 const TOGGLE_IS_PI_UPDATED = "profile/TOGGLE_IS_PI_UPDATED";
 const SET_PHOTO = "profile/SET_PHOTO";
 
-export const addPostActionCreator = postBody => {
+export const addPostAC = postBody => {
   return { type: ADD_POST, payload: postBody };
 };
 export const setUserProfile = profile => {
@@ -104,6 +105,12 @@ export const setPhoto = photos => {
 };
 
 //TC = ThunkCreator
+
+export const addPost = postBody => dispatch => {
+  dispatch(addPostAC(postBody));
+  dispatch(reset("addPostForm"));
+};
+
 export const setUserProfileTC = userId => {
   return dispatch => {
     profileAPI

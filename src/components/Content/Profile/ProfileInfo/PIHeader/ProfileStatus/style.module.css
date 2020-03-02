@@ -1,0 +1,59 @@
+.container {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
+    Helvetica Neue, "Noto Sans Armenian", "Noto Sans Bengali",
+    "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic",
+    "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada",
+    "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil",
+    "Noto Sans Telugu", "Noto Sans Thai", sans-serif;
+  direction: ltr;
+  font-size: 13px;
+}
+.statusBox {
+  color: #939393;
+  padding: 4px 6px;
+  display: block;
+  width: 100%;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+.statusBox:hover {
+  background: #f0f2f5;
+}
+/* ------inputBox--------- */
+.inputBox {
+  background-color: #fafbfc;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: 15px;
+  border-radius: 2px;
+  border: 1px solid #d3d9de;
+}
+.input {
+  border: 1px solid #d3d9de;
+  box-shadow: none;
+  border-radius: 3px;
+  padding: 5px 24px 6px 9px;
+  min-height: 28px;
+  line-height: 14px;
+  outline: none;
+  word-wrap: break-word;
+  width: 100%;
+  margin-bottom: 15px;
+}
+.btnSave {
+  padding: 7px 16px 8px;
+  outline: none;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  background: none;
+  background-color: #5b88bd;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  line-height: 11px;
+  cursor: pointer;
+}
