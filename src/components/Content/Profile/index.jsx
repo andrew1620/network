@@ -12,20 +12,23 @@ const Profile = props => {
     <div className={css.profile}>
       <div className={css.left}>
         <ProfilePhoto
-          photos={props.profile.photos}
+          photos={props.profilePage.profile.photos}
           uploadPhoto={props.uploadPhoto}
         />
         <ProfileFriends />
       </div>
       <div className={css.right}>
         <ProfileInfo
-          profile={props.profile}
+          profile={props.profilePage.profile}
           userStatus={props.userStatus}
           updateUserStatusTC={props.updateUserStatusTC}
           updateProfileInfo={props.updateProfileInfo}
         />
 
-        <ProfilePosts />
+        <ProfilePosts
+          posts={props.profilePage.posts}
+          fullName={props.owner.ownerData.fullName}
+        />
       </div>
     </div>
   );

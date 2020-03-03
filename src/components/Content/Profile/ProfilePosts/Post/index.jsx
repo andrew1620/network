@@ -1,23 +1,16 @@
 import React from "react";
-import "./style.css";
 import css from "./style.module.css";
-import { connect } from "react-redux";
+import PostHeader from "./PostsHeader";
+import PostMain from "./PostMain";
+import PostFooter from "./PostFooter";
 
-const Post = ({ postsArr = [] }) => {
-  const postsList = postsArr.map(post => {
+const Post = ({ posts = [], fullName }) => {
+  const postsList = posts.map(post => {
     return (
       <div className={css.postBox} key={post.id}>
-        <img src={post.img} alt="postPic" className={css.img} />
-        <span>{post.name}</span>
-        <div className={css.postBody}>{post.body}</div>
-        <div>
-          <span>
-            <b>like</b>{" "}
-          </span>
-          <span>
-            <b>repost</b>
-          </span>
-        </div>
+        <PostHeader fullName={fullName} date={post.date} />
+        <PostMain postBody={post.body} />
+        <PostFooter likes={post.likes} />
       </div>
     );
   });
@@ -25,10 +18,4 @@ const Post = ({ postsArr = [] }) => {
   return <div>{postsList}</div>;
 };
 
-const mapStateToProps = state => {
-  return {
-    postsArr: state.profilePage.postsArr
-  };
-};
-
-export default connect(mapStateToProps)(Post);
+export default Post;

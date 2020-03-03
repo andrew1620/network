@@ -1,0 +1,51 @@
+.container {
+  /* border: 1px solid red; */
+  display: flex;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
+    Helvetica Neue, "Noto Sans Armenian", "Noto Sans Bengali",
+    "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic",
+    "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada",
+    "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil",
+    "Noto Sans Telugu", "Noto Sans Thai", sans-serif;
+  cursor: pointer;
+}
+.container div {
+  /* border: 1px solid black; */
+  cursor: pointer;
+  min-width: 30px;
+  min-height: 25px;
+  opacity: 0.75;
+}
+.container div:hover {
+  opacity: 1;
+}
+.container div:not(:nth-child(1)) {
+  margin-left: 30px;
+}
+.like {
+  background: url("../../../../../../assets/img/profilePosts/like.svg") left
+    center no-repeat;
+  background-size: 25px 40px;
+  padding-left: 30px;
+}
+.likesAmount {
+  /* border: 1px solid black; */
+  font-size: 16px;
+  white-space: nowrap;
+  line-height: 16px;
+  overflow: hidden;
+  color: #67707a;
+  font-weight: 500;
+  -webkit-font-smoothing: subpixel-antialiased;
+  opacity: 1;
+}
+.comment {
+  background: url("../../../../../../assets/img/profilePosts/comment.svg")
+    center center no-repeat;
+  background-size: 25px 40px;
+}
+.share {
+  background: url("../../../../../../assets/img/profilePosts/share.svg") center -7px
+    no-repeat;
+  background-size: 22px 35px;
+}

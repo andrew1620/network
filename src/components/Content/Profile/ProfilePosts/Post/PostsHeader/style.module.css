@@ -1,0 +1,45 @@
+.postHeader {
+  /* border: 1px solid red; */
+  display: flex;
+  justify-content: flex-start;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  margin-bottom: 15px;
+}
+.avaBox {
+  /* border: 1px solid black; */
+}
+.postInfo {
+  /* border: 1px solid green; */
+  margin-left: 15px;
+  align-self: center;
+}
+.name {
+  color: #2a5885;
+  line-height: 16px;
+  cursor: pointer;
+  margin-bottom: 5px;
+}
+.name:hover {
+  text-decoration: underline;
+}
+.date {
+  font-weight: 400;
+  line-height: 14px;
+  white-space: pre;
+  font-size: 12.5px;
+  cursor: pointer;
+  color: #939393;
+}
+.postActions {
+  /* border: 1px solid purple; */
+  cursor: pointer;
+  min-width: 22px;
+  background: url(/static/media/arrowSubMenu.88b58d28.svg) center 10px no-repeat;
+  background-size: 15px 15px;
+  margin-left: auto;
+}

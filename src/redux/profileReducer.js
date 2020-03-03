@@ -2,37 +2,39 @@ import { profileAPI } from "../api/api";
 import { requireOwnerData } from "./ownerReducer";
 import { reset } from "redux-form";
 
+const dateFormatter = new Intl.DateTimeFormat("ru", {
+  year: "numeric",
+  month: "short",
+  day: "numeric"
+});
+
 const initialState = {
-  postsArr: [
+  posts: [
     {
       id: 1,
-      name: "Vasya Pupkin",
-      img:
-        "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
+      date: "2 фев. 2019 г.",
+      likes: 2,
       body:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     },
     {
       id: 2,
-      name: "Pashok Surkov",
-      img:
-        "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
+      date: "3 фев. 2019 г.",
+      likes: 17,
       body:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     },
     {
       id: 3,
-      name: "Petter Grick",
-      img:
-        "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
+      date: "24 фев. 2019 г.",
+      likes: 24,
       body:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     },
     {
       id: 4,
-      name: "Petter Grick",
-      img:
-        "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
+      date: "30 авг. 2019 г.",
+      likes: null,
       body:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     }
@@ -47,13 +49,12 @@ const profileReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_POST:
       const newPost = {
-        id: state.postsArr[state.postsArr.length - 1].id + 1, //Временно, пока нет настоящих
-        name: "Vasya Pupkin",
-        img:
-          "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
+        id: state.posts[state.posts.length - 1].id + 1,
+        date: dateFormatter.format(new Date()),
+        likes: null,
         body: action.payload
       };
-      return { ...state, postsArr: [...state.postsArr, newPost] };
+      return { ...state, posts: [...state.posts, newPost] };
 
     case SET_USER_PROFILE:
       return { ...state, profile: action.payload };
@@ -62,7 +63,7 @@ const profileReducer = (state = initialState, action) => {
     case DELETE_POST:
       return {
         ...state,
-        postsArr: state.postsArr.filter(post => post.id !== action.payload)
+        posts: state.posts.filter(post => post.id !== action.payload)
       };
     case TOGGLE_IS_PI_UPDATED:
       return { ...state, isPIUpdated: action.payload };
@@ -72,7 +73,6 @@ const profileReducer = (state = initialState, action) => {
         profile: { ...state.profile, photos: action.payload }
       };
     default:
-      // console.log("there is no such action in profileReducer"); //Будет срабатывать потому что в dispatch в сторе мы прокинули все редьюсеры и в каждый редьюсер отправляется экшен. Меняется только та часть которая пришла остальные возвращаются по дефолту
       return state;
   }
 };
