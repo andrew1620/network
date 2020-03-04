@@ -3,11 +3,11 @@ import React from "react";
 import Post from "./Post";
 import AddPostContainer from "./AddPostContainer/index";
 
-const ProfilePosts = ({ posts, fullName }) => {
+const ProfilePosts = ({ posts, profile }) => {
   return (
     <div className="profilePosts">
       <AddPostContainer />
-      <Post posts={posts} fullName={fullName} />
+      <Post posts={posts} profile={profile} />
     </div>
   );
 };

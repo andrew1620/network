@@ -3,14 +3,18 @@ import css from "./style.module.css";
 
 import Avatar from "../../../../../common/Avatar";
 
-const PostHeader = ({ fullName = "User", date }) => {
+const PostHeader = ({ date, profile }) => {
   return (
     <div className={css.postHeader}>
       <div className={css.avaBox}>
-        <Avatar size={"large"} />
+        <Avatar
+          size={"large"}
+          img={profile.photos.large}
+          loadProfileImg={true}
+        />
       </div>
       <div className={css.postInfo}>
-        <div className={css.name}>{fullName}</div>
+        <div className={css.name}>{profile.fullName}</div>
         <div className={css.date}>{date}</div>
       </div>
       <div className={css.postActions}></div>

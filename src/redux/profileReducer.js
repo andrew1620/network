@@ -42,7 +42,7 @@ const initialState = {
   profile: { photos: { small: null, large: null } },
   userStatus: "",
   isPIUpdated: false,
-  ownerPhoto: null
+  isOwner: null
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -72,6 +72,8 @@ const profileReducer = (state = initialState, action) => {
         ...state,
         profile: { ...state.profile, photos: action.payload }
       };
+    case SET_IS_OWNER:
+      return { ...state, isOwner: action.payload };
     default:
       return state;
   }
@@ -84,6 +86,7 @@ const SET_USER_STATUS = "profile/SET_USER_STATUS";
 const DELETE_POST = "profile/DELETE_POST";
 const TOGGLE_IS_PI_UPDATED = "profile/TOGGLE_IS_PI_UPDATED";
 const SET_PHOTO = "profile/SET_PHOTO";
+const SET_IS_OWNER = "profile/SET_IS_OWNER";
 
 export const addPostAC = postBody => {
   return { type: ADD_POST, payload: postBody };
@@ -103,6 +106,9 @@ export const toggleIsPIUpdated = isPIUpdated => {
 export const setPhoto = photos => {
   return { type: SET_PHOTO, payload: photos };
 };
+export const setIsOwner = isOwner => {
+  return { type: SET_IS_OWNER, payload: isOwner };
+};
 
 //TC = ThunkCreator
 
@@ -112,10 +118,13 @@ export const addPost = postBody => dispatch => {
 };
 
 export const setUserProfileTC = userId => {
-  return dispatch => {
-    profileAPI
-      .getUserProfile(userId)
-      .then(data => dispatch(setUserProfile(data)));
+  return (dispatch, getState) => {
+    profileAPI.getUserProfile(userId).then(data => {
+      dispatch(setUserProfile(data));
+      const ownerId = getState().auth.userId;
+      if (data.userId === ownerId) dispatch(setIsOwner(true));
+      else dispatch(setIsOwner(false));
+    });
   };
 };
 

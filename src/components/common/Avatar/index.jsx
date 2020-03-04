@@ -1,14 +1,14 @@
 import React from "react";
 import css from "./style.module.css";
 
-import Preloader from "../Preloader";
 import defaultAva from "../../../assets/img/userPhoto.png";
 import { connect } from "react-redux";
 
-const Avatar = ({ img, size, owner }) => {
-  // if (!img) return <Preloader />;
+const Avatar = ({ img, size, owner, profile, loadProfileImg = false }) => {
   if (!img) {
-    img = owner.ownerData.photos.small || defaultAva;
+    img =
+      (loadProfileImg ? profile.photos.large : owner.ownerData.photos.small) ||
+      defaultAva;
   }
 
   if (size !== "small" && size !== "middle" && size !== "large") size = "small";
@@ -21,13 +21,15 @@ const Avatar = ({ img, size, owner }) => {
 };
 
 const mstp = state => ({
-  owner: state.owner
+  owner: state.owner,
+  profile: state.profilePage.profile
 });
 
 export default connect(mstp)(Avatar);
 
-//Avatar gets 2 arguments:
-// img reference
-// img size - small:30px, middle:40px, large:50px
+//Attributes:
+// img - necessary img url
+// size - small:30px, middle:40px, large:50px
+// loadProfileImg - if true, img is taken from state.profilePage
 
 //Если img нет, то я меняю на дефолт, получается ли изменение пропса из компонента, спросить

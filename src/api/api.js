@@ -5,6 +5,7 @@ const instance = axios.create({
   withCredentials: true,
   headers: {
     "API-KEY": "3d3e8bbf-bcb1-41bc-bcde-012d273555ee"
+    // "API-KEY": "428af039-e917-4355-b2da-f161fa0dab90" //Key Для аккаунта Sanya
   }
 });
 

@@ -23,6 +23,15 @@
 .statusBox:hover {
   background: #f0f2f5;
 }
+.withoutHover {
+  color: #939393;
+  padding: 4px 6px;
+  display: block;
+  width: 100%;
+  line-height: 16px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 /* ------inputBox--------- */
 .inputBox {
   background-color: #fafbfc;

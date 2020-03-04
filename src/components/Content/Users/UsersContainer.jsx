@@ -41,25 +41,25 @@ class UsersContainer extends React.Component {
     //Из-за прелоудера здесь будет полностью обновляться Users если данные в состоянии загрузки, то есть если данные загружаются показывается прелоудер вместо юзеров, затем подгружаются данные показываются юзера но на этот момент ВЕСЬ компонент обновился и компоненты внутри тоже, поэтому при выборе страницы далее чем текущая страница обновится все что внутри и пагинатор тоже и внутри пагинатора state (portionNumber станет снова единицей и отсчет будет относительно начала) тоже, поэтому нумерация начнется сначала при каждом переходе на новую
     return (
       <>
-        {this.props.isFetching ? (
+        {/* {this.props.isFetching ? (
           <Preloader />
-        ) : (
-          <div>
-            <Users
-              totalCount={this.props.totalCount}
-              count={this.props.count}
-              currentPage={this.props.currentPage}
-              handlePageNumClick={this.handlePageNumClick.bind(this)}
-              unfollow={this.props.unfollow}
-              follow={this.props.follow}
-              users={this.props.users}
-              isFollowing={this.props.isFollowing}
-              toggleIsFollowing={this.props.toggleIsFollowing}
-              followThunkCreator={this.props.followThunkCreator}
-              unfollowThunkCreator={this.props.unfollowThunkCreator}
-            />
-          </div>
-        )}
+        ) : ( */}
+        <div>
+          <Users
+            totalCount={this.props.totalCount}
+            count={this.props.count}
+            currentPage={this.props.currentPage}
+            handlePageNumClick={this.handlePageNumClick.bind(this)}
+            unfollow={this.props.unfollow}
+            follow={this.props.follow}
+            users={this.props.users}
+            isFollowing={this.props.isFollowing}
+            toggleIsFollowing={this.props.toggleIsFollowing}
+            followThunkCreator={this.props.followThunkCreator}
+            unfollowThunkCreator={this.props.unfollowThunkCreator}
+          />
+        </div>
+        {/* )} */}
       </>
     );
   }

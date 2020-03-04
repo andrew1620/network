@@ -2,7 +2,7 @@ import React from "react";
 import ProfileStatus from "./ProfileStatus/indexWithHooks";
 import css from "./style.module.css";
 
-const PIHeader = ({ fullName, userStatus, updateUserStatusTC }) => {
+const PIHeader = ({ fullName, userStatus, updateUserStatusTC, isOwner }) => {
   return (
     <div className={css.headerBox}>
       <span className={css.name}>{fullName}</span>
@@ -10,6 +10,7 @@ const PIHeader = ({ fullName, userStatus, updateUserStatusTC }) => {
       <ProfileStatus
         userStatus={userStatus}
         updateUserStatusTC={updateUserStatusTC}
+        isOwner={isOwner}
       />
     </div>
   );

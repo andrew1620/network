@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import css from "./style.module.css";
 
-const ProfileStatus = props => {
+const ProfileStatus = ({ userStatus, updateUserStatusTC, isOwner }) => {
   const [editMode, setEditMode] = useState(false);
-  const [statusValue, setStatusValue] = useState(props.userStatus);
+  const [statusValue, setStatusValue] = useState(userStatus);
 
   useEffect(() => {
-    setStatusValue(props.userStatus);
-  }, [props.userStatus]);
+    setStatusValue(userStatus);
+  }, [userStatus]);
 
   const handleStatusChange = event => {
     setStatusValue(event.target.value);
@@ -17,18 +17,21 @@ const ProfileStatus = props => {
   };
   const deactivateEditMode = () => {
     setEditMode(false);
-    props.updateUserStatusTC(statusValue);
+    updateUserStatusTC(statusValue);
   };
 
   return (
     <div className={css.container}>
       {!editMode && (
-        <div onClick={activateEditMode} className={css.statusBox}>
-          <span>{props.userStatus}</span>
+        <div
+          onClick={activateEditMode}
+          className={isOwner ? css.statusBox : css.withoutHover}
+        >
+          <span>{userStatus}</span>
         </div>
       )}
 
-      {editMode && (
+      {isOwner && editMode && (
         <div className={css.inputBox}>
           <input
             autoFocus={true}

@@ -1,6 +1,5 @@
 import React from "react";
 import css from "./style.module.css";
-// import "./style.css";
 
 import ProfilePhoto from "./ProfilePhoto";
 import ProfileInfo from "./ProfileInfo";
@@ -13,6 +12,7 @@ const Profile = props => {
       <div className={css.left}>
         <ProfilePhoto
           photos={props.profilePage.profile.photos}
+          isOwner={props.profilePage.isOwner}
           uploadPhoto={props.uploadPhoto}
         />
         <ProfileFriends />
@@ -21,13 +21,14 @@ const Profile = props => {
         <ProfileInfo
           profile={props.profilePage.profile}
           userStatus={props.userStatus}
+          isOwner={props.profilePage.isOwner}
           updateUserStatusTC={props.updateUserStatusTC}
           updateProfileInfo={props.updateProfileInfo}
         />
 
         <ProfilePosts
           posts={props.profilePage.posts}
-          fullName={props.owner.ownerData.fullName}
+          profile={props.profilePage.profile}
         />
       </div>
     </div>

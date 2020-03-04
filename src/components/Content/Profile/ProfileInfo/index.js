@@ -14,6 +14,7 @@ const ProfileInfo = props => {
         fullName={props.profile.fullName}
         userStatus={props.userStatus}
         updateUserStatusTC={props.updateUserStatusTC}
+        isOwner={props.isOwner}
       />
       <PIMain
         profile={props.profile}
