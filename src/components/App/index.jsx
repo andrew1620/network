@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter } from "react-router-dom";
+import { HashRouter } from "react-router-dom";
 import "./style.css";
 import { Provider, connect } from "react-redux";
 
@@ -17,7 +17,7 @@ class App extends React.Component {
   render() {
     if (!this.props.initializeSuccessed) return <Preloader />;
     return (
-      <BrowserRouter>
+      <HashRouter>
         <Provider store={this.props.store}>
           <div className="wrapper">
             <HeaderContainer />
@@ -25,7 +25,7 @@ class App extends React.Component {
             <Content />
           </div>
         </Provider>
-      </BrowserRouter>
+      </HashRouter>
     );
   }
 }

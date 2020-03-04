@@ -18,10 +18,8 @@ const LoginForm = props => {
           placeholder="Введите email"
           validate={[required]}
         />
-        <span>forNetworkServer@yandex.ru</span>
       </div>
       <div>
-        <span>6832115</span>
         <Field
           component={InputC}
           name="password"
@@ -31,7 +29,7 @@ const LoginForm = props => {
         />
       </div>
       <div>
-        <label htmlFor="rememberMe">Запонмить меня</label>
+        <label htmlFor="rememberMe">Запомнить меня</label>
         <Field component={InputC} type="checkbox" name="rememberMe" />{" "}
       </div>
       <button
