@@ -10,7 +10,7 @@ const Header = props => {
         <div className={css.content}>
           <div className="headerLogo">
             <a className={css.logo} href="/profile">
-              VK
+              ВК
             </a>
           </div>
           <OwnerBlock {...props} />
