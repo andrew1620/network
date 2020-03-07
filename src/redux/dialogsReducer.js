@@ -1,3 +1,5 @@
+const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
+
 const initialState = {
   dialogsData: [
     {
@@ -25,30 +27,22 @@ const initialState = {
       id: 4
     }
   ],
-  messagesId: {
-    user_1: [
-      { id: 1, name: "Vasya", text: "Привет" },
-      { id: 2, name: "Vasya", text: "Как дела" },
-      { id: 3, name: "Vasya", text: "Пашок лох" }
-    ]
-  }
+  messages: [
+    { id: 1, name: "Vasya", text: "Привет" },
+    { id: 2, name: "Vasya", text: "Как дела" },
+    { id: 3, name: "Vasya", text: "Отлично" }
+  ]
 };
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_MESSAGE:
       const newMessage = {
-        id: Date.now(),
+        id: state.messages[state.messages.length - 1].id + 1,
         name: "Vasya",
         text: action.payload
       };
-      return {
-        ...state,
-        messagesId: {
-          ...state.messagesId,
-          user_1: [...state.messagesId.user_1, newMessage]
-        }
-      };
+      return { ...state, messages: [...state.messages, newMessage] };
 
     default:
       return state;
@@ -56,14 +50,12 @@ const dialogsReducer = (state = initialState, action) => {
 };
 export default dialogsReducer;
 
-const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
-
-export const addMessageActionCreator = messageBody => {
+export const addMessageAC = messageBody => {
   return { type: ADD_MESSAGE, payload: messageBody };
 };
 
 export const addMessage = messageBody => {
   return dispatch => {
-    dispatch(addMessageActionCreator(messageBody));
+    dispatch(addMessageAC(messageBody));
   };
 };

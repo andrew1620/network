@@ -1,16 +1,14 @@
 import React from "react";
-import "./style.css";
-import { connect } from "react-redux";
+import css from "./style.module.css";
+
 import { reduxForm, Field } from "redux-form";
-import { addMessage } from "../../../../redux/dialogsReducer";
 import MessageItem from "./MessageItem";
-import { getMessagesId } from "../../../../redux/dialogsSelectors";
 
 let MessageForm = props => {
   return (
     <form onSubmit={props.handleSubmit}>
       <Field
-        component={"textarea"}
+        component="textarea"
         name="message"
         type="text"
         placeholder="Введите сообщние"
@@ -21,8 +19,8 @@ let MessageForm = props => {
 };
 MessageForm = reduxForm({ form: "messageForm" })(MessageForm);
 
-const Messages = ({ messagesId, addMessage }) => {
-  const messagesList = messagesId.user_1.map(message => {
+const Messages = ({ messages, addMessage }) => {
+  const messagesList = messages.map(message => {
     return <MessageItem message={message} key={message.id} />;
   });
 
@@ -31,20 +29,14 @@ const Messages = ({ messagesId, addMessage }) => {
   };
 
   return (
-    <div className="messagesBox">
-      <div className="messagesHeader"></div>
-      <div className="messagesContent">{messagesList}</div>
-      <div className="messagesSendBox">
+    <div className={css.messagesBox}>
+      <div className={css.header}></div>
+      <div className={css.content}>{messagesList}</div>
+      <div className={css.footer}>
         <MessageForm onSubmit={handleSubmit} />
       </div>
     </div>
   );
 };
 
-const mapStateToProps = state => {
-  return {
-    messagesId: getMessagesId(state)
-  };
-};
-
-export default connect(mapStateToProps, { addMessage })(Messages);
+export default Messages;

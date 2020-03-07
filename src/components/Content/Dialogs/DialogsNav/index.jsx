@@ -1,9 +1,9 @@
 import React from "react";
-import "./style.css";
+import css from "./style.module.css";
 
 const DialogsNav = () => {
   return (
-    <div className="dialogsNavBox">
+    <div className={css.navBox}>
       <div>Все сообщения</div>
       <div>Непрочитанные</div>
       <div>Важные</div>

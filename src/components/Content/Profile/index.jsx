@@ -20,9 +20,9 @@ const Profile = props => {
       <div className={css.right}>
         <ProfileInfo
           profile={props.profilePage.profile}
-          userStatus={props.userStatus}
+          userStatus={props.profilePage.userStatus}
           isOwner={props.profilePage.isOwner}
-          updateUserStatusTC={props.updateUserStatusTC}
+          updateUserStatus={props.updateUserStatus}
           updateProfileInfo={props.updateProfileInfo}
         />
 

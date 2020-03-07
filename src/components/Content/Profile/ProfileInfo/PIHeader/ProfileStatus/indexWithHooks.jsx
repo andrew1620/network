@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import css from "./style.module.css";
 
-const ProfileStatus = ({ userStatus, updateUserStatusTC, isOwner }) => {
+const ProfileStatus = ({ userStatus, updateUserStatus, isOwner }) => {
   const [editMode, setEditMode] = useState(false);
   const [statusValue, setStatusValue] = useState(userStatus);
 
@@ -17,7 +17,7 @@ const ProfileStatus = ({ userStatus, updateUserStatusTC, isOwner }) => {
   };
   const deactivateEditMode = () => {
     setEditMode(false);
-    updateUserStatusTC(statusValue);
+    updateUserStatus(statusValue);
   };
 
   return (

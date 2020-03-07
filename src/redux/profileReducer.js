@@ -2,6 +2,14 @@ import { profileAPI } from "../api/api";
 import { requireOwnerData } from "./ownerReducer";
 import { reset } from "redux-form";
 
+const ADD_POST = "profile/ADD_POST";
+const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
+const SET_USER_STATUS = "profile/SET_USER_STATUS";
+const DELETE_POST = "profile/DELETE_POST";
+const TOGGLE_IS_PI_UPDATED = "profile/TOGGLE_IS_PI_UPDATED";
+const SET_PHOTO = "profile/SET_PHOTO";
+const SET_IS_OWNER = "profile/SET_IS_OWNER";
+
 const dateFormatter = new Intl.DateTimeFormat("ru", {
   year: "numeric",
   month: "short",
@@ -80,67 +88,56 @@ const profileReducer = (state = initialState, action) => {
 };
 export default profileReducer;
 
-const ADD_POST = "profile/ADD_POST";
-const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
-const SET_USER_STATUS = "profile/SET_USER_STATUS";
-const DELETE_POST = "profile/DELETE_POST";
-const TOGGLE_IS_PI_UPDATED = "profile/TOGGLE_IS_PI_UPDATED";
-const SET_PHOTO = "profile/SET_PHOTO";
-const SET_IS_OWNER = "profile/SET_IS_OWNER";
-
 export const addPostAC = postBody => {
   return { type: ADD_POST, payload: postBody };
 };
-export const setUserProfile = profile => {
+export const setUserProfileAC = profile => {
   return { type: SET_USER_PROFILE, payload: profile };
 };
-export const setUserStatus = newStatus => {
+export const setUserStatusAC = newStatus => {
   return { type: SET_USER_STATUS, payload: newStatus };
 };
-export const deletePost = postId => {
+export const deletePostAC = postId => {
   return { type: DELETE_POST, payload: postId };
 };
 export const toggleIsPIUpdated = isPIUpdated => {
   return { type: TOGGLE_IS_PI_UPDATED, payload: isPIUpdated };
 };
-export const setPhoto = photos => {
+export const setPhotoAC = photos => {
   return { type: SET_PHOTO, payload: photos };
 };
-export const setIsOwner = isOwner => {
+export const setIsOwnerAC = isOwner => {
   return { type: SET_IS_OWNER, payload: isOwner };
 };
-
-//TC = ThunkCreator
 
 export const addPost = postBody => dispatch => {
   dispatch(addPostAC(postBody));
   dispatch(reset("addPostForm"));
 };
 
-export const setUserProfileTC = userId => {
+export const setUserProfile = userId => {
   return (dispatch, getState) => {
     profileAPI.getUserProfile(userId).then(data => {
-      dispatch(setUserProfile(data));
+      dispatch(setUserProfileAC(data));
       const ownerId = getState().auth.userId;
-      if (data.userId === ownerId) dispatch(setIsOwner(true));
-      else dispatch(setIsOwner(false));
+      if (data.userId === ownerId) dispatch(setIsOwnerAC(true));
+      else dispatch(setIsOwnerAC(false));
     });
   };
 };
-
-export const getUserStatusTC = userId => {
+export const getUserStatus = userId => {
   return dispatch => {
     profileAPI.getUserStatus(userId).then(data => {
       data === ""
-        ? dispatch(setUserStatus("изменить статус"))
-        : dispatch(setUserStatus(data));
+        ? dispatch(setUserStatusAC("изменить статус"))
+        : dispatch(setUserStatusAC(data));
     });
   };
 };
-export const updateUserStatusTC = newStatus => {
+export const updateUserStatus = newStatus => {
   return dispatch => {
     profileAPI.updateUserStatus(newStatus).then(data => {
-      if (data.resultCode === 0) dispatch(setUserStatus(newStatus));
+      if (data.resultCode === 0) dispatch(setUserStatusAC(newStatus));
     });
   };
 };
@@ -148,7 +145,7 @@ export const updateProfileInfo = info => async (dispatch, getState) => {
   const response = await profileAPI.updateProfileInfo(info);
   if (response.data.resultCode === 0) {
     const userId = getState().auth.userId;
-    dispatch(setUserProfileTC(userId));
+    dispatch(setUserProfile(userId));
     dispatch(toggleIsPIUpdated(true));
   }
 };
@@ -156,7 +153,7 @@ export const uploadPhoto = photo => async (dispatch, getState) => {
   const data = await profileAPI.uploadPhoto(photo);
   const userId = getState().auth.userId;
   if (data.resultCode === 0) {
-    dispatch(setPhoto(data.data.photos));
+    dispatch(setPhotoAC(data.data.photos));
     dispatch(requireOwnerData(userId));
   }
 };

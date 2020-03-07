@@ -13,7 +13,7 @@ const ProfileInfo = props => {
       <PIHeader
         fullName={props.profile.fullName}
         userStatus={props.userStatus}
-        updateUserStatusTC={props.updateUserStatusTC}
+        updateUserStatus={props.updateUserStatus}
         isOwner={props.isOwner}
       />
       <PIMain

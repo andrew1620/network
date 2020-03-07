@@ -29,7 +29,7 @@ class ProfileStatus extends React.Component {
     this.setState({
       editMode: false
     });
-    this.props.updateUserStatusTC(this.state.statusValue);
+    this.props.updateUserStatus(this.state.statusValue);
   };
 
   render() {

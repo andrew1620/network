@@ -1,6 +1,6 @@
-.messageItemBox {
+.itemBox {
   display: flex;
 }
-.messageItemName {
+.name {
   font-weight: bold;
 }

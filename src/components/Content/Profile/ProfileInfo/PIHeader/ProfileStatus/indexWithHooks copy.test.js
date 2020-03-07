@@ -46,7 +46,7 @@ describe("ProfileStatus component", () => {
   test("callback must be called and get result: 4 ", () => {
     const mockCallback = jest.fn(() => 2 * 2);
     const component = create(
-      <ProfileStatus userStatus="hello" updateUserStatusTC={mockCallback} />
+      <ProfileStatus userStatus="hello" updateUserStatus={mockCallback} />
     );
     const instance = component.getInstance();
     instance.deactivateEditMode();

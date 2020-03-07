@@ -4,7 +4,7 @@ import { Route } from "react-router-dom";
 
 import Dialogs from "./Dialogs";
 import News from "./News";
-import ProfileContainer from "./Profile/ProfileContainer";
+import ProfileContainer from "./Profile/indexContainer";
 import withSuspense from "../hoc/withSuspense";
 
 const UsersContainer = React.lazy(() => import("./Users/UsersContainer"));

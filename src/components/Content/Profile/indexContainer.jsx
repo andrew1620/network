@@ -1,50 +1,51 @@
 import React from "react";
-import "./style.css";
 import Profile from ".";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { compose } from "redux";
+
 import {
-  setUserProfileTC,
-  getUserStatusTC,
-  updateUserStatusTC,
+  setUserProfile,
+  getUserStatus,
+  updateUserStatus,
   updateProfileInfo,
   uploadPhoto
 } from "../.././../redux/profileReducer";
-import { withRouter } from "react-router-dom";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
-import { compose } from "redux";
+import { useEffect } from "react";
+import { getProfilePage } from "../../../redux/profileSelectors";
+import { getAuthUserId } from "../../../redux/authSelectors";
+import { getOwner } from "../../../redux/ownerSelectors";
 
-class ProfileContainer extends React.Component {
-  componentDidMount() {
-    let userId = this.props.match.params.userId;
+const ProfileContainer = props => {
+  useEffect(() => {
+    let userId = props.match.params.userId;
     if (!userId) {
-      userId = this.props.authorizedUser;
+      userId = props.authorizedUser;
     }
-    this.props.setUserProfileTC(userId);
-    this.props.getUserStatusTC(userId);
-  }
+    props.setUserProfile(userId);
+    props.getUserStatus(userId);
+  }, []);
 
-  render() {
-    return (
-      <>
-        <Profile {...this.props} />
-      </>
-    );
-  }
-}
+  return (
+    <>
+      <Profile {...props} />
+    </>
+  );
+};
 
 const mapStateToProps = state => {
   return {
-    profilePage: state.profilePage,
-    userStatus: state.profilePage.userStatus,
-    authorizedUser: state.auth.userId,
-    owner: state.owner
+    profilePage: getProfilePage(state),
+    authorizedUser: getAuthUserId(state),
+    owner: getOwner(state)
   };
 };
 
 const mapDispatchToProps = {
-  setUserProfileTC,
-  getUserStatusTC,
-  updateUserStatusTC,
+  setUserProfile,
+  getUserStatus,
+  updateUserStatus,
   updateProfileInfo,
   uploadPhoto
 };
