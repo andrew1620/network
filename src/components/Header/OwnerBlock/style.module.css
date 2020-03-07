@@ -14,6 +14,9 @@
 .ownerBlock:hover {
   background: #3d6898;
 }
+.fullname {
+  margin-right: 10px;
+}
 .arrow {
   min-width: 10px;
   height: 100%;
@@ -22,4 +25,8 @@
   background-size: 10px 10px;
   /* outline: 1px solid black; */
   margin-left: 7px;
+}
+.toLogin {
+  color: #fff;
+  text-decoration: none;
 }

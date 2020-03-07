@@ -1,8 +1,6 @@
 .dialogsBox {
   display: grid;
-
   grid-template-areas: "mainPlace dialogsNav";
-
   grid-template-rows: auto auto;
   grid-template-columns: 8fr 3.5fr;
   grid-gap: 10px;

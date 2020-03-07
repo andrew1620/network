@@ -9,7 +9,7 @@ const Header = props => {
       <header className={css.header}>
         <div className={css.content}>
           <div className="headerLogo">
-            <a className={css.logo} href="/profile">
+            <a className={css.logo} href="/">
               ВК
             </a>
           </div>

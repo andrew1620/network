@@ -1,27 +1,26 @@
-import React from "react";
-import "./style.css";
+import React, { useEffect } from "react";
+import css from "./style.module.css";
 import { Route } from "react-router-dom";
 
 import Dialogs from "./Dialogs";
 import News from "./News";
 import ProfileContainer from "./Profile/ProfileContainer";
 import withSuspense from "../hoc/withSuspense";
-import { connect } from "react-redux";
-import { requireOwnerData } from "../../redux/ownerReducer";
 
 const UsersContainer = React.lazy(() => import("./Users/UsersContainer"));
 const Login = React.lazy(() => import("../Login"));
 const EditPI = React.lazy(() => import("./Profile/ProfileInfo/EditPI"));
 
-//Пока что оставил один withSuspense второй просто через React.Suspense для наглядности
 const Content = ({ isAuth, requireOwnerData }) => {
   //Спросить у Жени как лучше получать основные данные пользователя - на каком этапе
-  if (isAuth) {
-    requireOwnerData();
-  }
+  useEffect(() => {
+    if (isAuth) {
+      requireOwnerData();
+    }
+  }, [isAuth, requireOwnerData]);
 
   return (
-    <main className="content">
+    <main className={css.content}>
       <Route exact path="/" render={() => <ProfileContainer />} />
       <Route
         exact
@@ -37,11 +36,4 @@ const Content = ({ isAuth, requireOwnerData }) => {
   );
 };
 
-const mstp = state => ({
-  isAuth: state.auth.isAuth
-});
-const mdtp = {
-  requireOwnerData
-};
-
-export default connect(mstp, mdtp)(Content);
+export default Content;

@@ -54,7 +54,7 @@ export const loginTC = (email, password, rememberMe) => {
   };
 };
 
-export const logoutTC = () => {
+export const logout = () => {
   return async dispatch => {
     const data = await authAPI.logout();
     if (data.resultCode === 0)

@@ -1,11 +1,34 @@
+.pagesNumbersBox {
+  /* outline: 1px solid red; */
+  max-width: 800px;
+  margin-bottom: 10px;
+  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+  display: flex;
+  justify-content: center;
+  box-sizing: border-box;
+}
+.pagesNumbersBox button {
+  border: 1px solid transparent;
+  outline: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #2a5885;
+  background: transparent;
+}
+.page {
+  border: 1px solid transparent;
+  padding: 5px 10px;
+  cursor: pointer;
+  color: #2a5885;
+  transition: border 0.2s ease;
+}
+.page:hover,
+.pagesNumbersBox button:hover {
+  /* background: rgba(0, 0, 0, 0.151); */
+  /* color: white; */
+  border-bottom: 1px solid black;
+}
 .activePage {
   font-weight: bold;
-  font-size: 14pt;
-}
-.pagesNumbersBox {
-  max-width: 800px;
-  overflow: auto;
-  /* word-wrap: break-word; */
-  margin-bottom: 10px;
-  outline: 1px solid red;
+  /* font-size: 14pt; */
 }

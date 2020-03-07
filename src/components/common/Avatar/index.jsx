@@ -4,7 +4,7 @@ import css from "./style.module.css";
 import defaultAva from "../../../assets/img/userPhoto.png";
 import { connect } from "react-redux";
 
-const Avatar = ({ img, size, owner, profile, loadProfileImg = false }) => {
+const Avatar = ({ img, size, loadProfileImg = false, owner, profile }) => {
   if (!img) {
     img =
       (loadProfileImg ? profile.photos.large : owner.ownerData.photos.small) ||
@@ -27,9 +27,7 @@ const mstp = state => ({
 
 export default connect(mstp)(Avatar);
 
-//Attributes:
+//Props:
 // img - necessary img url
 // size - small:30px, middle:40px, large:50px
-// loadProfileImg - if true, img is taken from state.profilePage
-
-//Если img нет, то я меняю на дефолт, получается ли изменение пропса из компонента, спросить
+// loadProfileImg - if true, img is being taken from state.profilePage

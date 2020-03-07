@@ -1,39 +1,45 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { HashRouter } from "react-router-dom";
-import "./style.css";
+import css from "./style.module.css";
 import { Provider, connect } from "react-redux";
 
 import LeftSidebar from "../LeftSidebar";
 import Content from "../Content";
-import HeaderContainer from "../Header/HeaderContainer";
+import HeaderContainer from "../Header/indexContainer";
 import { initialize } from "../../redux/appReducer";
 import Preloader from "../common/Preloader";
+import { requireOwnerData } from "../../redux/ownerReducer";
 
-class App extends React.Component {
-  componentDidMount() {
-    this.props.initialize();
-  }
+const App = ({
+  store,
+  initialize,
+  initializeSuccessed,
+  isAuth,
+  requireOwnerData
+}) => {
+  useEffect(() => {
+    initialize();
+  }, [initialize, initializeSuccessed]);
 
-  render() {
-    if (!this.props.initializeSuccessed) return <Preloader />;
-    return (
-      <HashRouter>
-        <Provider store={this.props.store}>
-          <div className="wrapper">
-            <HeaderContainer />
-            <LeftSidebar />
-            <Content />
-          </div>
-        </Provider>
-      </HashRouter>
-    );
-  }
-}
+  if (!initializeSuccessed) return <Preloader />;
+  return (
+    <HashRouter>
+      <Provider store={store}>
+        <div className={css.wrapper}>
+          <HeaderContainer />
+          <LeftSidebar />
+          <Content isAuth={isAuth} requireOwnerData={requireOwnerData} />
+        </div>
+      </Provider>
+    </HashRouter>
+  );
+};
 
 const mapStateToProps = state => {
   return {
-    initializeSuccessed: state.app.initializeSuccessed
+    initializeSuccessed: state.app.initializeSuccessed,
+    isAuth: state.auth.isAuth
   };
 };
 
-export default connect(mapStateToProps, { initialize })(App);
+export default connect(mapStateToProps, { initialize, requireOwnerData })(App);

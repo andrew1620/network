@@ -28,7 +28,7 @@ const Paginator = ({
     .map(number => {
       return (
         <span
-          className={number === currentPage && css.activePage}
+          className={`${css.page} ${number === currentPage && css.activePage}`}
           onClick={() => {
             handlePageNumClick(number);
           }}
@@ -49,11 +49,11 @@ const Paginator = ({
   return (
     <div className={css.pagesNumbersBox}>
       <button onClick={handleBtnLeft} disabled={portionNumber <= 1}>
-        {"<--"}
+        {"<"}
       </button>
-      {pages}{" "}
+      {pages}
       <button onClick={handleBtnRight} disabled={portionNumber >= portionCount}>
-        {"-->"}
+        {">"}
       </button>{" "}
     </div>
   );

@@ -1,6 +1,7 @@
 import React from "react";
-import Menu from "./Menu";
 import css from "./style.module.css";
+
+import Menu from "./Menu";
 
 const LeftSidebar = () => {
   return (

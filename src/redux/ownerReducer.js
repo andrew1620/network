@@ -29,6 +29,6 @@ export const requireOwnerData = userId => async (dispatch, getState) => {
     const ownerData = { fullName: data.fullName, photos: { ...data.photos } };
     dispatch(setOwnerData(ownerData));
   } catch (err) {
-    console.warn("Mistake in requireOwnerData \n", err);
+    console.warn("Error in requireOwnerData \n", err);
   }
 };
