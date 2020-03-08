@@ -1,60 +1,53 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import css from "./style.module.css";
 
-class ProfileStatus extends React.Component {
-  state = {
-    editMode: false,
-    statusValue: this.props.userStatus
+const ProfileStatus = ({ userStatus, updateUserStatus, isOwner }) => {
+  const [editMode, setEditMode] = useState(false);
+  const [statusValue, setStatusValue] = useState(userStatus);
+
+  useEffect(() => {
+    setStatusValue(userStatus);
+  }, [userStatus]);
+
+  const handleStatusChange = event => {
+    setStatusValue(event.target.value);
+  };
+  const activateEditMode = () => {
+    isOwner && setEditMode(true);
+  };
+  const deactivateEditMode = () => {
+    setEditMode(false);
+    updateUserStatus(statusValue);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    //Нужен для того, чтобы в инпуте текст по дефолту был из стейта редакса, а т.к. ProfileContainer может грузить стейт профайла раньше чем стейт статуса то в пропсах приходит пустое значение и отправляется по дефолту в инпут, а затем в пропсах приходит настоящий статус и ставится в спан, но в локальном стейте ничего поэтому инпут может быть пустым при перерендере страницы
-    if (this.props.userStatus !== prevProps.userStatus) {
-      this.setState({
-        statusValue: this.props.userStatus
-      });
-    }
-  }
+  return (
+    <div className={css.container}>
+      {!editMode && (
+        <div
+          onClick={activateEditMode}
+          className={isOwner ? css.statusBox : css.withoutHover}
+        >
+          <span>{userStatus}</span>
+        </div>
+      )}
 
-  handleStatusChange = event => {
-    this.setState({
-      statusValue: event.target.value
-    });
-  };
-  activateEditMode = () => {
-    this.setState({
-      editMode: true
-    });
-  };
-  deactivateEditMode = () => {
-    this.setState({
-      editMode: false
-    });
-    this.props.updateUserStatus(this.state.statusValue);
-  };
-
-  render() {
-    return (
-      <div className="statusBox">
-        {!this.state.editMode && (
-          <div className="spanDiv" onClick={this.activateEditMode}>
-            <span>{this.props.userStatus}</span>
-          </div>
-        )}
-
-        {this.state.editMode && (
-          <div>
-            <input
-              autoFocus={true}
-              onChange={this.handleStatusChange}
-              value={this.state.statusValue}
-              type="text"
-              placeholder="Введите статус"
-            />
-            <button onClick={this.deactivateEditMode}>Сохранить</button>
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+      {isOwner && editMode && (
+        <div className={css.inputBox}>
+          <input
+            autoFocus={true}
+            onChange={handleStatusChange}
+            value={statusValue}
+            type="text"
+            placeholder="Введите статус"
+            className={css.input}
+          />
+          <br />
+          <button onClick={deactivateEditMode} className={css.btnSave}>
+            Сохранить
+          </button>
+        </div>
+      )}
+    </div>
+  );
+};
 export default ProfileStatus;

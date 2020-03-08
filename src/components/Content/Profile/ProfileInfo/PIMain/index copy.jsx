@@ -7,21 +7,18 @@ const PIMain = ({ profile, updateProfileInfo }) => {
 
   return (
     <div className={css.mainBox}>
-      <div className={css.item}>
-        <div className={css.left}>
-          <div>День рождения</div>
-          <div>Город</div>
-          <div>Место учебы</div>
+      <div className={css.mainInfo}>
+        <div className={css.itemm}>
+          <div className={css.leftt}>День рождения</div>
+          <div className={css.rightt}>3 декабря 1984 г.</div>
         </div>
-        <div className={css.right}>
-          <div>
-            Санкт-Петербург Lorem ipsum dolor sit amet consectetur adipisicing
-            elit. In fugit temporibus explicabo, debitis, dolores commodi amet
-            distinctio facere porro quisquam sunt, earum harum id nihil veniam.
-            Quia, accusantium quos? Quo.
-          </div>
-          <div>3 декабря 1984 г.</div>
-          <div>ГУАП</div>
+        <div className={css.item}>
+          <div className={css.leftt}>Город</div>
+          <div className={css.rightt}>Санкт-Петербург</div>
+        </div>
+        <div className={css.item}>
+          <div className={css.leftt}>Место учебы</div>
+          <div className={css.rightt}>ГУАП</div>
         </div>
       </div>
       <div

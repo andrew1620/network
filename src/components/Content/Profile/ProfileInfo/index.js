@@ -1,8 +1,10 @@
 import React from "react";
 import css from "./style.module.css";
+
 import Preloader from "../../../common/Preloader";
 import PIHeader from "./PIHeader";
-import PIMain from "./PIMain";
+import PIMain from "./PIMain/index copy";
+// import PIMain from "./PIMain";
 import PIFooter from "./PIFooter";
 
 const ProfileInfo = props => {

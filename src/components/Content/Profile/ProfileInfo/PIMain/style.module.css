@@ -55,6 +55,7 @@
 .showDetails:hover {
   background: #f0f2f5;
 }
+
 /* ------------MoreInfo---------------------- */
 .itemName {
   display: flex;
@@ -74,4 +75,9 @@
 }
 .btnEdit a:hover {
   text-decoration: underline;
+}
+
+/* ___________________ */
+.item {
+  border: 1px solid red;
 }

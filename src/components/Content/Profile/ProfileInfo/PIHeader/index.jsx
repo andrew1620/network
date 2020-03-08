@@ -1,6 +1,7 @@
 import React from "react";
-import ProfileStatus from "./ProfileStatus/indexWithHooks";
 import css from "./style.module.css";
+
+import ProfileStatus from "./ProfileStatus";
 
 const PIHeader = ({ fullName, userStatus, updateUserStatus, isOwner }) => {
   return (
