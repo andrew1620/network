@@ -3,8 +3,7 @@ import css from "./style.module.css";
 
 import Preloader from "../../../common/Preloader";
 import PIHeader from "./PIHeader";
-import PIMain from "./PIMain/index copy";
-// import PIMain from "./PIMain";
+import PIMain from "./PIMain";
 import PIFooter from "./PIFooter";
 
 const ProfileInfo = props => {
@@ -18,10 +17,7 @@ const ProfileInfo = props => {
         updateUserStatus={props.updateUserStatus}
         isOwner={props.isOwner}
       />
-      <PIMain
-        profile={props.profile}
-        updateProfileInfo={props.updateProfileInfo}
-      />
+      <PIMain profile={props.profile} />
       <PIFooter />
     </div>
   );

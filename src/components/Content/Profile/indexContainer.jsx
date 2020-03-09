@@ -8,7 +8,6 @@ import {
   setUserProfile,
   getUserStatus,
   updateUserStatus,
-  updateProfileInfo,
   uploadPhoto
 } from "../.././../redux/profileReducer";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
@@ -46,7 +45,6 @@ const mapDispatchToProps = {
   setUserProfile,
   getUserStatus,
   updateUserStatus,
-  updateProfileInfo,
   uploadPhoto
 };
 

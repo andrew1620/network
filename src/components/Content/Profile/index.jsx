@@ -23,7 +23,6 @@ const Profile = props => {
           userStatus={props.profilePage.userStatus}
           isOwner={props.profilePage.isOwner}
           updateUserStatus={props.updateUserStatus}
-          updateProfileInfo={props.updateProfileInfo}
         />
 
         <ProfilePosts

@@ -1,6 +1,5 @@
 .mainBox {
   margin: 15px;
-
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
   font-family: BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue,
@@ -14,22 +13,33 @@
   font-size: 13px;
   line-height: 150%;
 }
-.item {
-  display: flex;
+.mainInfo {
+  /* border: 1px solid yellowgreen; */
+  width: 100%;
 }
-
-.left {
-  color: #828282;
-  width: 30%;
-}
-.right {
-  color: #2a5885;
-  width: 70%;
-}
-.left div,
-.right div {
+.mainInfo .item:not(:last-child) {
   margin-bottom: 5px;
 }
+.item {
+  /* border: 1px solid red; */
+  width: 100%;
+}
+.left {
+  /* border: 1px solid black; */
+  display: inline-block;
+  max-width: 165px;
+  min-width: 100px;
+  width: 32%;
+  color: #828282;
+}
+.right {
+  /* border: 1px solid pink; */
+  display: inline-block;
+  width: 68%;
+  word-wrap: break-word;
+  color: #2a5885;
+}
+
 .showDetails {
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
@@ -67,17 +77,13 @@
   padding-top: 15px;
 }
 .itemBox {
-  margin-top: 15px;
+  /* margin-top: 15px; */
 }
-.btnEdit a {
+.navlink {
   cursor: pointer;
   text-decoration: none;
+  color: #929eb0;
 }
-.btnEdit a:hover {
+.navlink:hover {
   text-decoration: underline;
-}
-
-/* ___________________ */
-.item {
-  border: 1px solid red;
 }
