@@ -59,7 +59,7 @@ const profileReducer = (state = initialState, action) => {
       const newPost = {
         id: state.posts[state.posts.length - 1].id + 1,
         date: dateFormatter.format(new Date()),
-        likes: null,
+        likes: Math.floor(Math.random() * 100 + 1),
         body: action.payload
       };
       return { ...state, posts: [...state.posts, newPost] };

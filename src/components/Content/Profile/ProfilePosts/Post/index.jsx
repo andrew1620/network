@@ -1,5 +1,6 @@
 import React from "react";
 import css from "./style.module.css";
+
 import PostHeader from "./PostsHeader";
 import PostMain from "./PostMain";
 import PostFooter from "./PostFooter";

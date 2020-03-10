@@ -7,11 +7,7 @@ const PostHeader = ({ date, profile }) => {
   return (
     <div className={css.postHeader}>
       <div className={css.avaBox}>
-        <Avatar
-          size={"large"}
-          img={profile.photos.large}
-          loadProfileImg={true}
-        />
+        <Avatar size={"large"} img="profile" />
       </div>
       <div className={css.postInfo}>
         <div className={css.name}>{profile.fullName}</div>

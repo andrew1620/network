@@ -1,10 +1,38 @@
 import React from "react";
 import css from "./style.module.css";
-import userPhoto from "../../../assets/img/userPhoto.png";
-import { NavLink } from "react-router-dom";
+
 import Paginator from "../../common/Paginator";
+import Avatar from "../../common/Avatar";
+import Button from "./Button";
 
 const Users = props => {
+  const usersList = props.users.map(user => (
+    <div key={user.id} className={css.userBox}>
+      <div className={css.photo}>
+        <Avatar
+          img={user.photos.small !== null ? user.photos.small : null}
+          size="large"
+          pageRef={`/profile/${user.id}`}
+        />
+      </div>
+      <div className="content">
+        <div className="info">
+          <span className="name">{user.name}</span>
+        </div>
+
+        <Button
+          isDisabled={props.isFollowing.includes(user.id)}
+          handleClick={
+            user.followed
+              ? () => props.unfollowThunkCreator(user.id)
+              : () => props.followThunkCreator(user.id)
+          }
+          title={user.followed ? "Удалить из друзей" : "Добавить в друзья"}
+        />
+      </div>
+    </div>
+  ));
+
   return (
     <div>
       <Paginator
@@ -14,45 +42,7 @@ const Users = props => {
         handlePageNumClick={props.handlePageNumClick}
       />
 
-      {props.users.map(user => (
-        <div key={user.id} className={css.userBox}>
-          <div className={css.photo}>
-            <NavLink to={`/profile/${user.id}`} className={css.navlink}>
-              <img
-                src={user.photos.small == null ? userPhoto : user.photos.small}
-                className={css.img}
-                alt="avaPhoto"
-              />
-            </NavLink>
-          </div>
-          <div className="content">
-            <div className="info">
-              <span className="name">{user.name}</span>
-              {/* <span>{user.location.city}</span>
-              <span>{user.location.country}</span> */}
-            </div>
-            {user.followed ? (
-              <button
-                disabled={props.isFollowing.includes(user.id)}
-                onClick={() => {
-                  props.unfollowThunkCreator(user.id);
-                }}
-              >
-                Удалить из друзей
-              </button>
-            ) : (
-              <button
-                disabled={props.isFollowing.includes(user.id)}
-                onClick={() => {
-                  props.followThunkCreator(user.id);
-                }}
-              >
-                Добавить в друзья
-              </button>
-            )}
-          </div>
-        </div>
-      ))}
+      {usersList}
     </div>
   );
 };

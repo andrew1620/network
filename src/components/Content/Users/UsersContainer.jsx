@@ -24,6 +24,7 @@ import {
 class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.getUsersThunkCreator(this.props.count, this.props.currentPage);
+    console.log("class");
   }
 
   handlePageNumClick(number) {

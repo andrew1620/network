@@ -16,10 +16,7 @@ const OwnerBlock = ({ isAuth, logout, ownerData }) => {
       </div>
     );
 
-  const {
-    photos: { small = null },
-    fullName
-  } = ownerData;
+  const { fullName } = ownerData;
 
   return (
     <div
@@ -29,7 +26,7 @@ const OwnerBlock = ({ isAuth, logout, ownerData }) => {
       {isAuth && (
         <>
           <span className={css.fullname}>{fullName}</span>
-          <Avatar size={"small"} img={small} />
+          <Avatar size={"small"} img={"owner"} />
           <div className={css.arrow}></div>
           {isShownSubMenu && <SubMenu logout={logout} />}
         </>

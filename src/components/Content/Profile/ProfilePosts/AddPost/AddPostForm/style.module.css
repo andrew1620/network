@@ -1,0 +1,118 @@
+.addPostBox {
+  /* border: 1px solid purple; */
+  margin: 15px;
+  display: flex;
+  /* padding-bottom: 20px;
+  border-bottom: 1px solid #e7e8ec; */
+  position: relative;
+}
+.addPostPhoto {
+  /* border: 1px solid red; */
+  width: 35px;
+  overflow: hidden;
+  align-self: flex-start;
+}
+.hr {
+  border: 0;
+  border-bottom: 1px solid #e7e8ec;
+  margin: 0 15px 10px 15px;
+}
+.btnPublishBox {
+  color: #000;
+  line-height: 1.154;
+  background: #fafbfc;
+  border-top: 1px solid #e7e8ec;
+  padding: 13px 20px 12px;
+  /* border-radius: 0 0 4px 4px; */
+  display: flex;
+  justify-content: flex-end;
+}
+.addPostBtn {
+  background: #5b88bd;
+  color: #fff;
+  padding: 8px 10px;
+  width: 150px;
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+/* -----textarea--------- */
+.container {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
+    "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee",
+    "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian",
+    "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao",
+    "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai",
+    sans-serif;
+  /* border: 1px solid green; */
+  width: 100%;
+}
+.textarea {
+  outline: none;
+  box-shadow: none;
+  vertical-align: middle;
+  overflow: hidden;
+  min-width: inherit;
+  /* max-height: 30px; */
+  width: 100%;
+  padding: 5px 12px 5px 12px;
+  border: 0;
+  border-radius: 4px;
+  line-height: 1.462;
+  word-wrap: break-word;
+  -webkit-user-modify: read-write;
+  line-break: after-white-space;
+  -webkit-line-break: after-white-space;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  -webkit-appearance: none;
+  resize: none;
+}
+.textarea {
+  border: 1px solid red;
+  outline: none;
+  box-shadow: none;
+  vertical-align: middle;
+  overflow: hidden;
+  min-width: inherit;
+  /* max-height: 30px; */
+  width: 100%;
+  padding: 5px 12px 5px 12px;
+  border: 0;
+  border-radius: 4px;
+  line-height: 1.462;
+  word-wrap: break-word;
+  -webkit-user-modify: read-write;
+  line-break: after-white-space;
+  -webkit-line-break: after-white-space;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  -webkit-appearance: none;
+  resize: none;
+}
+.textarea:focus {
+  /* width: 100%;
+  word-wrap: break-word;
+  min-height: 80px; */
+  max-height: none;
+  /* -webkit-user-modify: read-write;
+  line-break: after-white-space;
+  -webkit-line-break: after-white-space;
+  -webkit-appearance: none;
+  word-wrap: break-word;
+  resize: none;
+  vertical-align: top; */
+}
+.error {
+  border-bottom: 1px solid red;
+}
+.errorSpan {
+  color: rgb(207, 14, 14);
+  font-size: 14pt;
+  font-family: Arial, Helvetica, sans-serif;
+}

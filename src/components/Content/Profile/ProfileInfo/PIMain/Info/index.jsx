@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 const Info = ({ title, pageRef = "/editPIForm", data = [] }) => {
   const items = data.map(item => {
     return (
-      <div className={css.item}>
+      <div key={item.id} className={css.item}>
         <span className={css.left}>{item.label}</span>
         <span className={css.right}>{item.description}</span>
       </div>

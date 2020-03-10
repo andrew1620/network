@@ -1,12 +1,12 @@
 import React from "react";
 
 import Post from "./Post";
-import AddPostContainer from "./AddPostContainer/index";
+import AddPost from "./AddPost";
 
-const ProfilePosts = ({ posts, profile }) => {
+const ProfilePosts = ({ posts, profile, addPost }) => {
   return (
     <div className="profilePosts">
-      <AddPostContainer />
+      <AddPost addPost={addPost} />
       <Post posts={posts} profile={profile} />
     </div>
   );

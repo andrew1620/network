@@ -44,10 +44,12 @@ export default PIMain;
 const MoreInfo = ({ profile }) => {
   const main = [
     {
+      id: 1,
       label: "Ищу работу",
       description: profile.lookingForAJob ? "Да" : "Нет"
     },
     {
+      id: 2,
       label: "Описание",
       description: profile.lookingForAJobDescription
         ? profile.lookingForAJobDescription
@@ -56,10 +58,12 @@ const MoreInfo = ({ profile }) => {
   ];
   const education = [
     {
+      id: 1,
       label: "Вуз",
       description: "СПбГУАП"
     },
     {
+      id: 2,
       label: "Колледж",
       description: "СПбПК"
     }

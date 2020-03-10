@@ -11,7 +11,7 @@ const UploadPhoto = ({ uploadPhoto }) => {
       <label htmlFor="uploadPhoto">
         <div className={css.btnUpload}>
           <span className={css.arrow}></span>
-          <span className={css.title}>Загрузить фото {space}</span>
+          <span className={css.title}>Загрузить фото</span>
         </div>
       </label>
       <input
@@ -24,9 +24,3 @@ const UploadPhoto = ({ uploadPhoto }) => {
   );
 };
 export default UploadPhoto;
-//Пока не знаю как правильно сделать кнопку, поэтому временно так
-const space = (
-  <span>
-    &#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
-  </span>
-);

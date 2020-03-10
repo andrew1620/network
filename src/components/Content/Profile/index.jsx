@@ -28,6 +28,7 @@ const Profile = props => {
         <ProfilePosts
           posts={props.profilePage.posts}
           profile={props.profilePage.profile}
+          addPost={props.addPost}
         />
       </div>
     </div>
