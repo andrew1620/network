@@ -10,25 +10,11 @@ const DialogItem = ({ dialogsData = [] }) => {
         key={dialog.id}
         className={css.navlink}
       >
-        <div className={css.itemBox}>
-          <img className={css.itemPhoto} src={dialog.img} alt="dialogPic" />
-          <div style={{ width: "78%" }}>
-            <div>
-              <span className={css.itemName}>{dialog.name}</span>
-            </div>
-            <div className={css.lastMessage}>
-              <img
-                src="https://i09.fotocdn.net/s119/187c53d6c272f6d1/user_xl/2706836280.jpg"
-                alt="lastMessPhoto"
-                className={css.lastMessagePhoto}
-              />
-              <span>Привет</span>
-            </div>
-          </div>
-          <div>12:33</div>
-          <div>X</div>
+        <div className={css.item}>
+          <div className={css.photoBox}>photo</div>
+          <div className={css.content}>main</div>
+          <div className={css.btnDel}>delete</div>
         </div>
-        <hr />
       </NavLink>
     );
   });

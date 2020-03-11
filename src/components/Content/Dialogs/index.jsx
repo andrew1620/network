@@ -14,18 +14,22 @@ import { addMessage } from "../../../redux/dialogsReducer";
 const Dialogs = ({ dialogsPage, addMessage }) => {
   return (
     <div className={css.dialogsBox}>
-      <Route
-        exact
-        path="/dialogs"
-        render={() => <DialogItem dialogsData={dialogsPage.dialogsData} />}
-      />
-      <Route
-        path="/dialogs/:userId"
-        render={() => (
-          <Messages messages={dialogsPage.messages} addMessage={addMessage} />
-        )}
-      />
-      <DialogsNav />
+      <div className={css.content}>
+        <Route
+          exact
+          path="/dialogs"
+          render={() => <DialogItem dialogsData={dialogsPage.dialogsData} />}
+        />
+        <Route
+          path="/dialogs/:userId"
+          render={() => (
+            <Messages messages={dialogsPage.messages} addMessage={addMessage} />
+          )}
+        />
+      </div>
+      <div className={css.menu}>
+        <DialogsNav />
+      </div>
     </div>
   );
 };

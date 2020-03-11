@@ -2,11 +2,12 @@ import { usersAPI } from "../api/api";
 
 const initialState = {
   users: [],
-  count: 5, //Для запроса на сервер, сколько человек принимать при запросе
-  currentPage: 1, //текущая страница
-  totalCount: 10,
+  count: 5, //People amount in response
+  currentPage: 1,
+  totalCount: null,
   isFetching: false,
-  isFollowing: []
+  isFollowing: [],
+  portionNumber: 1
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -44,6 +45,8 @@ const usersReducer = (state = initialState, action) => {
               return id !== action.payload.userId;
             })
       };
+    case SET_PORTION_NUMBER:
+      return { ...state, portionNumber: action.payload };
     default:
       return state;
   }
@@ -58,14 +61,15 @@ const SET_CURRENT_PAGE = "users/SET_CURRENT_PAGE";
 const SET_TOTAL_USERS_COUNT = "users/SET_TOTAL_USERS_COUNT";
 const TOGGLE_IS_FETCHING = "users/TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING = "users/TOGGLE_IS_FOLLOWING";
+const SET_PORTION_NUMBER = "users/SET_PORTION_NUMBER";
 
-export const follow = id => {
+export const followAC = id => {
   return {
     type: FOLLOW,
     payload: id
   };
 };
-export const unfollow = id => {
+export const unfollowAC = id => {
   return {
     type: UNFOLLOW,
     payload: id
@@ -86,10 +90,11 @@ export const toggleIsFetching = isFetching => {
 export const toggleIsFollowing = (isFollowing, userId) => {
   return { type: TOGGLE_IS_FOLLOWING, payload: { isFollowing, userId } };
 };
+export const setPortionNumber = portionNumber => {
+  return { type: SET_PORTION_NUMBER, payload: portionNumber };
+};
 
-//thunkCreator
-export const getUsersThunkCreator = (count, currentPage) => {
-  //сам thunk
+export const requireUsers = (count, currentPage) => {
   return dispatch => {
     dispatch(toggleIsFetching(true));
     usersAPI.getUsers(count, currentPage).then(data => {
@@ -100,24 +105,24 @@ export const getUsersThunkCreator = (count, currentPage) => {
   };
 };
 
-export const followThunkCreator = userId => {
+export const follow = userId => {
   return dispatch => {
     dispatch(toggleIsFollowing(true, userId));
     usersAPI.follow(userId).then(data => {
       if (data.resultCode === 0) {
-        dispatch(follow(userId));
+        dispatch(followAC(userId));
       }
       dispatch(toggleIsFollowing(false, userId));
     });
   };
 };
 
-export const unfollowThunkCreator = userId => {
+export const unfollow = userId => {
   return dispatch => {
     dispatch(toggleIsFollowing(true, userId));
     usersAPI.unfollow(userId).then(data => {
       if (data.resultCode === 0) {
-        dispatch(unfollow(userId));
+        dispatch(unfollowAC(userId));
       }
       dispatch(toggleIsFollowing(false, userId));
     });

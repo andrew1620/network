@@ -1,3 +1,4 @@
 .content {
   grid-area: c;
+  max-width: 791px;
 }

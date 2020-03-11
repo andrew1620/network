@@ -1,31 +1,5 @@
-.userBox {
-  outline: 1px solid red;
-  display: flex;
-}
-.photo {
-  width: 80px;
-  height: 80px;
-}
-.img {
-  width: inherit;
-  height: inherit;
-  border-radius: 50%;
-}
-.pageNumber {
-  cursor: pointer;
-}
-.activePage {
-  font-weight: bold;
-  font-size: 14pt;
-}
-.pagesNumbersBox {
-  max-width: 800px;
-  overflow: auto;
-  /* word-wrap: break-word; */
-  margin-bottom: 10px;
-  outline: 1px solid red;
-}
-.navlink {
-  width: inherit;
-  height: inherit;
+.users {
+  /* border: 1px solid black; */
+  box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+  background: #fff;
 }

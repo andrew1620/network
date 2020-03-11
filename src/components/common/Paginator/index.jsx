@@ -1,22 +1,26 @@
-import React, { useState } from "react";
+import React from "react";
 import css from "./style.module.css";
+import { connect } from "react-redux";
+import { setPortionNumber } from "../../../redux/usersReducer";
 
 const Paginator = ({
   totalCount,
   count,
   currentPage,
   handlePageNumClick,
-  portionSize = 10
+  portionSize = 10,
+  portionNumber,
+  setPortionNumber
 }) => {
-  const pagesAmount = Math.ceil(totalCount / count);
-  const pagesNumbers = [];
+  const pagesAmount = Math.ceil(totalCount / count); //Всего страниц
+  const pagesNumbers = []; //кол-во кнопочек с номерами страниц
 
   for (let i = 1; i <= pagesAmount; i++) {
     pagesNumbers.push(i);
   }
 
-  const portionCount = Math.ceil(pagesAmount / count);
-  const [portionNumber, setPortionNumber] = useState(1);
+  const portionsAmount = Math.ceil(pagesAmount / portionSize);
+
   const leftBorderPagesNumbers = (portionNumber - 1) * portionSize + 1;
   const rigthBorderPagesNumbers = portionNumber * portionSize;
 
@@ -52,11 +56,18 @@ const Paginator = ({
         {"<"}
       </button>
       {pages}
-      <button onClick={handleBtnRight} disabled={portionNumber >= portionCount}>
+      <button
+        onClick={handleBtnRight}
+        disabled={portionNumber === portionsAmount}
+      >
         {">"}
-      </button>{" "}
+      </button>
     </div>
   );
 };
 
-export default Paginator;
+const mstp = state => ({
+  portionNumber: state.usersPage.portionNumber
+});
+
+export default connect(mstp, { setPortionNumber })(Paginator);

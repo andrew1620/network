@@ -1,15 +1,13 @@
 import React from "react";
 import { connect } from "react-redux";
+import { useEffect } from "react";
+
 import {
-  follow,
-  unfollow,
   setCurrentPage,
-  toggleIsFollowing,
-  getUsersThunkCreator,
-  followThunkCreator,
-  unfollowThunkCreator
+  requireUsers,
+  follow,
+  unfollow
 } from "../../../redux/usersReducer";
-import Users from "./Users";
 import {
   getUsers,
   getCount,
@@ -18,15 +16,15 @@ import {
   getIsFetching,
   getIsFollowing
 } from "../../../redux/usersSelectors";
-import { useEffect } from "react";
+import Users from ".";
 
 const UsersContainer = props => {
   useEffect(() => {
-    props.getUsersThunkCreator(props.count, props.currentPage);
+    props.requireUsers(props.count, props.currentPage);
   }, []);
 
   const handlePageNumClick = number => {
-    props.getUsersThunkCreator(props.count, number);
+    props.requireUsers(props.count, number);
     props.setCurrentPage(number);
   };
 
@@ -37,20 +35,17 @@ const UsersContainer = props => {
         count={props.count}
         currentPage={props.currentPage}
         handlePageNumClick={handlePageNumClick}
-        unfollow={props.unfollow}
         follow={props.follow}
+        unfollow={props.unfollow}
         users={props.users}
         isFollowing={props.isFollowing}
-        toggleIsFollowing={props.toggleIsFollowing}
-        followThunkCreator={props.followThunkCreator}
-        unfollowThunkCreator={props.unfollowThunkCreator}
+        isFetching={props.isFetching}
       />
     </div>
   );
 };
 
-//Использованы селекторы
-const mapStateToProps = state => {
+const mstp = state => {
   return {
     users: getUsers(state),
     count: getCount(state),
@@ -61,12 +56,9 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, {
+export default connect(mstp, {
   follow,
   unfollow,
   setCurrentPage,
-  toggleIsFollowing,
-  getUsersThunkCreator,
-  followThunkCreator,
-  unfollowThunkCreator
+  requireUsers
 })(UsersContainer);

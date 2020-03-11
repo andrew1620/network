@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 import defaultAva from "../../../assets/img/userPhoto.png";
 import { getOwner } from "../../../redux/ownerSelectors";
 import { getProfile } from "../../../redux/profileSelectors";
+import parseSize from "../../../utils/parseAvatarSize";
 
 const Avatar = ({ img, size, pageRef = "/", owner, profile }) => {
   if (!img) img = defaultAva;
@@ -22,12 +23,17 @@ const Avatar = ({ img, size, pageRef = "/", owner, profile }) => {
     }
   }
 
-  if (size !== "small" && size !== "middle" && size !== "large") size = "small";
+  size = parseSize(size);
 
   return (
     <NavLink to={pageRef}>
       <div className={css.imgBox}>
-        <img src={img} className={`${css.img} ${css[size]}`} alt="Ava" />
+        <img
+          src={img}
+          className={`${css.img} ${typeof size === "string" && css[size]}`}
+          style={(typeof size === "object" && size) || {}}
+          alt="Ava"
+        />
       </div>
     </NavLink>
   );
@@ -42,6 +48,4 @@ export default connect(mstp)(Avatar);
 
 //Props:
 // img: reference to necessary page or 'profile' - img will be taken from state.profilePage, 'owner' - from state.owner
-//    reference to necessary page
-// size - small:30px, middle:40px, large:50px
-//
+// size - '50,60': {width: 50, height: 60}, small:30px, middle:40px, large:50px

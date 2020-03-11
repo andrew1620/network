@@ -1,8 +1,6 @@
 .itemBox {
-  background: #fff;
   display: flex;
   justify-content: space-between;
-  grid-area: mainPlace;
   width: 100%;
 }
 .itemPhoto {

@@ -6,7 +6,7 @@
 
   grid-template-rows: auto 1fr; /*//высота*/
   grid-template-columns: 2fr 10fr;
-  grid-gap: 10px;
+  grid-gap: 15px;
   color: black;
   max-width: 960px;
   margin: 0px auto;
