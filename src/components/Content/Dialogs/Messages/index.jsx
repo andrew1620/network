@@ -3,6 +3,7 @@ import css from "./style.module.css";
 
 import { reduxForm, Field } from "redux-form";
 import MessageItem from "./MessageItem";
+import MessagesHeader from "./Header";
 
 let MessageForm = props => {
   return (
@@ -19,8 +20,8 @@ let MessageForm = props => {
 };
 MessageForm = reduxForm({ form: "messageForm" })(MessageForm);
 
-const Messages = ({ messages, addMessage }) => {
-  const messagesList = messages.map(message => {
+const Messages = ({ conversation, addMessage }) => {
+  const messagesList = conversation.messages.map(message => {
     return <MessageItem message={message} key={message.id} />;
   });
 
@@ -29,8 +30,10 @@ const Messages = ({ messages, addMessage }) => {
   };
 
   return (
-    <div className={css.messagesBox}>
-      <div className={css.header}></div>
+    <div className={css.container}>
+      <div className={css.header}>
+        <MessagesHeader />
+      </div>
       <div className={css.content}>{messagesList}</div>
       <div className={css.footer}>
         <MessageForm onSubmit={handleSubmit} />

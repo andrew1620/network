@@ -1,0 +1,70 @@
+.container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
+    "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee",
+    "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian",
+    "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao",
+    "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai",
+    sans-serif;
+}
+.goBack {
+  border: 1px solid red;
+  display: flex;
+  align-items: center;
+  width: 150px;
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  white-space: nowrap;
+  font-size: 13px;
+  color: #818d99;
+  text-decoration: none;
+  padding-left: 10px;
+}
+.goBack:hover {
+  background: linear-gradient(to right, #f0f2f5 50%, #fefefe);
+}
+.backArrow {
+  /* border: 1px solid black; */
+  display: inline-block;
+  width: 17px;
+  height: 17px;
+  background: url("../../../../../assets/img/dialogs/back.svg") no-repeat center
+    center;
+  background-size: 15px 15px;
+  margin-right: 8px;
+}
+.goBackCaption {
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  font-size: 14px;
+  line-height: 19px;
+}
+.info {
+  border: 1px solid red;
+  margin: 0px auto;
+  align-self: center;
+}
+.nameLink {
+  text-decoration: none;
+  color: black;
+}
+.name {
+  direction: ltr;
+  white-space: nowrap;
+  font-size: 13px;
+  line-height: 17px;
+  text-decoration: none;
+  overflow: hidden;
+  color: #222;
+  text-overflow: ellipsis;
+  font-weight: bold;
+  -webkit-font-smoothing: subpixel-antialiased;
+  cursor: pointer;
+}
+.photoBox {
+  border: 1px solid red;
+  margin-left: auto;
+}

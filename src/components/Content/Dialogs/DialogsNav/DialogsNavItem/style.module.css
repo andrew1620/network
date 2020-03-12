@@ -1,0 +1,29 @@
+.item {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  font-size: 13px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  height: 32px;
+  line-height: 31px;
+  padding: 0 5px 0 20px;
+  color: #2a5885;
+  user-select: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: border-left 0.3s ease;
+}
+.item:hover {
+  background-color: #f0f2f5;
+}
+.active {
+  background-color: #f0f2f5;
+  color: #000;
+  font-weight: 500;
+  -webkit-font-smoothing: subpixel-antialiased;
+  padding-left: 20px;
+  border-left: 2px solid #5181b8;
+}

@@ -9,21 +9,29 @@ import DialogsNav from "./DialogsNav";
 import Messages from "./Messages";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getDialogsPage } from "../../../redux/dialogsSelectors";
-import { addMessage } from "../../../redux/dialogsReducer";
+import { deleteDialog, addMessage } from "../../../redux/dialogsReducer";
 
-const Dialogs = ({ dialogsPage, addMessage }) => {
+const Dialogs = ({ dialogsPage, deleteDialog, addMessage }) => {
   return (
     <div className={css.dialogsBox}>
       <div className={css.content}>
         <Route
           exact
           path="/dialogs"
-          render={() => <DialogItem dialogsData={dialogsPage.dialogsData} />}
+          render={() => (
+            <DialogItem
+              dialogs={dialogsPage.dialogs}
+              deleteDialog={deleteDialog}
+            />
+          )}
         />
         <Route
           path="/dialogs/:userId"
           render={() => (
-            <Messages messages={dialogsPage.messages} addMessage={addMessage} />
+            <Messages
+              conversation={dialogsPage.conversation}
+              addMessage={addMessage}
+            />
           )}
         />
       </div>
@@ -38,6 +46,7 @@ const mstp = state => ({
   dialogsPage: getDialogsPage(state)
 });
 const mdtp = {
+  deleteDialog,
   addMessage
 };
 
