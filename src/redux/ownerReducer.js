@@ -2,7 +2,7 @@ import { profileAPI } from "../api/api";
 
 const initialState = {
   isOwner: null,
-  ownerData: { fullName: null, photos: {} }
+  ownerData: { id: null, fullName: null, photos: {} }
 };
 
 const ownerReducer = (state = initialState, action) => {
@@ -22,11 +22,15 @@ export const setOwnerData = data => {
   return { type: SET_OWNER_DATA, payload: data };
 };
 
-export const requireOwnerData = userId => async (dispatch, getState) => {
+export const requireOwnerData = () => async (dispatch, getState) => {
   try {
     const userId = getState().auth.userId;
     const data = await profileAPI.getUserProfile(userId);
-    const ownerData = { fullName: data.fullName, photos: { ...data.photos } };
+    const ownerData = {
+      id: data.userId,
+      fullName: data.fullName,
+      photos: { ...data.photos }
+    };
     dispatch(setOwnerData(ownerData));
   } catch (err) {
     console.warn("Error in requireOwnerData \n", err);

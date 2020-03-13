@@ -4,7 +4,7 @@ import css from "./style.module.css";
 import Avatar from "../../../../common/Avatar";
 import { NavLink } from "react-router-dom";
 
-const MessagesHeader = ({ img, userId, name = "name" }) => {
+const MessagesHeader = ({ interlocutor }) => {
   return (
     <div className={css.container}>
       <NavLink to="/dialogs" className={css.goBack}>
@@ -13,12 +13,12 @@ const MessagesHeader = ({ img, userId, name = "name" }) => {
       </NavLink>
 
       <div className={css.info}>
-        <NavLink to={`/profile/${userId}`} className={css.nameLink}>
-          <span className={css.name}>{name}</span>
+        <NavLink to={`/profile/${interlocutor.id}`} className={css.nameLink}>
+          <span className={css.name}>{interlocutor.name}</span>
         </NavLink>
       </div>
       <div className={css.photoBox}>
-        <Avatar size="36,36" img={img} />
+        <Avatar size="small" img={interlocutor.avatar} />
       </div>
     </div>
   );

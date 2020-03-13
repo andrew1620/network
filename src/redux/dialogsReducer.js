@@ -4,10 +4,10 @@ const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
 const initialState = {
   dialogs: [
     {
+      id: 1,
       name: "Petya Rogov",
       avatar:
         "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200",
-      id: 1,
       time: "14:38",
       lastMessage: "Привет"
     },
@@ -20,18 +20,18 @@ const initialState = {
       lastMessage: "Что делаешь?"
     },
     {
+      id: 1111,
       name: "Джон Дир",
       avatar:
         "http://www.topoboi.com/pic/201401/1920x1080/topoboi.com-37232.jpg",
-      id: 3,
       time: "12:13",
       lastMessage: "Как дела?"
     },
     {
+      id: 4,
       name: "Антонио",
       avatar:
         "https://www.meme-arsenal.com/memes/17ae26212e608608849dcbb2cfff103c.jpg",
-      id: 4,
       time: "18:44",
       lastMessage: "Все окей"
     }
@@ -43,24 +43,32 @@ const initialState = {
   ],
   conversation: {
     id: 1,
-    interlocutors: [
+    interlocutor: {
+      id: 1111,
+      name: "Паша",
+      avatar:
+        "http://www.topoboi.com/pic/201401/1920x1080/topoboi.com-37232.jpg"
+    },
+    messages: [
       {
-        id: 2222,
-        name: "Джон Дир",
-        avatar:
-          "https://avatars.mds.yandex.net/get-pdb/1040792/0489ff80-181a-4697-83b4-b0cf25001614/s1200"
+        id: 1,
+        whose: 1111,
+        text: "Привет",
+        time: "12:24"
       },
       {
-        id: 2222,
-        name: "andrew",
-        avatar:
-          "https://i.pinimg.com/736x/23/ed/c6/23edc62e92dfc53b7738a8f3fee707b6--private-plane-private-jets.jpg"
+        id: 2,
+        whose: 1111,
+        text: "Как дела?",
+        time: "13:45"
+      },
+
+      {
+        id: 3,
+        whose: 5896,
+        text: "Нормально",
+        time: "14:44"
       }
-    ],
-    messages: [
-      { id: 1, who: 2222, text: "Привет", time: "12:24" },
-      { id: 2, who: 2222, text: "Как дела", time: "13:45" },
-      { id: 3, who: 5896, text: "Отлично", time: "14:44" }
     ]
   }
 };

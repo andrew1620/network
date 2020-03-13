@@ -1,0 +1,105 @@
+.container {
+  display: flex;
+  /* padding: 12.5px 32px; */
+  padding: 12.5px 32px 12.5px 0;
+  cursor: pointer;
+  margin: 0 3px;
+}
+.container:hover .actions,
+.container:hover .tick {
+  visibility: visible;
+}
+.sidebar {
+  /* border: 1px solid red; */
+  align-self: flex-start;
+  display: flex;
+}
+.tick {
+  /* border: 1px solid black; */
+  width: 17px;
+  height: 17px;
+  background: url("../../../../../../assets/img/dialogs/tick.svg") no-repeat
+    center center;
+  background-size: 17px;
+  opacity: 0.75;
+  align-self: center;
+  margin: 0 10px 0 5px;
+  visibility: hidden;
+}
+
+.main {
+  /* border: 1px solid red; */
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
+    Helvetica Neue, "Noto Sans Armenian", "Noto Sans Bengali",
+    "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic",
+    "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada",
+    "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil",
+    "Noto Sans Telugu", "Noto Sans Thai", sans-serif;
+  width: 100%;
+  margin: 3px 0 0px 10px;
+  font-size: 13px;
+}
+.mainHeader {
+  display: flex;
+  direction: ltr;
+  font-size: 12.5px;
+  cursor: pointer;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.name {
+  line-height: 1.23;
+  color: #42648b;
+  font-weight: 700;
+  -webkit-font-smoothing: antialiased;
+  margin-right: 5px;
+}
+.name:hover {
+  text-decoration: underline;
+}
+.time {
+  font-size: 12.5px;
+  line-height: 1.4;
+  cursor: pointer;
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  color: hsla(220, 8%, 51%, 0.6);
+}
+.actions {
+  /* border: 1px solid red; */
+  margin-left: auto;
+  visibility: hidden;
+}
+.actions div {
+  /* border: 1px solid red; */
+  width: 24px;
+  height: 18px;
+  opacity: 0.75;
+  background-size: 11px;
+}
+.edit {
+  float: left;
+  background: url("../../../../../../assets/img/dialogs/editMessage.svg")
+    no-repeat center center;
+}
+.edit:hover {
+  opacity: 1;
+}
+.star {
+  float: right;
+  background: url("../../../../../../assets/img/dialogs/importantMessage.svg")
+    no-repeat center center;
+}
+.star:hover {
+  opacity: 1;
+}
+.text {
+  text-align: justify;
+  word-wrap: break-word;
+  margin-right: 44px;
+  line-height: 18px;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  cursor: pointer;
+}

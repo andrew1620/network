@@ -25,7 +25,10 @@ const DialogItem = ({ dialogs = [], deleteDialog }) => {
               <div className={css.mainInfo}>{dialog.lastMessage}</div>
             </div>
             <div className={css.btnDel}>
-              <DeleteDialog deleteDialog={() => deleteDialog(dialog.id)} />
+              <object>
+                {/* used object in order to fix a warning because I put <a> into <a>. I've to find another solution */}
+                <DeleteDialog deleteDialog={() => deleteDialog(dialog.id)} />
+              </object>
             </div>
           </div>
         </div>

@@ -10,8 +10,9 @@ import Messages from "./Messages";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 import { getDialogsPage } from "../../../redux/dialogsSelectors";
 import { deleteDialog, addMessage } from "../../../redux/dialogsReducer";
+import { getOwnerData } from "../../../redux/ownerSelectors";
 
-const Dialogs = ({ dialogsPage, deleteDialog, addMessage }) => {
+const Dialogs = ({ dialogsPage, deleteDialog, addMessage, ownerData }) => {
   return (
     <div className={css.dialogsBox}>
       <div className={css.content}>
@@ -30,6 +31,7 @@ const Dialogs = ({ dialogsPage, deleteDialog, addMessage }) => {
           render={() => (
             <Messages
               conversation={dialogsPage.conversation}
+              ownerData={ownerData}
               addMessage={addMessage}
             />
           )}
@@ -43,7 +45,8 @@ const Dialogs = ({ dialogsPage, deleteDialog, addMessage }) => {
 };
 
 const mstp = state => ({
-  dialogsPage: getDialogsPage(state)
+  dialogsPage: getDialogsPage(state),
+  ownerData: getOwnerData(state)
 });
 const mdtp = {
   deleteDialog,

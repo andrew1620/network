@@ -1,42 +1,21 @@
 import React from "react";
 import css from "./style.module.css";
 
-import { reduxForm, Field } from "redux-form";
-import MessageItem from "./MessageItem";
 import MessagesHeader from "./Header";
+import MessagesContent from "./Content";
+import MessagesFooter from "./Footer";
 
-let MessageForm = props => {
-  return (
-    <form onSubmit={props.handleSubmit}>
-      <Field
-        component="textarea"
-        name="message"
-        type="text"
-        placeholder="Введите сообщние"
-      />
-      <button>Send</button>
-    </form>
-  );
-};
-MessageForm = reduxForm({ form: "messageForm" })(MessageForm);
-
-const Messages = ({ conversation, addMessage }) => {
-  const messagesList = conversation.messages.map(message => {
-    return <MessageItem message={message} key={message.id} />;
-  });
-
-  const handleSubmit = values => {
-    addMessage(values.message);
-  };
-
+const Messages = ({ conversation, addMessage, ownerData }) => {
   return (
     <div className={css.container}>
       <div className={css.header}>
-        <MessagesHeader />
+        <MessagesHeader interlocutor={conversation.interlocutor} />
       </div>
-      <div className={css.content}>{messagesList}</div>
+      <div className={css.content}>
+        <MessagesContent conversation={conversation} ownerData={ownerData} />
+      </div>
       <div className={css.footer}>
-        <MessageForm onSubmit={handleSubmit} />
+        <MessagesFooter addMessage={addMessage} />
       </div>
     </div>
   );
