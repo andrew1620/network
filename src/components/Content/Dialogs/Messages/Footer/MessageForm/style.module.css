@@ -1,0 +1,62 @@
+.container {
+  display: flex;
+}
+.textareaBox {
+  border: 1px solid #d3d9de;
+  border-radius: 5px;
+  width: 100%;
+  margin: 10px 0 10px 20px;
+  /* padding: 8px 13px; */
+  background: #fff;
+}
+.btnSend {
+  /* border: 1px solid red; */
+  outline: none;
+  border: none;
+  width: 56px;
+  background-color: transparent;
+  background: url("../../../../../../assets/img/dialogs/sendMessage.svg")
+    no-repeat center center;
+  background-size: 20px 20px;
+  align-self: stretch;
+  cursor: pointer;
+  opacity: 0.75;
+}
+.btnSend:hover {
+  opacity: 1;
+}
+
+/* ----textarea---- */
+.textareaContainer {
+  /* border: 1px solid yellowgreen; */
+  display: flex;
+}
+.textarea {
+  /* border: 1px solid red; */
+  margin: auto;
+  width: 100%;
+  resize: none;
+  border: none;
+  outline: none;
+  height: 35px;
+  overflow: auto;
+  max-height: 180px;
+  box-sizing: border-box;
+  padding: 8px 13px;
+  border-radius: 5px;
+
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  -webkit-user-modify: read-write;
+  -webkit-line-break: after-white-space;
+  font-size: 13px;
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
+    "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee",
+    "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian",
+    "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao",
+    "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai",
+    sans-serif;
+
+  word-wrap: break-word;
+}

@@ -2,13 +2,15 @@
   background: #fff;
   border-radius: 4px;
   box-shadow: 0 1px 0 0 #d7d8db, 0 0 0 1px #e3e4e8;
+
+  max-height: 810px;
+  overflow: hidden;
 }
 .header {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }
 .content {
-  border: 1px solid black;
 }
 .footer {
-  border: 1px solid red;
+  /* border: 1px solid red; */
 }

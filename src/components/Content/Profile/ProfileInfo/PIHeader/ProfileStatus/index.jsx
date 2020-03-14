@@ -27,7 +27,7 @@ const ProfileStatus = ({ userStatus, updateUserStatus, isOwner }) => {
           onClick={activateEditMode}
           className={isOwner ? css.statusBox : css.withoutHover}
         >
-          <span>{userStatus}</span>
+          <span>{userStatus || (isOwner && "Изменить статус")}</span>
         </div>
       )}
 

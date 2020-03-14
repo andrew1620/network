@@ -8,6 +8,7 @@
     "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao",
     "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai",
     sans-serif;
+  border-bottom: 1px solid #e4e6e9;
 }
 .goBack {
   /* border: 1px solid red; */

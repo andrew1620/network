@@ -36,16 +36,11 @@ const initialState = {
       lastMessage: "Все окей"
     }
   ],
-  messages: [
-    { id: 1, name: "Vasya", text: "Привет" },
-    { id: 2, name: "Vasya", text: "Как дела" },
-    { id: 3, name: "Vasya", text: "Отлично" }
-  ],
   conversation: {
     id: 1,
     interlocutor: {
       id: 1111,
-      name: "Паша",
+      name: "Джон Дир",
       avatar:
         "http://www.topoboi.com/pic/201401/1920x1080/topoboi.com-37232.jpg"
     },
@@ -62,11 +57,16 @@ const initialState = {
         text: "Как дела?",
         time: "13:45"
       },
-
       {
         id: 3,
         whose: 5896,
         text: "Нормально",
+        time: "14:44"
+      },
+      {
+        id: 4,
+        whose: 5896,
+        text: "А у тебя?",
         time: "14:44"
       }
     ]
@@ -82,11 +82,20 @@ const dialogsReducer = (state = initialState, action) => {
       };
     case ADD_MESSAGE:
       const newMessage = {
-        id: state.messages[state.messages.length - 1].id + 1,
-        name: "Vasya",
-        text: action.payload
+        id:
+          state.conversation.messages[state.conversation.messages.length - 1]
+            .id + 1,
+        whose: action.payload.id,
+        text: action.payload.messageBody,
+        time: `${new Date().getHours()}:${new Date().getMinutes()}`
       };
-      return { ...state, messages: [...state.messages, newMessage] };
+      return {
+        ...state,
+        conversation: {
+          ...state.conversation,
+          messages: [...state.conversation.messages, newMessage]
+        }
+      };
 
     default:
       return state;
@@ -97,15 +106,15 @@ export default dialogsReducer;
 export const deleteDialogAC = dialogId => {
   return { type: DELETE_DIALOG, payload: dialogId };
 };
-export const addMessageAC = messageBody => {
-  return { type: ADD_MESSAGE, payload: messageBody };
+export const addMessageAC = (id, messageBody) => {
+  return { type: ADD_MESSAGE, payload: { id, messageBody } };
 };
 
 export const deleteDialog = dialogId => dispatch => {
   dispatch(deleteDialogAC(dialogId));
 };
 export const addMessage = messageBody => {
-  return dispatch => {
-    dispatch(addMessageAC(messageBody));
+  return (dispatch, getState) => {
+    dispatch(addMessageAC(getState().owner.ownerData.id, messageBody));
   };
 };

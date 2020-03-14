@@ -14,7 +14,9 @@ const DialogItem = ({ dialogs = [], deleteDialog }) => {
       >
         <div className={css.item}>
           <div className={css.photoBox}>
-            <Avatar size="large" img={dialog.avatar} />
+            <object>
+              <Avatar size="large" img={dialog.avatar} />
+            </object>
           </div>
           <div className={css.content}>
             <div className={css.info}>
@@ -27,7 +29,15 @@ const DialogItem = ({ dialogs = [], deleteDialog }) => {
             <div className={css.btnDel}>
               <object>
                 {/* used object in order to fix a warning because I put <a> into <a>. I've to find another solution */}
-                <DeleteDialog deleteDialog={() => deleteDialog(dialog.id)} />
+                <span
+                  className={css.symbol}
+                  onClick={e => {
+                    e.preventDefault();
+                    deleteDialog(dialog.id);
+                  }}
+                >
+                  ✕
+                </span>
               </object>
             </div>
           </div>
@@ -40,13 +50,3 @@ const DialogItem = ({ dialogs = [], deleteDialog }) => {
 };
 
 export default DialogItem;
-
-const DeleteDialog = ({ deleteDialog }) => {
-  return (
-    <NavLink to="/dialogs">
-      <span className={css.symbol} onClick={deleteDialog}>
-        ✕
-      </span>
-    </NavLink>
-  );
-};

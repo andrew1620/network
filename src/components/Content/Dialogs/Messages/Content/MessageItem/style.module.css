@@ -95,8 +95,10 @@
   opacity: 1;
 }
 .text {
+  width: 395px;
   text-align: justify;
   word-wrap: break-word;
+  overflow: hidden;
   margin-right: 44px;
   line-height: 18px;
   -webkit-font-smoothing: subpixel-antialiased;
