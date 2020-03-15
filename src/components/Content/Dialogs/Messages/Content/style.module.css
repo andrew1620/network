@@ -1,6 +1,6 @@
 .container {
   /* border: 1px solid red; */
-  max-height: 700px;
+  /* max-height: 700px; */
   overflow: auto;
 }
 ::-webkit-scrollbar-button {

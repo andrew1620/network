@@ -1,3 +1,5 @@
+import { reset } from "redux-form";
+
 const DELETE_DIALOG = "dialogs/DELETE_DIALOG";
 const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
 
@@ -116,5 +118,6 @@ export const deleteDialog = dialogId => dispatch => {
 export const addMessage = messageBody => {
   return (dispatch, getState) => {
     dispatch(addMessageAC(getState().owner.ownerData.id, messageBody));
+    dispatch(reset("messageForm"));
   };
 };
