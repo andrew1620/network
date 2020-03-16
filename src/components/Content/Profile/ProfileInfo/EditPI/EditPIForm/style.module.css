@@ -1,0 +1,80 @@
+.editForm {
+  /* border: 1px solid red; */
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Helvetica Neue,
+    "Noto Sans Armenian", "Noto Sans Bengali", "Noto Sans Cherokee",
+    "Noto Sans Devanagari", "Noto Sans Ethiopic", "Noto Sans Georgian",
+    "Noto Sans Hebrew", "Noto Sans Kannada", "Noto Sans Khmer", "Noto Sans Lao",
+    "Noto Sans Osmanya", "Noto Sans Tamil", "Noto Sans Telugu", "Noto Sans Thai",
+    sans-serif;
+  max-width: 430px;
+  margin: 20px auto;
+  font-size: 13px;
+}
+.checkContainer {
+  /* display: flex;
+  justify-content: flex-end; */
+  float: right;
+  margin-right: 288px;
+  margin-bottom: 15px;
+}
+.textareaBox {
+  /* border: 1px solid red; */
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+.caption {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  font-size: 13px;
+  color: #656565;
+  /* line-height: 16px; */
+  margin-right: 10px;
+}
+.textarea {
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  font-size: 13px;
+  outline: none;
+  box-shadow: none;
+  background: #fff;
+  -webkit-appearance: none;
+  color: #000;
+  margin: 0;
+  border: 1px solid #d3d9de;
+  padding: 5px 9px 7px;
+  border-radius: 3px;
+  box-sizing: border-box;
+  width: 300px;
+  overflow: hidden;
+  resize: none;
+}
+.btnSaveBox {
+  border-top: 1px solid #e7e8ec;
+  margin-top: 25px;
+  padding: 15px 0;
+}
+.btnSave {
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  padding: 7px 16px 8px;
+  margin: 0;
+  font-size: 12.5px;
+  display: inline-block;
+  zoom: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  outline: none;
+  line-height: 15px;
+  text-align: center;
+  text-decoration: none;
+  background: none;
+  background-color: #5181b8;
+  color: #fff;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin: 0px auto;
+  display: block;
+}

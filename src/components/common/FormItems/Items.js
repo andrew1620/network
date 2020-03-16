@@ -22,7 +22,7 @@ export const TextArea = ({ input, meta, ...props }) => {
   );
 };
 
-export const InputC = ({ input, meta, ...props }) => {
+export const Input = ({ input, meta, ...props }) => {
   const hasError = meta.touched && meta.error;
 
   return (

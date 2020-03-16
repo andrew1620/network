@@ -4,9 +4,7 @@ import css from "./style.module.css";
 const ChangesSaved = () => {
   return (
     <div className={css.notification}>
-      <span>
-        <b>Изменения сохранены</b>
-      </span>
+      <span className={css.span}>Изменения сохранены</span>
       <div>Новые данные будут отражены на Вашей странице.</div>
     </div>
   );

@@ -18,17 +18,20 @@ const OwnerBlock = ({ isAuth, logout, ownerData }) => {
 
   const { fullName } = ownerData;
 
+  const toggleShowSubMenu = () => {
+    setIsShownSubMenu(!isShownSubMenu);
+  };
+
   return (
-    <div
-      className={css.ownerBlock}
-      onClick={() => setIsShownSubMenu(!isShownSubMenu)}
-    >
+    <div className={css.ownerBlock} onClick={toggleShowSubMenu}>
       {isAuth && (
         <>
           <span className={css.fullname}>{fullName}</span>
           <Avatar size={"small"} img={"owner"} />
           <div className={css.arrow}></div>
-          {isShownSubMenu && <SubMenu logout={logout} />}
+          {isShownSubMenu && (
+            <SubMenu logout={logout} toggleShowSubMenu={toggleShowSubMenu} />
+          )}
         </>
       )}
       {!isAuth && (

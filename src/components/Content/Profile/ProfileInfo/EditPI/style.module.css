@@ -1,3 +1,25 @@
 .container {
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, Open Sans,
+    Helvetica Neue, "Noto Sans Armenian", "Noto Sans Bengali",
+    "Noto Sans Cherokee", "Noto Sans Devanagari", "Noto Sans Ethiopic",
+    "Noto Sans Georgian", "Noto Sans Hebrew", "Noto Sans Kannada",
+    "Noto Sans Khmer", "Noto Sans Lao", "Noto Sans Osmanya", "Noto Sans Tamil",
+    "Noto Sans Telugu", "Noto Sans Thai", sans-serif;
+
   background: #fff;
+}
+.header {
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  direction: ltr;
+  text-align: left;
+  background: #fafbfc;
+  padding: 0 20px;
+  height: 54px;
+  line-height: 54px;
+  border-bottom: 1px solid #e7e8ec;
+  border-radius: 4px 4px 0 0;
+  font-size: 16px;
+  outline: none;
+  color: #000;
 }

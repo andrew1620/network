@@ -1,4 +1,4 @@
-import { authenticationTC } from "./authReducer";
+import { authentication } from "./authReducer";
 
 const initialState = {
   initializeSuccessed: false
@@ -21,7 +21,7 @@ const successInitialize = () => {
 //Initialization is ready, if I need to add some thunks I've to add it to Promise.all to complete the main function after thunks
 export const initialize = () => {
   return dispatch => {
-    const authP = dispatch(authenticationTC());
+    const authP = dispatch(authentication());
     Promise.all([authP]).then(() => {
       dispatch(successInitialize());
     });

@@ -1,26 +1,29 @@
 import React from "react";
 import { reduxForm, Field } from "redux-form";
+import css from "./style.module.css";
 
 //EditProfileInfoForm
 let EditPIForm = ({ handleSubmit }) => {
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Ищу работу</label>
+    <form onSubmit={handleSubmit} className={css.editForm}>
+      <div className={css.checkContainer}>
+        <span className={css.caption}>Ищу работу:</span>
         <Field component={"input"} name="lookingForAJob" type="checkbox" />
       </div>
-      <div>
-        <label>Описание</label>
+      <div className={css.textareaBox}>
+        <span className={css.caption}>Описание:</span>
         <Field
           component={"textarea"}
           name="lookingForAJobDescription"
           type="text"
+          className={css.textarea}
         />
       </div>
-      <button>Сохранить</button>
+      <div className={css.btnSaveBox}>
+        <button className={css.btnSave}>Сохранить</button>
+      </div>
     </form>
   );
 };
-EditPIForm = reduxForm({ form: "editPIForm" })(EditPIForm);
 
-export default EditPIForm;
+export default reduxForm({ form: "editPIForm" })(EditPIForm);

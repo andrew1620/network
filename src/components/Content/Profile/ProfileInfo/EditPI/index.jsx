@@ -29,6 +29,9 @@ const EditPI = ({
 
   return (
     <div className={css.container}>
+      <div className={css.header}>
+        <span className={css.headerTitle}>Основное</span>
+      </div>
       {isPIUpdated && <ChangesSaved />}
       <EditPIForm onSubmit={handleSubmit} initialValues={profile} />
     </div>

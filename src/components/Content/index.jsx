@@ -7,7 +7,6 @@ import News from "./News";
 import ProfileContainer from "./Profile/indexContainer";
 import withSuspense from "../hoc/withSuspense";
 
-// const UsersContainer = React.lazy(() => import("./Users/UsersContainer"));
 const UsersContainer = React.lazy(() => import("./Users/indexContainer"));
 const Login = React.lazy(() => import("../Login"));
 const EditPI = React.lazy(() => import("./Profile/ProfileInfo/EditPI"));
