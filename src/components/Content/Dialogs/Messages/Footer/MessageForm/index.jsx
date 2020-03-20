@@ -27,7 +27,7 @@ const Textarea = ({ input, meta, setFooterHeight, ...props }) => {
 
   useEffect(() => {
     setFooterHeight(textArea.current.offsetHeight + 23);
-  }, [textArea]);
+  }, [textArea, setFooterHeight]);
 
   const changeHeight = () => {
     textArea.current.style.height = "auto";

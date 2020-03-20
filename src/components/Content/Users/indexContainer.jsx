@@ -17,6 +17,8 @@ import {
   getIsFollowing
 } from "../../../redux/usersSelectors";
 import Users from ".";
+import { compose } from "redux";
+import { withAuthRedirect } from "../../hoc/withAuthRedirect";
 
 const UsersContainer = props => {
   useEffect(() => {
@@ -55,10 +57,11 @@ const mstp = state => {
     isFollowing: getIsFollowing(state)
   };
 };
-
-export default connect(mstp, {
+const mdtp = {
   follow,
   unfollow,
   setCurrentPage,
   requireUsers
-})(UsersContainer);
+};
+
+export default compose(connect(mstp, mdtp), withAuthRedirect)(UsersContainer);

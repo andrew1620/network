@@ -11,7 +11,7 @@ const MessagesContent = ({ conversation, ownerData, footerHeight }) => {
   useEffect(() => {
     content.current.scrollTo(0, content.current.scrollHeight);
     setMaxContentHeight(700 - footerHeight + "px");
-  }, [conversation.messages.length, footerHeight]);
+  }, [conversation.messages.length, footerHeight, content]);
   //I don't know why esLint underlines the second useEffect argument. I don't want useEffect to work when content changes. It's necessary for me it to work if length of messages array changes.
 
   const {

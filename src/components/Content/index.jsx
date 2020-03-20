@@ -12,7 +12,6 @@ const Login = React.lazy(() => import("../Login"));
 const EditPI = React.lazy(() => import("./Profile/ProfileInfo/EditPI"));
 
 const Content = ({ isAuth, requireOwnerData }) => {
-  //Спросить у Жени как лучше получать основные данные пользователя - на каком этапе
   useEffect(() => {
     if (isAuth) {
       requireOwnerData();
