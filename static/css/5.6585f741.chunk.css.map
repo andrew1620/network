@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.module.css"],"names":[],"mappings":"AAAA,uBACE,YACF,CACA,4BACE,wBACF,CACA,wBACE,aAAqB,CACrB,eACF","file":"5.6585f741.chunk.css","sourcesContent":[".btnLogin {\r\n  padding: 10px;\r\n}\r\n.btnLoginError {\r\n  border: 1px solid rgb(206, 2, 2);\r\n}\r\n.mainError {\r\n  color: rgb(206, 2, 2);\r\n  margin-left: 5px;\r\n}\r\n"]}

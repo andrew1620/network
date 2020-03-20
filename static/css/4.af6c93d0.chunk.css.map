@@ -1,1 +1,0 @@
-{"version":3,"sources":["style.module.css"],"names":[],"mappings":"AAAA,wBACE,eACF,CACA,2BACE,wBAAyB,CACzB,kBAAmB,CACnB,gBAAiB,CACjB,kBACF","file":"4.af6c93d0.chunk.css","sourcesContent":[".container {\r\n  background: #fff;\r\n}\r\n.notification {\r\n  border: 1px solid #afd4a9;\r\n  background: #effaed;\r\n  padding: 5px 10px;\r\n  margin-bottom: 10px;\r\n}\r\n"]}
