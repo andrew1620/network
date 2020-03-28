@@ -3,6 +3,29 @@ import { reset } from "redux-form";
 const DELETE_DIALOG = "dialogs/DELETE_DIALOG";
 const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
 
+type DialogType = {
+  id: number | null;
+  name: string | null;
+  avatar: string | null;
+  time: string | null;
+  lastMessage: string | null;
+};
+type InterlocutorType = {
+  id: number;
+  name: string;
+  avatar: string;
+};
+type MessageType = {
+  id: number;
+  whose: number;
+  text: string;
+  time: string;
+};
+type ConversationType = {
+  id: number | null;
+  interlocutor: InterlocutorType;
+  messages: Array<MessageType>;
+};
 const initialState = {
   dialogs: [
     {
@@ -37,7 +60,7 @@ const initialState = {
       time: "18:44",
       lastMessage: "Все окей"
     }
-  ],
+  ] as Array<DialogType>,
   conversation: {
     id: 1,
     interlocutor: {
@@ -72,10 +95,15 @@ const initialState = {
         time: "14:44"
       }
     ]
-  }
+  } as ConversationType
 };
 
-const dialogsReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const dialogsReducer = (
+  state = initialState,
+  action: any
+): InitialStateType => {
   switch (action.type) {
     case DELETE_DIALOG:
       return {
@@ -83,7 +111,7 @@ const dialogsReducer = (state = initialState, action) => {
         dialogs: state.dialogs.filter(dialog => dialog.id !== action.payload)
       };
     case ADD_MESSAGE:
-      const newMessage = {
+      const newMessage: MessageType = {
         id:
           state.conversation.messages[state.conversation.messages.length - 1]
             .id + 1,
@@ -105,18 +133,31 @@ const dialogsReducer = (state = initialState, action) => {
 };
 export default dialogsReducer;
 
-export const deleteDialogAC = dialogId => {
+type DeleteDialogACActionType = {
+  type: typeof DELETE_DIALOG;
+  payload: number;
+};
+
+export const deleteDialogAC = (dialogId: number): DeleteDialogACActionType => {
   return { type: DELETE_DIALOG, payload: dialogId };
 };
-export const addMessageAC = (id, messageBody) => {
+
+type AddMessageACActionType = {
+  type: typeof ADD_MESSAGE;
+  payload: { id: number; messageBody: string };
+};
+export const addMessageAC = (
+  id: number,
+  messageBody: string
+): AddMessageACActionType => {
   return { type: ADD_MESSAGE, payload: { id, messageBody } };
 };
 
-export const deleteDialog = dialogId => dispatch => {
+export const deleteDialog = (dialogId: number) => (dispatch: any) => {
   dispatch(deleteDialogAC(dialogId));
 };
-export const addMessage = messageBody => {
-  return (dispatch, getState) => {
+export const addMessage = (messageBody: string) => {
+  return (dispatch: any, getState: any) => {
     dispatch(addMessageAC(getState().owner.ownerData.id, messageBody));
     dispatch(reset("messageForm"));
   };

@@ -1,10 +1,16 @@
 import { authentication } from "./authReducer";
 
-const initialState = {
+const SUCCESS_INITIALIZE = "app/SUCCESS_INITIALIZE";
+
+export type InitialStateType = {
+  initializeSuccessed: boolean;
+};
+
+const initialState: InitialStateType = {
   initializeSuccessed: false
 };
 
-const appReducer = (state = initialState, action) => {
+const appReducer = (state = initialState, action: any): InitialStateType => {
   switch (action.type) {
     case SUCCESS_INITIALIZE:
       return { ...state, initializeSuccessed: true };
@@ -12,15 +18,17 @@ const appReducer = (state = initialState, action) => {
       return state;
   }
 };
-const SUCCESS_INITIALIZE = "app/SUCCESS_INITIALIZE";
+type SuccessInitilializeActionType = {
+  type: typeof SUCCESS_INITIALIZE;
+};
 
-const successInitialize = () => {
+const successInitialize = (): SuccessInitilializeActionType => {
   return { type: SUCCESS_INITIALIZE };
 };
 
 //Initialization is ready, if I need to add some thunks I've to add it to Promise.all to complete the main function after thunks
 export const initialize = () => {
-  return dispatch => {
+  return (dispatch: any) => {
     const authP = dispatch(authentication());
     Promise.all([authP]).then(() => {
       dispatch(successInitialize());

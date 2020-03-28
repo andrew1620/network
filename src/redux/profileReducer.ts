@@ -16,6 +16,36 @@ const dateFormatter = new Intl.DateTimeFormat("ru", {
   day: "numeric"
 });
 
+type PostType = {
+  id: number;
+  date: string;
+  likes: number;
+  body: string;
+};
+
+type PhotosType = {
+  small: string | null;
+  large: string | null;
+};
+type ProfileType = {
+  aboutMe: string | null;
+  contacts: {
+    facebook: string | null;
+    website: string | null;
+    vk: string | null;
+    twitter: string | null;
+    instagram: string | null;
+    youtube: string | null;
+    github: string | null;
+    mainLink: string | null;
+  };
+  lookingForAJob: boolean | null;
+  lookingForAJobDescription: string | null;
+  fullName: string | null;
+  userId: number | null;
+  photos: PhotosType;
+};
+
 const initialState = {
   posts: [
     {
@@ -46,17 +76,22 @@ const initialState = {
       body:
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     }
-  ],
-  profile: { photos: { small: null, large: null } },
+  ] as Array<PostType>,
+  profile: { photos: {} } as ProfileType | null,
   userStatus: "",
   isPIUpdated: false,
   isOwner: null
 };
 
-const profileReducer = (state = initialState, action) => {
+type InitialStateType = typeof initialState;
+
+const profileReducer = (
+  state = initialState,
+  action: any
+): InitialStateType => {
   switch (action.type) {
     case ADD_POST:
-      const newPost = {
+      const newPost: PostType = {
         id: state.posts[state.posts.length - 1].id + 1,
         date: dateFormatter.format(new Date()),
         likes: Math.floor(Math.random() * 100 + 1),
@@ -78,7 +113,7 @@ const profileReducer = (state = initialState, action) => {
     case SET_PHOTO:
       return {
         ...state,
-        profile: { ...state.profile, photos: action.payload }
+        profile: { ...state.profile, photos: action.payload } as ProfileType //временно
       };
     case SET_IS_OWNER:
       return { ...state, isOwner: action.payload };
@@ -88,36 +123,78 @@ const profileReducer = (state = initialState, action) => {
 };
 export default profileReducer;
 
-export const addPostAC = postBody => {
+type AddPostACActionType = {
+  type: typeof ADD_POST;
+  payload: string;
+};
+export const addPostAC = (postBody: string): AddPostACActionType => {
   return { type: ADD_POST, payload: postBody };
 };
-export const setUserProfileAC = profile => {
+
+type SetUserProfileACActionType = {
+  type: typeof SET_USER_PROFILE;
+  payload: ProfileType;
+};
+export const setUserProfileAC = (
+  profile: ProfileType
+): SetUserProfileACActionType => {
   return { type: SET_USER_PROFILE, payload: profile };
 };
-export const setUserStatusAC = newStatus => {
+
+type SetUserStatusACActionType = {
+  type: typeof SET_USER_STATUS;
+  payload: string;
+};
+export const setUserStatusAC = (
+  newStatus: string
+): SetUserStatusACActionType => {
   return { type: SET_USER_STATUS, payload: newStatus };
 };
-export const deletePostAC = postId => {
+
+type DeletePostACActionType = {
+  type: typeof DELETE_POST;
+  payload: number;
+};
+export const deletePostAC = (postId: number): DeletePostACActionType => {
   return { type: DELETE_POST, payload: postId };
 };
-export const toggleIsPIUpdated = isPIUpdated => {
+
+type ToggleIsPIUpdatedActionType = {
+  type: typeof TOGGLE_IS_PI_UPDATED;
+  payload: boolean;
+};
+export const toggleIsPIUpdated = (
+  isPIUpdated: boolean
+): ToggleIsPIUpdatedActionType => {
   return { type: TOGGLE_IS_PI_UPDATED, payload: isPIUpdated };
 };
-export const setPhotoAC = photos => {
+
+type SetPhotoACActionType = {
+  type: typeof SET_PHOTO;
+  payload: PhotosType;
+};
+export const setPhotoAC = (photos: PhotosType): SetPhotoACActionType => {
   return { type: SET_PHOTO, payload: photos };
 };
-export const setIsOwnerAC = isOwner => {
+
+type SetIsOwnerACActionType = {
+  type: typeof SET_IS_OWNER;
+  payload: boolean;
+};
+export const setIsOwnerAC = (isOwner: boolean): SetIsOwnerACActionType => {
   return { type: SET_IS_OWNER, payload: isOwner };
 };
 
-export const addPost = postBody => dispatch => {
+// --------THUNKS----------
+
+export const addPost = (postBody: string) => (dispatch: any) => {
   dispatch(addPostAC(postBody));
   dispatch(reset("addPostForm"));
 };
 
-export const setUserProfile = userId => {
-  return (dispatch, getState) => {
-    profileAPI.getUserProfile(userId).then(data => {
+export const setUserProfile = (userId: number) => {
+  return (dispatch: any, getState: any) => {
+    profileAPI.getUserProfile(userId).then((data: any) => {
       dispatch(setUserProfileAC(data));
       const ownerId = getState().auth.userId;
       if (data.userId === ownerId) dispatch(setIsOwnerAC(true));
@@ -125,23 +202,26 @@ export const setUserProfile = userId => {
     });
   };
 };
-export const getUserStatus = userId => {
-  return dispatch => {
-    profileAPI.getUserStatus(userId).then(data => {
+export const getUserStatus = (userId: number) => {
+  return (dispatch: any) => {
+    profileAPI.getUserStatus(userId).then((data: any) => {
       data === ""
         ? dispatch(setUserStatusAC("изменить статус"))
         : dispatch(setUserStatusAC(data));
     });
   };
 };
-export const updateUserStatus = newStatus => {
-  return dispatch => {
-    profileAPI.updateUserStatus(newStatus).then(data => {
+export const updateUserStatus = (newStatus: string) => {
+  return (dispatch: any) => {
+    profileAPI.updateUserStatus(newStatus).then((data: any) => {
       if (data.resultCode === 0) dispatch(setUserStatusAC(newStatus));
     });
   };
 };
-export const updateProfileInfo = info => async (dispatch, getState) => {
+export const updateProfileInfo = (info: ProfileType) => async (
+  dispatch: any,
+  getState: any
+) => {
   const response = await profileAPI.updateProfileInfo(info);
   if (response.data.resultCode === 0) {
     const userId = getState().auth.userId;
@@ -149,11 +229,12 @@ export const updateProfileInfo = info => async (dispatch, getState) => {
     dispatch(toggleIsPIUpdated(true));
   }
 };
-export const uploadPhoto = photo => async (dispatch, getState) => {
+
+// photo:any
+export const uploadPhoto = (photo: any) => async (dispatch: any) => {
   const data = await profileAPI.uploadPhoto(photo);
-  const userId = getState().auth.userId;
   if (data.resultCode === 0) {
     dispatch(setPhotoAC(data.data.photos));
-    dispatch(requireOwnerData(userId));
+    dispatch(requireOwnerData());
   }
 };
