@@ -1,6 +1,8 @@
+import { reset } from "redux-form";
+
 import { profileAPI } from "../api/api";
 import { requireOwnerData } from "./ownerReducer";
-import { reset } from "redux-form";
+import { PhotosType } from "./commonTypes";
 
 const ADD_POST = "profile/ADD_POST";
 const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
@@ -23,10 +25,6 @@ type PostType = {
   body: string;
 };
 
-type PhotosType = {
-  small: string | null;
-  large: string | null;
-};
 type ProfileType = {
   aboutMe: string | null;
   contacts: {

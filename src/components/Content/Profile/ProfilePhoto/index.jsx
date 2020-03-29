@@ -12,7 +12,7 @@ const ProfilePhoto = ({ photos, uploadPhoto, isOwner }) => {
       <div className={css.photo}>
         <img
           className={css.img}
-          src={photos.large === null ? userPhoto : photos.large}
+          src={photos.large ? photos.large : userPhoto}
           alt="profilePhoto"
         />
         {isOwner && (
