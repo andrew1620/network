@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { compose } from "redux";
 
 import {
   setCurrentPage,
   requireUsers,
   follow,
-  unfollow
+  unfollow,
+  UserType,
+  SetCurrentPageActionType
 } from "../../../redux/usersReducer";
 import {
   getUsers,
@@ -17,15 +19,31 @@ import {
   getIsFollowing
 } from "../../../redux/usersSelectors";
 import Users from ".";
-import { compose } from "redux";
 import { withAuthRedirect } from "../../hoc/withAuthRedirect";
+import { AppStateType } from "../../../redux/store";
 
-const UsersContainer = props => {
+type MapStatePropsType = {
+  totalCount: number | null;
+  count: number;
+  currentPage: number;
+  users: Array<UserType>;
+  isFollowing: Array<number>;
+  isFetching: boolean;
+};
+type MapDispatchPropsType = {
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+  requireUsers: (count: number, currentPage: number) => void;
+  setCurrentPage: (newCurrentPage: number) => SetCurrentPageActionType;
+};
+type PropsType = MapStatePropsType & MapDispatchPropsType;
+
+const UsersContainer: React.FC<PropsType> = props => {
   useEffect(() => {
     props.requireUsers(props.count, props.currentPage);
   }, []);
 
-  const handlePageNumClick = number => {
+  const handlePageNumClick = (number: number) => {
     props.requireUsers(props.count, number);
     props.setCurrentPage(number);
   };
@@ -47,7 +65,7 @@ const UsersContainer = props => {
   );
 };
 
-const mstp = state => {
+const mstp = (state: AppStateType): MapStatePropsType => {
   return {
     users: getUsers(state),
     count: getCount(state),
@@ -57,7 +75,7 @@ const mstp = state => {
     isFollowing: getIsFollowing(state)
   };
 };
-const mdtp = {
+const mdtp: MapDispatchPropsType = {
   follow,
   unfollow,
   setCurrentPage,

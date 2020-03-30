@@ -3,7 +3,12 @@ import css from "./style.module.css";
 
 import Preloader from "../../../common/Preloader";
 
-const UsersHeader = ({ totalCount, isFetching }) => {
+type PropsType = {
+  totalCount: number | null;
+  isFetching: boolean;
+};
+
+const UsersHeader: React.FC<PropsType> = ({ totalCount, isFetching }) => {
   return (
     <div className={css.container}>
       <div className={css.title}>

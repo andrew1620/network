@@ -2,8 +2,19 @@ import React from "react";
 import css from "./style.module.css";
 import { connect } from "react-redux";
 import { setPortionNumber } from "../../../redux/usersReducer";
+import { AppStateType } from "../../../redux/store";
 
-const Paginator = ({
+type PropsType = {
+  totalCount: number | null;
+  count: number;
+  currentPage: number;
+  portionSize: number;
+  portionNumber: number;
+  handlePageNumClick: (number: number) => void;
+  setPortionNumber: (portionNumber: number) => void;
+};
+
+const Paginator: React.FC<PropsType> = ({
   totalCount,
   count,
   currentPage,
@@ -12,6 +23,7 @@ const Paginator = ({
   portionNumber,
   setPortionNumber
 }) => {
+  if (!totalCount) totalCount = 0;
   const pagesAmount = Math.ceil(totalCount / count); //Всего страниц
   const pagesNumbers = []; //кол-во кнопочек с номерами страниц
 
@@ -66,7 +78,7 @@ const Paginator = ({
   );
 };
 
-const mstp = state => ({
+const mstp = (state: AppStateType) => ({
   portionNumber: state.usersPage.portionNumber
 });
 

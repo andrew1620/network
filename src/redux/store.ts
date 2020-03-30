@@ -10,7 +10,7 @@ import authReducer from "./authReducer";
 import appReducer from "./appReducer";
 import ownerReducer from "./ownerReducer";
 
-const reducers = combineReducers({
+const rootReducer = combineReducers({
   profilePage: profileReducer,
   dialogsPage: dialogsReducer,
   usersPage: usersReducer,
@@ -20,8 +20,11 @@ const reducers = combineReducers({
   owner: ownerReducer
 });
 
+type RootReducerType = typeof rootReducer;
+export type AppStateType = ReturnType<RootReducerType>;
+
 const store = createStore(
-  reducers,
+  rootReducer,
   composeWithDevTools(applyMiddleware(thunkMiddleware))
 );
 

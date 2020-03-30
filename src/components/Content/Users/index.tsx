@@ -5,7 +5,21 @@ import UsersHeader from "./UsersHeader";
 import UsersContent from "./UsersContent";
 import UsersFooter from "./UsersFooter";
 
-const Users = props => {
+import { UserType } from "../../../redux/usersReducer";
+
+type PropsType = {
+  totalCount: number | null;
+  count: number;
+  currentPage: number;
+  users: Array<UserType>;
+  isFollowing: Array<number>;
+  isFetching: boolean;
+  handlePageNumClick: (number: number) => void;
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+};
+
+const Users: React.FC<PropsType> = props => {
   return (
     <div className={css.users}>
       <UsersHeader

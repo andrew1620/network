@@ -10,12 +10,12 @@ const TOGGLE_IS_FETCHING = "users/TOGGLE_IS_FETCHING";
 const TOGGLE_IS_FOLLOWING = "users/TOGGLE_IS_FOLLOWING";
 const SET_PORTION_NUMBER = "users/SET_PORTION_NUMBER";
 
-type UserType = {
+export type UserType = {
   id: number;
   name: string;
   status: string;
   photos: PhotosType;
-  isFollowed: boolean;
+  followed: boolean;
 };
 
 const initialState = {
@@ -78,7 +78,7 @@ type FollowACActionType = {
   type: typeof FOLLOW;
   payload: number;
 };
-export const followAC = (id: number) => {
+export const followAC = (id: number): FollowACActionType => {
   return {
     type: FOLLOW,
     payload: id
@@ -89,7 +89,7 @@ type UnfollowACActionType = {
   type: typeof UNFOLLOW;
   payload: number;
 };
-export const unfollowAC = (id: number) => {
+export const unfollowAC = (id: number): UnfollowACActionType => {
   return {
     type: UNFOLLOW,
     payload: id
@@ -104,7 +104,7 @@ export const setUsers = (users: Array<UserType>): SetUsersActionType => {
   return { type: SET_USERS, payload: users };
 };
 
-type SetCurrentPageActionType = {
+export type SetCurrentPageActionType = {
   type: typeof SET_CURRENT_PAGE;
   payload: number;
 };

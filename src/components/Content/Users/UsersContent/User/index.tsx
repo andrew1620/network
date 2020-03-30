@@ -3,8 +3,16 @@ import css from "./style.module.css";
 
 import Avatar from "../../../../common/Avatar";
 import Button from "./Button/index";
+import { UserType } from "../../../../../redux/usersReducer";
 
-const User = ({ user = { photos: null }, isFollowing, unfollow, follow }) => {
+type PropsType = {
+  user: UserType;
+  isFollowing: Array<number>;
+  follow: (userId: number) => void;
+  unfollow: (userId: number) => void;
+};
+
+const User: React.FC<PropsType> = ({ user, isFollowing, unfollow, follow }) => {
   return (
     <div className={css.user}>
       <div className={css.photo}>
