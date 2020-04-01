@@ -1,5 +1,8 @@
+import { ThunkAction } from "redux-thunk";
+
 import { usersAPI } from "../api/api";
 import { PhotosType } from "./commonTypes";
+import { AppStateType } from "./store";
 
 const FOLLOW = "users/FOLLOW";
 const UNFOLLOW = "users/UNFOLLOW";
@@ -13,6 +16,7 @@ const SET_PORTION_NUMBER = "users/SET_PORTION_NUMBER";
 export type UserType = {
   id: number;
   name: string;
+  uniqueUrlName: string | null;
   status: string;
   photos: PhotosType;
   followed: boolean;
@@ -22,7 +26,7 @@ const initialState = {
   users: [] as Array<UserType>,
   count: 5, //People amount in response
   currentPage: 1,
-  totalCount: null,
+  totalCount: null as number | null,
   isFetching: false,
   isFollowing: [] as Array<number>,
   portionNumber: 1
@@ -30,7 +34,20 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-const usersReducer = (state = initialState, action: any): InitialStateType => {
+type ActionTypes =
+  | FollowACActionType
+  | UnfollowACActionType
+  | SetUsersActionType
+  | SetCurrentPageActionType
+  | SetTotalUserCountActionType
+  | ToggleIsFetchingActionType
+  | TogggleIsFollowingActionType
+  | SetPortionNumberActionType;
+
+const usersReducer = (
+  state = initialState,
+  action: ActionTypes
+): InitialStateType => {
   switch (action.type) {
     case FOLLOW:
       return {
@@ -157,9 +174,12 @@ export const setPortionNumber = (
 
 // ------THUNKS-----------
 
-export const requireUsers = (count: number, currentPage: number) => {
-  return (dispatch: any) => {
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>;
+
+export const requireUsers = (count: number, currentPage: number): ThunkType => {
+  return dispatch => {
     dispatch(toggleIsFetching(true));
+    // There is a mistake during call "then" after getusers. I've to type "data" as any because TS can't realize it's type from API
     usersAPI.getUsers(count, currentPage).then((data: any) => {
       dispatch(toggleIsFetching(false));
       dispatch(setUsers(data.items));
@@ -168,10 +188,10 @@ export const requireUsers = (count: number, currentPage: number) => {
   };
 };
 
-export const follow = (userId: number) => {
-  return (dispatch: any) => {
+export const follow = (userId: number): ThunkType => {
+  return dispatch => {
     dispatch(toggleIsFollowing(true, userId));
-    usersAPI.follow(userId).then((data: any) => {
+    usersAPI.follow(userId).then(data => {
       if (data.resultCode === 0) {
         dispatch(followAC(userId));
       }
@@ -180,10 +200,10 @@ export const follow = (userId: number) => {
   };
 };
 
-export const unfollow = (userId: number) => {
-  return (dispatch: any) => {
+export const unfollow = (userId: number): ThunkType => {
+  return dispatch => {
     dispatch(toggleIsFollowing(true, userId));
-    usersAPI.unfollow(userId).then((data: any) => {
+    usersAPI.unfollow(userId).then(data => {
       if (data.resultCode === 0) {
         dispatch(unfollowAC(userId));
       }

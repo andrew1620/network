@@ -1,4 +1,7 @@
+import { ThunkAction } from "redux-thunk";
+
 import { profileAPI } from "../api/api";
+import { AppStateType } from "./store";
 
 const SET_OWNER_DATA = "owner/SET_OWNER_DATA";
 
@@ -13,7 +16,12 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
-const ownerReducer = (state = initialState, action: any): InitialStateType => {
+type ActionTypes = SetOwnerDataActionType;
+
+const ownerReducer = (
+  state = initialState,
+  action: ActionTypes
+): InitialStateType => {
   switch (action.type) {
     case SET_OWNER_DATA:
       return {
@@ -41,7 +49,11 @@ export const setOwnerData = (data: OwnerDataType): SetOwnerDataActionType => {
   return { type: SET_OWNER_DATA, payload: data };
 };
 
-export const requireOwnerData = () => async (dispatch: any, getState: any) => {
+// -----THUNKS-----
+
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>;
+
+export const requireOwnerData = (): ThunkType => async (dispatch, getState) => {
   try {
     const userId = getState().auth.userId;
     const data = await profileAPI.getUserProfile(userId);

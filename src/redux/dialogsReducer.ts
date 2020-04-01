@@ -1,4 +1,7 @@
 import { reset } from "redux-form";
+import { ThunkAction } from "redux-thunk";
+
+import { AppStateType } from "./store";
 
 const DELETE_DIALOG = "dialogs/DELETE_DIALOG";
 const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
@@ -100,9 +103,14 @@ const initialState = {
 
 type InitialStateType = typeof initialState;
 
+type ActionTypes =
+  | DeleteDialogACActionType
+  | AddMessageACActionType
+  | ResetType;
+
 const dialogsReducer = (
   state = initialState,
-  action: any
+  action: ActionTypes
 ): InitialStateType => {
   switch (action.type) {
     case DELETE_DIALOG:
@@ -144,20 +152,25 @@ export const deleteDialogAC = (dialogId: number): DeleteDialogACActionType => {
 
 type AddMessageACActionType = {
   type: typeof ADD_MESSAGE;
-  payload: { id: number; messageBody: string };
+  payload: { id: number | null; messageBody: string };
 };
 export const addMessageAC = (
-  id: number,
+  id: number | null,
   messageBody: string
 ): AddMessageACActionType => {
   return { type: ADD_MESSAGE, payload: { id, messageBody } };
 };
 
-export const deleteDialog = (dialogId: number) => (dispatch: any) => {
+type ResetType = any;
+
+// -----THUNKS-----
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>;
+
+export const deleteDialog = (dialogId: number): ThunkType => dispatch => {
   dispatch(deleteDialogAC(dialogId));
 };
-export const addMessage = (messageBody: string) => {
-  return (dispatch: any, getState: any) => {
+export const addMessage = (messageBody: string): ThunkType => {
+  return (dispatch, getState) => {
     dispatch(addMessageAC(getState().owner.ownerData.id, messageBody));
     dispatch(reset("messageForm"));
   };

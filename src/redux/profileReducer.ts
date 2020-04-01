@@ -3,6 +3,8 @@ import { reset } from "redux-form";
 import { profileAPI } from "../api/api";
 import { requireOwnerData } from "./ownerReducer";
 import { PhotosType } from "./commonTypes";
+import { ThunkAction } from "redux-thunk";
+import { AppStateType } from "./store";
 
 const ADD_POST = "profile/ADD_POST";
 const SET_USER_PROFILE = "profile/SET_USER_PROFILE";
@@ -25,7 +27,7 @@ type PostType = {
   body: string;
 };
 
-type ProfileType = {
+export type ProfileType = {
   aboutMe: string | null;
   contacts: {
     facebook: string | null;
@@ -78,14 +80,24 @@ const initialState = {
   profile: { photos: {} } as ProfileType | null,
   userStatus: "",
   isPIUpdated: false,
-  isOwner: null
+  isOwner: null as boolean | null
 };
 
 type InitialStateType = typeof initialState;
 
+type ActionTypes =
+  | AddPostACActionType
+  | SetUserProfileACActionType
+  | SetUserStatusACActionType
+  | DeletePostACActionType
+  | ToggleIsPIUpdatedActionType
+  | SetPhotoACActionType
+  | SetIsOwnerACActionType
+  | ResetType;
+
 const profileReducer = (
   state = initialState,
-  action: any
+  action: ActionTypes
 ): InitialStateType => {
   switch (action.type) {
     case ADD_POST:
@@ -183,16 +195,20 @@ export const setIsOwnerAC = (isOwner: boolean): SetIsOwnerACActionType => {
   return { type: SET_IS_OWNER, payload: isOwner };
 };
 
+type ResetType = any;
+
 // --------THUNKS----------
 
-export const addPost = (postBody: string) => (dispatch: any) => {
+type ThunkType = ThunkAction<void, AppStateType, unknown, ActionTypes>;
+
+export const addPost = (postBody: string): ThunkType => dispatch => {
   dispatch(addPostAC(postBody));
   dispatch(reset("addPostForm"));
 };
 
-export const setUserProfile = (userId: number) => {
-  return (dispatch: any, getState: any) => {
-    profileAPI.getUserProfile(userId).then((data: any) => {
+export const setUserProfile = (userId: number | null): ThunkType => {
+  return (dispatch, getState) => {
+    profileAPI.getUserProfile(userId).then(data => {
       dispatch(setUserProfileAC(data));
       const ownerId = getState().auth.userId;
       if (data.userId === ownerId) dispatch(setIsOwnerAC(true));
@@ -200,25 +216,25 @@ export const setUserProfile = (userId: number) => {
     });
   };
 };
-export const getUserStatus = (userId: number) => {
-  return (dispatch: any) => {
-    profileAPI.getUserStatus(userId).then((data: any) => {
+export const getUserStatus = (userId: number): ThunkType => {
+  return dispatch => {
+    profileAPI.getUserStatus(userId).then(data => {
       data === ""
         ? dispatch(setUserStatusAC("изменить статус"))
         : dispatch(setUserStatusAC(data));
     });
   };
 };
-export const updateUserStatus = (newStatus: string) => {
-  return (dispatch: any) => {
-    profileAPI.updateUserStatus(newStatus).then((data: any) => {
+export const updateUserStatus = (newStatus: string): ThunkType => {
+  return dispatch => {
+    profileAPI.updateUserStatus(newStatus).then(data => {
       if (data.resultCode === 0) dispatch(setUserStatusAC(newStatus));
     });
   };
 };
-export const updateProfileInfo = (info: ProfileType) => async (
-  dispatch: any,
-  getState: any
+export const updateProfileInfo = (info: ProfileType): ThunkType => async (
+  dispatch,
+  getState
 ) => {
   const response = await profileAPI.updateProfileInfo(info);
   if (response.data.resultCode === 0) {
@@ -229,7 +245,7 @@ export const updateProfileInfo = (info: ProfileType) => async (
 };
 
 // photo:any
-export const uploadPhoto = (photo: any) => async (dispatch: any) => {
+export const uploadPhoto = (photo: any): ThunkType => async dispatch => {
   const data = await profileAPI.uploadPhoto(photo);
   if (data.resultCode === 0) {
     dispatch(setPhotoAC(data.data.photos));

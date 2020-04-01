@@ -79,7 +79,7 @@ export const authentication = (): ThunkType => {
 
 export const login = (
   email: string,
-  password: number,
+  password: string,
   rememberMe: boolean
 ): ThunkType => {
   return async dispatch => {
