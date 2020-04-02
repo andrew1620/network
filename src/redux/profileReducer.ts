@@ -20,7 +20,7 @@ const dateFormatter = new Intl.DateTimeFormat("ru", {
   day: "numeric"
 });
 
-type PostType = {
+export type PostType = {
   id: number;
   date: string;
   likes: number;
@@ -39,8 +39,8 @@ export type ProfileType = {
     github: string | null;
     mainLink: string | null;
   };
-  lookingForAJob: boolean | null;
-  lookingForAJobDescription: string | null;
+  lookingForAJob: string | undefined;
+  lookingForAJobDescription: string | undefined;
   fullName: string | null;
   userId: number | null;
   photos: PhotosType;
@@ -77,13 +77,13 @@ const initialState = {
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla  voluptatum, natus mollitia optio est blanditiis corrupti. In laborum omnis laboriosam blanditiis quod aspernatur error mollitia, ducimus hicimpedit, autem odit? Facere, nisi! Quos in quibusdam doloremque illumunde amet nobis aperiam!"
     }
   ] as Array<PostType>,
-  profile: { photos: {} } as ProfileType | null,
+  profile: { photos: {} } as ProfileType,
   userStatus: "",
   isPIUpdated: false,
   isOwner: null as boolean | null
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionTypes =
   | AddPostACActionType
@@ -232,7 +232,14 @@ export const updateUserStatus = (newStatus: string): ThunkType => {
     });
   };
 };
-export const updateProfileInfo = (info: ProfileType): ThunkType => async (
+
+export type InfoType = {
+  aboutMe: string;
+  fullName: string;
+  lookingForAJob: string;
+  lookingForAJobDescription: string;
+};
+export const updateProfileInfo = (info: InfoType): ThunkType => async (
   dispatch,
   getState
 ) => {
@@ -245,7 +252,9 @@ export const updateProfileInfo = (info: ProfileType): ThunkType => async (
 };
 
 // photo:any
-export const uploadPhoto = (photo: any): ThunkType => async dispatch => {
+export const uploadPhoto: (photo: any) => void = (
+  photo
+): ThunkType => async dispatch => {
   const data = await profileAPI.uploadPhoto(photo);
   if (data.resultCode === 0) {
     dispatch(setPhotoAC(data.data.photos));

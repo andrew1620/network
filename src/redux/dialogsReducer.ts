@@ -6,25 +6,25 @@ import { AppStateType } from "./store";
 const DELETE_DIALOG = "dialogs/DELETE_DIALOG";
 const ADD_MESSAGE = "dialogs/ADD_MESSAGE";
 
-type DialogType = {
-  id: number | null;
-  name: string | null;
-  avatar: string | null;
-  time: string | null;
-  lastMessage: string | null;
+export type DialogType = {
+  id: number;
+  name: string;
+  avatar: string;
+  time: string;
+  lastMessage: string;
 };
-type InterlocutorType = {
+export type InterlocutorType = {
   id: number;
   name: string;
   avatar: string;
 };
-type MessageType = {
+export type MessageType = {
   id: number;
   whose: number;
   text: string;
   time: string;
 };
-type ConversationType = {
+export type ConversationType = {
   id: number | null;
   interlocutor: InterlocutorType;
   messages: Array<MessageType>;
@@ -63,7 +63,7 @@ const initialState = {
       time: "18:44",
       lastMessage: "Все окей"
     }
-  ] as Array<DialogType>,
+  ] as Array<DialogType> | null,
   conversation: {
     id: 1,
     interlocutor: {
@@ -101,7 +101,7 @@ const initialState = {
   } as ConversationType
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionTypes =
   | DeleteDialogACActionType
@@ -116,7 +116,9 @@ const dialogsReducer = (
     case DELETE_DIALOG:
       return {
         ...state,
-        dialogs: state.dialogs.filter(dialog => dialog.id !== action.payload)
+        dialogs: state.dialogs
+          ? state.dialogs.filter(dialog => dialog.id !== action.payload)
+          : []
       };
     case ADD_MESSAGE:
       const newMessage: MessageType = {

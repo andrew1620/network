@@ -1,7 +1,7 @@
 import axios from "axios";
 
 import { UserType } from "../redux/usersReducer";
-import { ProfileType } from "../redux/profileReducer";
+import { ProfileType, InfoType } from "../redux/profileReducer";
 import { PhotosType } from "../redux/commonTypes";
 
 const instance = axios.create({
@@ -72,7 +72,7 @@ export const profileAPI = {
       .put<CommonRes>("profile/status", { status: status })
       .then(response => response.data);
   },
-  updateProfileInfo(info: ProfileType) {
+  updateProfileInfo(info: InfoType) {
     return instance.put<CommonRes>("profile", info);
   },
   uploadPhoto(photo: any) {

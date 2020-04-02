@@ -5,6 +5,12 @@ import { AppStateType } from "./store";
 
 const SET_OWNER_DATA = "owner/SET_OWNER_DATA";
 
+export type OwnerDataType = {
+  id: number | null;
+  fullName: string | null;
+  photos: { small: string | null; large: string | null };
+};
+
 const initialState = {
   isOwner: null,
   ownerData: {
@@ -14,7 +20,7 @@ const initialState = {
   } as OwnerDataType
 };
 
-type InitialStateType = typeof initialState;
+export type InitialStateType = typeof initialState;
 
 type ActionTypes = SetOwnerDataActionType;
 
@@ -35,11 +41,6 @@ const ownerReducer = (
 
 export default ownerReducer;
 
-type OwnerDataType = {
-  id: number | null;
-  fullName: string | null;
-  photos: { small: string | null; large: string | null };
-};
 type SetOwnerDataActionType = {
   type: typeof SET_OWNER_DATA;
   payload: OwnerDataType;
