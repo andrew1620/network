@@ -5,8 +5,15 @@ import css from "./style.module.css";
 import Preloader from "../../common/Preloader";
 import Avatar from "../../common/Avatar";
 import SubMenu from "./SubMenu";
+import { OwnerDataType } from "../../../redux/ownerReducer";
 
-const OwnerBlock = ({ isAuth, logout, ownerData }) => {
+type Props = {
+  isAuth: boolean | null;
+  ownerData: OwnerDataType;
+  logout: () => void;
+};
+
+const OwnerBlock: React.FC<Props> = ({ isAuth, logout, ownerData }) => {
   const [isShownSubMenu, setIsShownSubMenu] = useState(false);
 
   if (!ownerData)
@@ -27,7 +34,7 @@ const OwnerBlock = ({ isAuth, logout, ownerData }) => {
       {isAuth && (
         <>
           <span className={css.fullname}>{fullName}</span>
-          <Avatar size={"small"} img={"owner"} />
+          <Avatar size="small" img={"owner"} />
           <div className={css.arrow}></div>
           {isShownSubMenu && (
             <SubMenu logout={logout} toggleShowSubMenu={toggleShowSubMenu} />

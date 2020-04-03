@@ -75,4 +75,8 @@ const mdtp = {
   addMessage
 };
 
-export default compose(connect(mstp, mdtp), withAuthRedirect)(Dialogs);
+// Added "as React.FC" to avoid a error in callback in the render of component "Route" in Content
+export default compose(
+  connect(mstp, mdtp),
+  withAuthRedirect
+)(Dialogs) as React.FC;

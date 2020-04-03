@@ -11,7 +11,12 @@ const UsersContainer = React.lazy(() => import("./Users/indexContainer"));
 const Login = React.lazy(() => import("../Login"));
 const EditPI = React.lazy(() => import("./Profile/ProfileInfo/EditPI"));
 
-const Content = ({ isAuth, requireOwnerData }) => {
+type Props = {
+  isAuth: boolean | null;
+  requireOwnerData: () => void;
+};
+
+const Content: React.FC<Props> = ({ isAuth, requireOwnerData }) => {
   useEffect(() => {
     if (isAuth) {
       requireOwnerData();

@@ -1,7 +1,7 @@
 import React from "react";
 import MenuItem from "./MenuItem";
 
-const Menu = () => {
+const Menu: React.FC = () => {
   const menuObjects = [
     {
       id: 1,

@@ -75,4 +75,4 @@ export default compose(
   withAuthRedirect,
   withRouter,
   connect(mapStateToProps, mapDispatchToProps)
-)(ProfileContainer);
+)(ProfileContainer) as React.FC;

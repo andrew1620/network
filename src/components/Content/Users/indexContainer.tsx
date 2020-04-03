@@ -82,4 +82,8 @@ const mdtp: MapDispatchPropsType = {
   requireUsers
 };
 
-export default compose(connect(mstp, mdtp), withAuthRedirect)(UsersContainer);
+// I've to add "as React.FC" in order to get rid of error with React.lazy in Content during import this component. I think It happenes because of compose.
+export default compose(
+  connect(mstp, mdtp),
+  withAuthRedirect
+)(UsersContainer) as React.FC;

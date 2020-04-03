@@ -1,8 +1,8 @@
 import React from "react";
 import Preloader from "../common/Preloader";
 
-const withSuspense = Component => {
-  return props => (
+const withSuspense = (Component: React.ComponentType<any>) => {
+  return (props: any) => (
     <React.Suspense fallback={<Preloader />}>
       <Component {...props} />
     </React.Suspense>

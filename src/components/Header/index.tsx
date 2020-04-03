@@ -1,8 +1,10 @@
 import React from "react";
 import css from "./style.module.css";
-import OwnerBlock from "./OwnerBlock";
 
-const Header = props => {
+import OwnerBlock from "./OwnerBlock";
+import { Props as HeaderProps } from "./indexContainer";
+
+const Header: React.FC<HeaderProps> = props => {
   return (
     <>
       <div className={css.back}></div>

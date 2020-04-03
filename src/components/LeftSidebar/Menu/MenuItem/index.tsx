@@ -2,7 +2,13 @@ import React from "react";
 import css from "./style.module.css";
 import { NavLink } from "react-router-dom";
 
-const MenuItem = ({ iconClass, pageRef, navlinkInner }) => {
+type Props = {
+  iconClass: string;
+  pageRef: string;
+  navlinkInner: string;
+};
+
+const MenuItem: React.FC<Props> = ({ iconClass, pageRef, navlinkInner }) => {
   return (
     <div>
       <NavLink to={pageRef} className={`${css.navLink}`}>
